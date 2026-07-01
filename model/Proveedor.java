@@ -2,10 +2,10 @@ public class Proveedor {
     // ========= ATRIBUTOS ==========
     private String identificador;
     private String nombre;
-    private int telefono;
+    private String telefono;
 
     // ========= CONSTRUCTOR ========
-    public Proveedor(String identificador, String nombre, int telefono){
+    public Proveedor(String identificador, String nombre, String telefono){
         this.identificador = identificador;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -14,5 +14,5 @@ public class Proveedor {
     // ========= GETTERS ============
     public String getIdentificador(){return this.identificador;}
     public String getNombre(){return this.nombre;}
-    public int getTelefono(){return this.telefono;}
+    public String gsetTelefono(){return this.telefono;}
 }

@@ -13,15 +13,36 @@ public class InputValidator {
                 System.out.println("[1] REGISTRAR PRODUCTO");
                 System.out.println("[2] REGISTRAR PROVEEDOR");
                 System.out.println("[3] REGISTRAR ENTRADA DE INVENTARIO");
+                System.out.println("[4] REGISTRAR SALIDA DE INVENTARIO");
+                System.out.println("[5] VER MENU INTERACTIVO");
+                System.out.println("[6] SALIR");
                 elegirRegistro = Integer.parseInt(scr.nextLine());
-                if (elegirRegistro < 1 || elegirRegistro > 3) {
+                if (elegirRegistro < 1 || elegirRegistro > 6) {
                     System.out.println("Numero incorrecto");
                 }
             } 
             catch (NumberFormatException e) {
                 System.err.println("¡Ingresa un numero porfavor!");
             }
-        } while (elegirRegistro < 1 || elegirRegistro > 3);
+        } while (elegirRegistro < 1 || elegirRegistro > 6);
         return elegirRegistro;
+    }
+    
+    // ============ VALIDACIÓN ENTRADAS QUE NO PUEDEN SER NEGATIVAS ==============
+    public static int validarNegativos(Scanner scr, String mensaje){
+        int dato = 0;
+        do {
+            try {
+                System.out.println(mensaje);
+                dato = Integer.parseInt(scr.nextLine());
+                if (dato < 0) {
+                    System.out.println("dato no valido");
+                }
+            } 
+            catch (NumberFormatException e) {
+                System.out.println("¡Ingresa un numero porfavor!");
+            }
+        } while (dato < 0);
+        return dato;
     }
 }
