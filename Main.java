@@ -1,6 +1,8 @@
 import java.util.Scanner;
-import java.util.ArrayList;
+import model.*;
 import util.InputValidator;
+import java.util.ArrayList;
+import services.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scr = new Scanner(System.in);
@@ -9,7 +11,7 @@ public class Main {
         int elegirRegistro = 0;
         System.out.println("BIENVENIDO AL SISTEMA DE INVENTARIO");
         while (elegirRegistro != 6) {
-            elegirRegistro = util.InputValidator.elegirRegistro(scr);
+            elegirRegistro = InputValidator.elegirRegistro(scr);
             switch (elegirRegistro) {
                 case 1:
                     System.out.println("Ingresa el codigo del producto");
@@ -19,7 +21,7 @@ public class Main {
                     System.out.println("Ingresa la categoria en la que se encuentra el producto");
                     String categoria = scr.nextLine();
                     int cantidad = InputValidator.validarNegativos(scr, "Ingresa la cantidad");
-                    productos.add(new Producto(codigo, nombreProd, categoria, cantidad){});
+                    productos.add(new Producto(codigo, nombreProd, categoria, cantidad));
                     System.out.println("¡PRODUCTO REGISTRADO CON EXITO!");
                     break;
                 case 2:
@@ -33,40 +35,34 @@ public class Main {
                     System.out.println("¡PROVEEDOR REGISTRADO CON EXITO!");
                     break;
 
-                case 3: //PENDIENTE: VALIDAR Y MODULAR ESTE BLOQUE DE CODIGO
-                    System.out.println("Ingresa el identificador del proveedor");
-                    String identEntradaProv = scr.nextLine();
-                    boolean proveedorEncontrado = false;
-                    for (Proveedor proveedor : proveedores) {
-                        if (identEntradaProv.equals(proveedor.getIdentificador())) {
-                            proveedorEncontrado = true;
+                case 3: 
+                    InventarioService.case3Entradas(proveedores, productos, scr);
+                    break;
+                case 4: //PENDIENTE: verificar y modular este bloque de código
+                    System.out.println("Ingrese el codigo del producto");
+                    codigo = scr.nextLine();
+                    boolean productoEncontrado = false;
+                    for (Producto producto : productos) {
+                        if (producto.getCodigo().equals(codigo)) {
+                            do {
+                                cantidad = InputValidator.validarNegativos(scr, "Ingresa la cantidad que desea retirar");
+                                if (cantidad <= producto.getCantidad()) {
+                                    producto.setDeleteCantidad(cantidad);
+                                    break;
+                                }
+                                else{
+                                    System.err.println("la cantidad supera el valor del stack disponible");
+                                }
+                            } while (cantidad > producto.getCantidad());
+                            System.out.println(producto.getCantidad());
+                            productoEncontrado = true;
                             break;
                         }
                     }
-                    if (proveedorEncontrado == true) {
-                        System.out.println("Ingresa el código del producto");
-                        String codEntradaProd = scr.nextLine();
-                        boolean productoEncontrado = false;
-                        for (Producto producto : productos) {
-                            if (codEntradaProd.equals(producto.getCodigo())) {
-                                productoEncontrado = true;
-                                break;
-                            }
-                        }
-                        if (productoEncontrado == true) {
-                            System.out.println("Ingrese la cantidad recibida");
-                            int cantRecibida = Integer.parseInt(scr.nextLine());        
-                        }
-                        else{
-                            System.out.println("PRODUCTO NO EXISTENTE");
-                        }
+                    if (productoEncontrado == false) {
+                        System.err.println("Producto no encontrado");
                     }
-                    else{
-                        System.out.println("PROVEEDOR NO ENCONTRADO");
-                    }
-                    System.out.println("ENTRADA REGISTRADA CON EXITO");
                     break;
-
                 default:
                     break;
             }

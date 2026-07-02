@@ -1,3 +1,4 @@
+package model;
 public class Proveedor {
     // ========= ATRIBUTOS ==========
     private String identificador;

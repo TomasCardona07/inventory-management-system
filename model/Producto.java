@@ -1,4 +1,5 @@
-public abstract class Producto{
+package model;
+public class Producto{
 
     // ========= ATRIBUTOS ==========
     private String codigo;
@@ -19,4 +20,18 @@ public abstract class Producto{
     public String getNombre(){return this.nombre;}
     public String getCategoria(){return this.categoria;}
     public int getCantidad(){return this.cantidad;}
+
+
+    // ======== SETTER ELIMINAR STACK DEL PRODUCTO ========
+    public int setDeleteCantidad(int nCantidad){
+        this.cantidad -= nCantidad;
+        return cantidad;
+    }
+
+
+    // ======== SETTER AGREGAR STACK DEL PRODUCTO ========
+    public int setAddCantidad(int nCantidad){
+        this.cantidad += nCantidad;
+        return cantidad;
+    }
 }

@@ -1,5 +1,6 @@
 package util;
 
+
 import java.util.Scanner;
 
 public class InputValidator {
@@ -18,7 +19,7 @@ public class InputValidator {
                 System.out.println("[6] SALIR");
                 elegirRegistro = Integer.parseInt(scr.nextLine());
                 if (elegirRegistro < 1 || elegirRegistro > 6) {
-                    System.out.println("Numero incorrecto");
+                    System.err.println("Numero incorrecto");
                 }
             } 
             catch (NumberFormatException e) {
@@ -31,18 +32,22 @@ public class InputValidator {
     // ============ VALIDACIÓN ENTRADAS QUE NO PUEDEN SER NEGATIVAS ==============
     public static int validarNegativos(Scanner scr, String mensaje){
         int dato = 0;
+        boolean entradaValida = false;
         do {
             try {
                 System.out.println(mensaje);
                 dato = Integer.parseInt(scr.nextLine());
                 if (dato < 0) {
-                    System.out.println("dato no valido");
+                    System.err.println("dato no valido");
+                }
+                else{
+                    entradaValida = true;
                 }
             } 
             catch (NumberFormatException e) {
-                System.out.println("¡Ingresa un numero porfavor!");
+                System.err.println("¡Ingresa un numero porfavor!");
             }
-        } while (dato < 0);
+        } while (entradaValida == false );
         return dato;
     }
 }
