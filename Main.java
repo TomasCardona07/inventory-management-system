@@ -38,30 +38,8 @@ public class Main {
                 case 3: 
                     InventarioService.case3Entradas(proveedores, productos, scr);
                     break;
-                case 4: //PENDIENTE: verificar y modular este bloque de código
-                    System.out.println("Ingrese el codigo del producto");
-                    codigo = scr.nextLine();
-                    boolean productoEncontrado = false;
-                    for (Producto producto : productos) {
-                        if (producto.getCodigo().equals(codigo)) {
-                            do {
-                                cantidad = InputValidator.validarNegativos(scr, "Ingresa la cantidad que desea retirar");
-                                if (cantidad <= producto.getCantidad()) {
-                                    producto.setDeleteCantidad(cantidad);
-                                    break;
-                                }
-                                else{
-                                    System.err.println("la cantidad supera el valor del stack disponible");
-                                }
-                            } while (cantidad > producto.getCantidad());
-                            System.out.println(producto.getCantidad());
-                            productoEncontrado = true;
-                            break;
-                        }
-                    }
-                    if (productoEncontrado == false) {
-                        System.err.println("Producto no encontrado");
-                    }
+                case 4:
+                    InventarioService.case4Entradas(productos, scr);
                     break;
                 default:
                     break;
