@@ -14,10 +14,10 @@ public class Main {
             elegirRegistro = InputValidator.elegirRegistro(scr);
             switch (elegirRegistro) {
                 case 1:
-                    InventarioService.case1Entradas(productos, scr);
+                    InventarioService.case1Entradas(scr);
                     break;
                 case 2:
-                    InventarioService.case2Entradas(proveedores, scr);
+                    InventarioService.case2Entradas(scr);
                     break;
                 case 3: 
                     InventarioService.case3Entradas(proveedores, productos, scr);

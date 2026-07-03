@@ -3,11 +3,14 @@ import java.util.ArrayList;
 import util.InputValidator;
 import java.util.Scanner;
 import model.*;
+import repository.*;
 
 public class InventarioService {
+    private static final ProductoRepository producto = new ProductoRepository();
+    private static final ProveedorRepository proveedor = new ProveedorRepository();
 
     // ========== CASE 1 DEL BLOQUE DE ENTRADAS ============
-    public static void case1Entradas(ArrayList<Producto> productos, Scanner scr){
+    public static void case1Entradas( Scanner scr){
         System.out.println("Ingresa el codigo del producto");
         String codigo = scr.nextLine();
         System.out.println("Ingresa el nombre del producto");
@@ -15,19 +18,19 @@ public class InventarioService {
         System.out.println("Ingresa la categoria en la que se encuentra el producto");
         String categoria = scr.nextLine();
         int cantidad = InputValidator.validarNegativos(scr, "Ingresa la cantidad");
-        productos.add(new Producto(codigo, nombreProd, categoria, cantidad));
+        producto.agregarProducto(new Producto(codigo, nombreProd, categoria, cantidad));
         System.out.println("¡PRODUCTO REGISTRADO CON EXITO!");
     }
 
     // ========== CASE 2 DEL BLOQUE DE ENTRADAS ============
-    public static void case2Entradas(ArrayList<Proveedor> proveedores, Scanner scr){
+    public static void case2Entradas(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
         String identificadorProv = scr.nextLine();
         System.out.println("Ingresa el nombre del proveedor");
         String nombreProv = scr.nextLine();
         System.out.println("Ingresa el numero del Proveedor");
         String telefono = scr.nextLine();
-        proveedores.add(new Proveedor(identificadorProv, nombreProv, telefono));
+        proveedor.agregarProveedor(new Proveedor(identificadorProv, nombreProv, telefono));
         System.out.println("¡PROVEEDOR REGISTRADO CON EXITO!");
     }
 
@@ -39,32 +42,30 @@ public class InventarioService {
         boolean proveedorEncontrado = false;
         for (Proveedor proveedor : proveedores) {
             if (identEntradaProv.equals(proveedor.getIdentificador())) {
+                System.out.println("Ingresa el código del producto");
+                String codEntradaProd = scr.nextLine();
+                boolean productoEncontrado = false;
+                for (Producto producto : productos) {
+                    if (codEntradaProd.equals(producto.getCodigo())) {
+                        int cantRecibida = InputValidator.validarNegativos(scr, "Ingresa la cantidad recibida");
+                        producto.setAddCantidad(cantRecibida);
+                        System.out.println("¡ENTRADA REGISTRADA!");
+                        productoEncontrado = true;
+                        break;
+                    }
+                }
+                if (productoEncontrado == false) {
+                    System.out.println("PRODUCTO NO ENCONTRADO");
+                }
                 proveedorEncontrado = true;
                 break;
             }
         }
-        if (proveedorEncontrado == true) {
-            System.out.println("Ingresa el código del producto");
-            String codEntradaProd = scr.nextLine();
-            boolean productoEncontrado = false;
-            for (Producto producto : productos) {
-                if (codEntradaProd.equals(producto.getCodigo())) {
-                    productoEncontrado = true;
-                    int cantRecibida = InputValidator.validarNegativos(scr, "Ingresa la cantidad recibida");
-                    producto.setAddCantidad(cantRecibida);
-                    System.out.println("¡ENTRADA REGISTRADA!");
-                    break;
-                }
-            }
-            if (productoEncontrado == false) {
-                 System.err.println("PRODUCTO NO ENCONTRADO");
-            }
-        }
-        else{
-            System.err.println("PROVEEDOR NO ENCONTRADO");
+        if (proveedorEncontrado == false) {
+            System.out.println("PROVEEDOR NO ENCONTRADO");
         }
     }
-    
+
 
     // ========== CASE 4 DEL BLOQUE DE ENTRADAS ============
     public static void case4Entradas(ArrayList<Producto> productos, Scanner scr){
