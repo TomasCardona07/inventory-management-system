@@ -6,6 +6,32 @@ import model.*;
 
 public class InventarioService {
 
+    // ========== CASE 1 DEL BLOQUE DE ENTRADAS ============
+    public static void case1Entradas(ArrayList<Producto> productos, Scanner scr){
+        System.out.println("Ingresa el codigo del producto");
+        String codigo = scr.nextLine();
+        System.out.println("Ingresa el nombre del producto");
+        String nombreProd = scr.nextLine();
+        System.out.println("Ingresa la categoria en la que se encuentra el producto");
+        String categoria = scr.nextLine();
+        int cantidad = InputValidator.validarNegativos(scr, "Ingresa la cantidad");
+        productos.add(new Producto(codigo, nombreProd, categoria, cantidad));
+        System.out.println("¡PRODUCTO REGISTRADO CON EXITO!");
+    }
+
+    // ========== CASE 2 DEL BLOQUE DE ENTRADAS ============
+    public static void case2Entradas(ArrayList<Proveedor> proveedores, Scanner scr){
+        System.out.println("Ingresa el identificador del proveedor");
+        String identificadorProv = scr.nextLine();
+        System.out.println("Ingresa el nombre del proveedor");
+        String nombreProv = scr.nextLine();
+        System.out.println("Ingresa el numero del Proveedor");
+        String telefono = scr.nextLine();
+        proveedores.add(new Proveedor(identificadorProv, nombreProv, telefono));
+        System.out.println("¡PROVEEDOR REGISTRADO CON EXITO!");
+    }
+
+
     // ========== CASE 3 DEL BLOQUE DE ENTRADAS ============
     public static void case3Entradas(ArrayList<Proveedor> proveedores, ArrayList<Producto> productos, Scanner scr ){
         System.out.println("Ingresa el identificador del proveedor");
@@ -38,6 +64,7 @@ public class InventarioService {
             System.err.println("PROVEEDOR NO ENCONTRADO");
         }
     }
+    
 
     // ========== CASE 4 DEL BLOQUE DE ENTRADAS ============
     public static void case4Entradas(ArrayList<Producto> productos, Scanner scr){
