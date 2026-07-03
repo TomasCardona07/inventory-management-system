@@ -1,6 +1,6 @@
 package util;
+import repository.*;
 import java.util.Scanner;
-
 public class InputValidator {
 
     // ============ VALIDAR INGRESO DE ELECCIÓN DE REGISTRO ==============
@@ -47,5 +47,18 @@ public class InputValidator {
             }
         } while (entradaValida == false );
         return dato;
+    }
+
+    // =========== IDENTIFICADOR REPETIDO ============
+    public static String idProveedorRepetido(Scanner scr, ProveedorRepository proveedor){
+        String identificador = scr.nextLine();
+        boolean proveedorExistente = proveedor.buscarIdentificador(identificador);
+        while (proveedorExistente == true) {
+           System.out.println("EL PROVEEDOR YA EXISTE");
+           System.out.println("INGRESE UN NUEVO IDENTIFICADOR");
+           identificador = scr.nextLine();
+           proveedorExistente = proveedor.buscarIdentificador(identificador);
+        }
+        return identificador;
     }
 }

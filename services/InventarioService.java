@@ -25,7 +25,7 @@ public class InventarioService {
     // ========== CASE 2 DEL BLOQUE DE ENTRADAS ============
     public static void case2Entradas(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
-        String identificadorProv = scr.nextLine();
+        String identificadorProv = InputValidator.idProveedorRepetido(scr, proveedor);
         System.out.println("Ingresa el nombre del proveedor");
         String nombreProv = scr.nextLine();
         System.out.println("Ingresa el numero del Proveedor");

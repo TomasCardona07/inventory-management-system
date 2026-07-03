@@ -11,4 +11,17 @@ public class ProveedorRepository {
     public void agregarProveedor(Proveedor proveedor){
         this.proveedores.add(proveedor);
     }
+
+
+    // ======= BUSCAR IDENTIFICADOR =========
+    public boolean buscarIdentificador(String identificador){
+        boolean identificadorEncontrado = false;
+        for (Proveedor proveedor : proveedores) {
+            if (proveedor.getIdentificador().equals(identificador)) {
+                return identificadorEncontrado = true;
+            }
+        }
+        return identificadorEncontrado;
+    }
+
 }
