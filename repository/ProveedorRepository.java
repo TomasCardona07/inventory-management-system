@@ -13,7 +13,7 @@ public class ProveedorRepository {
     }
 
 
-    // ======= BUSCAR IDENTIFICADOR =========
+    // ========== BUSCAR IDENTIFICADOR ===========
     public boolean buscarIdentificador(String identificador){
         boolean identificadorEncontrado = false;
         for (Proveedor proveedor : proveedores) {

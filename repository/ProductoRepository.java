@@ -8,11 +8,12 @@ public class ProductoRepository {
     private final ArrayList<Producto> productos = new ArrayList<>();
 
 
-    // ========= AGREGAR PRODUCTO AL ARRAY =========
+    // ========= AGREGAR NUEVO PRODUCTO =========
     public void agregarProducto(Producto producto){
         this.productos.add(producto);
     }
 
+    // =========== BUSCAR CÓDIGO =============
     public boolean buscarCodigo(String codigo){
         boolean codigoEncontrado = false;
         for (Producto producto : productos) {
@@ -21,5 +22,15 @@ public class ProductoRepository {
             }
         }
         return codigoEncontrado;
+    } 
+
+
+    public void agregarStack(int cantidad, String codigo){
+        for (Producto producto : productos) {
+            if (producto.getCodigo().equals(codigo)) {
+                producto.setAddCantidad(cantidad);
+                break;
+            }
+        }
     } 
 }

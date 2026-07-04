@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scr = new Scanner(System.in);
         ArrayList<Producto> productos = new ArrayList<>();
-        ArrayList<Proveedor> proveedores = new ArrayList<>();
         int elegirRegistro = 0;
         System.out.println("BIENVENIDO AL SISTEMA DE INVENTARIO");
         while (elegirRegistro != 6) {
@@ -20,7 +19,7 @@ public class Main {
                     InventarioService.case2Entradas(scr);
                     break;
                 case 3: 
-                    InventarioService.case3Entradas(proveedores, productos, scr);
+                    InventarioService.case3Entradas(scr);
                     break;
                 case 4:
                     InventarioService.case4Entradas(productos, scr);

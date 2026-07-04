@@ -36,33 +36,25 @@ public class InventarioService {
 
 
     // ========== CASE 3 DEL BLOQUE DE ENTRADAS ============
-    public static void case3Entradas(ArrayList<Proveedor> proveedores, ArrayList<Producto> productos, Scanner scr ){
+    public static void case3Entradas(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
         String identEntradaProv = scr.nextLine();
-        boolean proveedorEncontrado = false;
-        for (Proveedor proveedor : proveedores) {
-            if (identEntradaProv.equals(proveedor.getIdentificador())) {
-                System.out.println("Ingresa el código del producto");
-                String codEntradaProd = scr.nextLine();
-                boolean productoEncontrado = false;
-                for (Producto producto : productos) {
-                    if (codEntradaProd.equals(producto.getCodigo())) {
-                        int cantRecibida = InputValidator.validarNegativos(scr, "Ingresa la cantidad recibida");
-                        producto.setAddCantidad(cantRecibida);
-                        System.out.println("¡ENTRADA REGISTRADA!");
-                        productoEncontrado = true;
-                        break;
-                    }
-                }
-                if (productoEncontrado == false) {
-                    System.out.println("PRODUCTO NO ENCONTRADO");
-                }
-                proveedorEncontrado = true;
-                break;
+        boolean proveedorEncontrado = proveedor.buscarIdentificador(identEntradaProv);
+        if (proveedorEncontrado == true) {
+            System.out.println("Ingresa el código del producto");
+            String codEntradaProd = scr.nextLine();
+            boolean productoEncontrado = producto.buscarCodigo(codEntradaProd);
+            if (productoEncontrado == true) {
+                int cantRecibida = InputValidator.validarNegativos(scr, "Ingresa la cantidad recibida");
+                producto.agregarStack(cantRecibida, codEntradaProd);
+                System.out.println("¡ENTRADA REGISTRADA!");
+            }
+            else{
+                System.err.println("PRODUCTO NO EXISTENTE");
             }
         }
-        if (proveedorEncontrado == false) {
-            System.out.println("PROVEEDOR NO ENCONTRADO");
+        else{
+            System.err.println("PROVEEDOR NO EXISTENTE");
         }
     }
 
