@@ -12,7 +12,7 @@ public class InventarioService {
     // ========== CASE 1 DEL BLOQUE DE ENTRADAS ============
     public static void case1Entradas( Scanner scr){
         System.out.println("Ingresa el codigo del producto");
-        String codigo = scr.nextLine();
+        String codigo = InputValidator.idProductoRepetido(scr, producto);
         System.out.println("Ingresa el nombre del producto");
         String nombreProd = scr.nextLine();
         System.out.println("Ingresa la categoria en la que se encuentra el producto");
