@@ -22,6 +22,7 @@ public class Main {
                     InventarioService.case3Entradas(scr);
                     break;
                 case 4:
+                    // PENDIENTE: optimizar este bloque de código en services
                     InventarioService.case4Entradas(productos, scr);
                     break;
                 default:
