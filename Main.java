@@ -19,7 +19,7 @@ public class Main {
                     InventarioService.case3Entradas(scr);
                     break;
                 case 4:
-                    InventarioService.case4Entradas(scr);
+                    InventarioService.case4Entradas(productos, scr);
                     break;
                 default:
                     break;
