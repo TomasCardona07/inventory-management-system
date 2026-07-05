@@ -15,13 +15,12 @@ public class ProveedorRepository {
 
     // ========== BUSCAR IDENTIFICADOR ===========
     public boolean buscarIdentificador(String identificador){
-        boolean identificadorEncontrado = false;
         for (Proveedor proveedor : proveedores) {
             if (proveedor.getIdentificador().equals(identificador)) {
-                return identificadorEncontrado = true;
+                return true;
             }
         }
-        return identificadorEncontrado;
+        return false;
     }
 
     // ============ ELIMINAR PROVEEDOR ============

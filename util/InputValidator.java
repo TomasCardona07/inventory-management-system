@@ -55,7 +55,7 @@ public class InputValidator {
     public static String idProveedorRepetido(Scanner scr, ProveedorRepository proveedor){
         String identificador = scr.nextLine();
         boolean proveedorExistente = proveedor.buscarIdentificador(identificador);
-        while (proveedorExistente == true) {
+        while (proveedorExistente) {
            System.out.println("EL PROVEEDOR YA EXISTE");
            System.out.println("INGRESE UN NUEVO IDENTIFICADOR");
            identificador = scr.nextLine();
@@ -68,7 +68,7 @@ public class InputValidator {
     public static String idProductoRepetido(Scanner scr, ProductoRepository producto){
         String codigo = scr.nextLine();
         boolean productoExistente = producto.buscarCodigo(codigo);
-        while (productoExistente == true) {
+        while (productoExistente) {
            System.out.println("EL PRODUCTO YA EXISTE");
            System.out.println("INGRESE UN NUEVO CODIGO");
            codigo = scr.nextLine();

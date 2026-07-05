@@ -10,22 +10,24 @@ public class Main {
             elegirRegistro = InputValidator.elegirRegistro(scr);
             switch (elegirRegistro) {
                 case 1:
-                    InventarioService.case1Entradas(scr);
+                    InventarioService.registrarProducto(scr);
                     break;
                 case 2:
-                    InventarioService.case2Entradas(scr);
+                    InventarioService.registrarProveedor(scr);
                     break;
                 case 3: 
-                    InventarioService.case3Entradas(scr);
+                    InventarioService.registrarEntrada(scr);    
                     break;
                 case 4:
-                    InventarioService.case4Entradas(scr);
+                    //PENDIENTE: ORGANIZAR Y SEPARAR SCANNER DEL REPOSITORY CON EL DE SERVICES
+                    InventarioService.registrarSalida(scr);
                     break;
                 case 5:
-                    InventarioService.case5Entradas(scr);
+                    InventarioService.eliminarProducto(scr);
                     break;
                 case 6:
-                    InventarioService.case6Entradas(scr);
+                    InventarioService.eliminarProveedor(scr);
+                    break;
                 default:
                     break;
             }

@@ -9,7 +9,7 @@ public class InventarioService {
     private static final ProveedorRepository proveedor = new ProveedorRepository();
 
     // ========== CASE 1 DEL BLOQUE DE ENTRADAS: REGISTRAR PRODUCTO ============
-    public static void case1Entradas( Scanner scr){
+    public static void registrarProducto( Scanner scr){
         System.out.println("Ingresa el codigo del producto");
         String codigo = InputValidator.idProductoRepetido(scr, producto);
         System.out.println("Ingresa el nombre del producto");
@@ -22,7 +22,7 @@ public class InventarioService {
     }
 
     // ========== CASE 2 DEL BLOQUE DE ENTRADAS: REGISTRAR PROVEEDOR ============
-    public static void case2Entradas(Scanner scr){
+    public static void registrarProveedor(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
         String identificadorProv = InputValidator.idProveedorRepetido(scr, proveedor);
         System.out.println("Ingresa el nombre del proveedor");
@@ -35,17 +35,17 @@ public class InventarioService {
 
 
     // ========== CASE 3 DEL BLOQUE DE ENTRADAS: REGISTRAR ENTRADA ============
-    public static void case3Entradas(Scanner scr){
+    public static void registrarEntrada(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
         String identEntradaProv = scr.nextLine();
         boolean proveedorEncontrado = proveedor.buscarIdentificador(identEntradaProv);
-        if (proveedorEncontrado == true) {
+        if (proveedorEncontrado) {
             System.out.println("Ingresa el código del producto");
             String codEntradaProd = scr.nextLine();
             boolean productoEncontrado = producto.buscarCodigo(codEntradaProd);
-            if (productoEncontrado == true) {
+            if (productoEncontrado) {
                 int cantRecibida = InputValidator.validarNegativos(scr, "Ingresa la cantidad recibida");
-                producto.agregarStack(cantRecibida, codEntradaProd);
+                producto.agregarStock(cantRecibida, codEntradaProd);
                 System.out.println("¡ENTRADA REGISTRADA!");
             }
             else{
@@ -59,12 +59,12 @@ public class InventarioService {
 
 
     // ========== CASE 4 DEL BLOQUE DE ENTRADAS: REGISTRAR SALIDA ============
-    public static void case4Entradas(Scanner scr){
+    public static void registrarSalida(Scanner scr){
         System.out.println("Ingrese el codigo del producto");
         String codigo = scr.nextLine();
         boolean productoEncontrado = producto.buscarCodigo(codigo);
-        if (productoEncontrado == true) {
-            producto.eliminarStack(scr, codigo);
+        if (productoEncontrado) {
+            producto.eliminarStock(scr, codigo);
             System.out.println("SALIDA REGISTRADA");
         }
         else{
@@ -73,11 +73,11 @@ public class InventarioService {
     }
     
     // ========== CASE 5 DEL BLOQUE DE ENTRADAS: ELIMINAR PRODUCTO ============
-    public static void case5Entradas(Scanner scr){
+    public static void eliminarProducto(Scanner scr){
         System.out.println("Ingrese el codigo del producto que dese eliminar");
         String codigo = scr.nextLine();
         boolean productoExistente = producto.buscarCodigo(codigo);
-        if (productoExistente == true) {
+        if (productoExistente) {
             producto.eliminarProducto(codigo);
             System.out.println("PRODUCTO ELIMINADO CON EXITO");
         }
@@ -87,11 +87,11 @@ public class InventarioService {
     }
 
     // ========== CASE 6 DEL BLOQUE DE ENTRADAS: ELIMINAR PROVEEDOR ============
-    public static void case6Entradas(Scanner scr){
+    public static void eliminarProveedor(Scanner scr){
         System.out.println("Ingrese el identificador del proveedor que dese eliminar");
         String identificador = scr.nextLine();
         boolean proveedorExistente = proveedor.buscarIdentificador(identificador);
-        if (proveedorExistente == true) {
+        if (proveedorExistente) {
             proveedor.eliminarProveedor(identificador);
             System.out.println("PROVEEDOR ELIMINADO CON EXITO");
         }

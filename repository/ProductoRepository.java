@@ -17,17 +17,16 @@ public class ProductoRepository {
 
     // =========== BUSCAR CÓDIGO =============
     public boolean buscarCodigo(String codigo){
-        boolean codigoEncontrado = false;
         for (Producto producto : productos) {
             if (producto.getCodigo().equals(codigo)) {
-                return codigoEncontrado = true;
+                return true;
             }
         }
-        return codigoEncontrado;
+        return false;
     } 
 
-    // ======== AGREGAR STACK DEL PRODUCTO =============
-    public void agregarStack(int cantidad, String codigo){
+    // ======== AGREGAR STOCK DEL PRODUCTO =============
+    public void agregarStock(int cantidad, String codigo){
         for (Producto producto : productos) {
             if (producto.getCodigo().equals(codigo)) {
                 producto.setAddCantidad(cantidad);
@@ -36,8 +35,8 @@ public class ProductoRepository {
         }
     } 
 
-    // ======== ELIMINAR STACK DEL PRODUCTO =============
-    public void eliminarStack(Scanner scr, String codigo){
+    // ======== ELIMINAR STOCK DEL PRODUCTO =============
+    public void eliminarStock(Scanner scr, String codigo){
         int cantidad;
         eliminarProducto:
         for (Producto producto : productos) {
@@ -45,7 +44,7 @@ public class ProductoRepository {
                 do {
                     cantidad = InputValidator.validarNegativos(scr, "Ingrese la cantidad que desea retirar");
                     if (cantidad > producto.getCantidad()) {
-                        System.err.println("La cantidad supera el stack disponible");
+                        System.err.println("La cantidad supera el stock disponible");
                     }
                     else{
                         producto.setDeleteCantidad(cantidad);

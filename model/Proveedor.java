@@ -15,5 +15,5 @@ public class Proveedor {
     // ========= GETTERS ============
     public String getIdentificador(){return this.identificador;}
     public String getNombre(){return this.nombre;}
-    public String gsetTelefono(){return this.telefono;}
+    public String getTelefono(){return this.telefono;}
 }
