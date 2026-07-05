@@ -1,5 +1,4 @@
 package services;
-import java.util.ArrayList;
 import util.InputValidator;
 import java.util.Scanner;
 import model.*;
@@ -60,31 +59,16 @@ public class InventarioService {
 
 
     // ========== CASE 4 DEL BLOQUE DE ENTRADAS ============
-    public static void case4Entradas(ArrayList<Producto> productos, Scanner scr){
-        String codigo = null;
-        int cantidad = 0;
+    public static void case4Entradas(Scanner scr){
         System.out.println("Ingrese el codigo del producto");
-        codigo = scr.nextLine();
-        boolean productoEncontrado = false;
-        for (Producto producto : productos) {
-            if (producto.getCodigo().equals(codigo)) {
-                do {
-                    cantidad = InputValidator.validarNegativos(scr, "Ingresa la cantidad que desea retirar");
-                    if (cantidad <= producto.getCantidad()) {
-                        producto.setDeleteCantidad(cantidad);
-                        System.out.println("SALIDA REGISTRADA CON EXITO");
-                        break;
-                    }
-                    else{
-                        System.err.println("la cantidad supera el valor del stack disponible");
-                    }
-                } while (cantidad > producto.getCantidad());
-                productoEncontrado = true;
-                break;
-            }
+        String codigo = scr.nextLine();
+        boolean productoEncontrado = producto.buscarCodigo(codigo);
+        if (productoEncontrado == true) {
+            producto.eliminarStack(scr, codigo);
+            System.out.println("SALIDA REGISTRADA");
         }
-        if (productoEncontrado == false) {
-            System.err.println("Producto no encontrado");
-        } 
-    }
+        else{
+            System.err.println("PRODUCTO INEXISTENTE");
+        }
+    }       
 }
