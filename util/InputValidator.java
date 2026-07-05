@@ -13,17 +13,19 @@ public class InputValidator {
                 System.out.println("[2] REGISTRAR PROVEEDOR");
                 System.out.println("[3] REGISTRAR ENTRADA DE INVENTARIO");
                 System.out.println("[4] REGISTRAR SALIDA DE INVENTARIO");
-                System.out.println("[5] VER MENU INTERACTIVO");
-                System.out.println("[6] SALIR");
+                System.out.println("[5] ELIMINAR PRODUCTO");
+                System.out.println("[6] ELIMINAR PROVEEDOR");
+                System.out.println("[7] VER MENU INTERACTIVO");
+                System.out.println("[8] SALIR");
                 elegirRegistro = Integer.parseInt(scr.nextLine());
-                if (elegirRegistro < 1 || elegirRegistro > 6) {
+                if (elegirRegistro < 1 || elegirRegistro > 8) {
                     System.err.println("Numero incorrecto");
                 }
             } 
             catch (NumberFormatException e) {
                 System.err.println("¡Ingresa un numero porfavor!");
             }
-        } while (elegirRegistro < 1 || elegirRegistro > 6);
+        } while (elegirRegistro < 1 || elegirRegistro > 8);
         return elegirRegistro;
     }
     

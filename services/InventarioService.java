@@ -8,7 +8,7 @@ public class InventarioService {
     private static final ProductoRepository producto = new ProductoRepository();
     private static final ProveedorRepository proveedor = new ProveedorRepository();
 
-    // ========== CASE 1 DEL BLOQUE DE ENTRADAS ============
+    // ========== CASE 1 DEL BLOQUE DE ENTRADAS: REGISTRAR PRODUCTO ============
     public static void case1Entradas( Scanner scr){
         System.out.println("Ingresa el codigo del producto");
         String codigo = InputValidator.idProductoRepetido(scr, producto);
@@ -21,7 +21,7 @@ public class InventarioService {
         System.out.println("¡PRODUCTO REGISTRADO CON EXITO!");
     }
 
-    // ========== CASE 2 DEL BLOQUE DE ENTRADAS ============
+    // ========== CASE 2 DEL BLOQUE DE ENTRADAS: REGISTRAR PROVEEDOR ============
     public static void case2Entradas(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
         String identificadorProv = InputValidator.idProveedorRepetido(scr, proveedor);
@@ -34,7 +34,7 @@ public class InventarioService {
     }
 
 
-    // ========== CASE 3 DEL BLOQUE DE ENTRADAS ============
+    // ========== CASE 3 DEL BLOQUE DE ENTRADAS: REGISTRAR ENTRADA ============
     public static void case3Entradas(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
         String identEntradaProv = scr.nextLine();
@@ -58,7 +58,7 @@ public class InventarioService {
     }
 
 
-    // ========== CASE 4 DEL BLOQUE DE ENTRADAS ============
+    // ========== CASE 4 DEL BLOQUE DE ENTRADAS: REGISTRAR SALIDA ============
     public static void case4Entradas(Scanner scr){
         System.out.println("Ingrese el codigo del producto");
         String codigo = scr.nextLine();
@@ -70,5 +70,33 @@ public class InventarioService {
         else{
             System.err.println("PRODUCTO INEXISTENTE");
         }
-    }       
+    }
+    
+    // ========== CASE 5 DEL BLOQUE DE ENTRADAS: ELIMINAR PRODUCTO ============
+    public static void case5Entradas(Scanner scr){
+        System.out.println("Ingrese el codigo del producto que dese eliminar");
+        String codigo = scr.nextLine();
+        boolean productoExistente = producto.buscarCodigo(codigo);
+        if (productoExistente == true) {
+            producto.eliminarProducto(codigo);
+            System.out.println("PRODUCTO ELIMINADO CON EXITO");
+        }
+        else{
+            System.err.println("PRODUCTO NO ENCONTRADO");
+        }
+    }
+
+    // ========== CASE 6 DEL BLOQUE DE ENTRADAS: ELIMINAR PROVEEDOR ============
+    public static void case6Entradas(Scanner scr){
+        System.out.println("Ingrese el identificador del proveedor que dese eliminar");
+        String identificador = scr.nextLine();
+        boolean proveedorExistente = proveedor.buscarIdentificador(identificador);
+        if (proveedorExistente == true) {
+            proveedor.eliminarProveedor(identificador);
+            System.out.println("PROVEEDOR ELIMINADO CON EXITO");
+        }
+        else{
+            System.err.println("PROVEEDOR NO ENCONTRADO");
+        }
+    }
 }

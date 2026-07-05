@@ -24,4 +24,15 @@ public class ProveedorRepository {
         return identificadorEncontrado;
     }
 
+    // ============ ELIMINAR PROVEEDOR ============
+    public void eliminarProveedor(String identificador){
+        ArrayList<Proveedor> eliminarProveedor = new ArrayList<>();
+        for (Proveedor proveedor : proveedores) {
+            if (identificador.equals(proveedor.getIdentificador())) {
+                eliminarProveedor.add(proveedor);
+                break;
+            }
+        }
+        proveedores.removeAll(eliminarProveedor);
+    }
 }

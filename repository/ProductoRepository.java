@@ -55,4 +55,16 @@ public class ProductoRepository {
             }
         }
     }
+
+    // ============ ELIMINAR PRODUCTO ============
+    public void eliminarProducto(String codigo){
+        ArrayList<Producto> eliminarProductos = new ArrayList<>();
+        for (Producto producto : productos) {
+            if (codigo.equals(producto.getCodigo())) {
+                eliminarProductos.add(producto);
+                break;
+            }
+        }
+        productos.removeAll(eliminarProductos);
+    }
 }

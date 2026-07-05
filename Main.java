@@ -6,7 +6,7 @@ public class Main {
         Scanner scr = new Scanner(System.in);
         int elegirRegistro = 0;
         System.out.println("BIENVENIDO AL SISTEMA DE INVENTARIO");
-        while (elegirRegistro != 6) {
+        while (elegirRegistro != 8) {
             elegirRegistro = InputValidator.elegirRegistro(scr);
             switch (elegirRegistro) {
                 case 1:
@@ -21,6 +21,11 @@ public class Main {
                 case 4:
                     InventarioService.case4Entradas(scr);
                     break;
+                case 5:
+                    InventarioService.case5Entradas(scr);
+                    break;
+                case 6:
+                    InventarioService.case6Entradas(scr);
                 default:
                     break;
             }
