@@ -51,7 +51,7 @@ public class InputValidator {
         return dato;
     }
 
-    // =========== IDENTIFICADOR REPETIDO PROVEEDOR ============
+    // =========== IDENTIFICADOR PROVEEDOR REPETIDO ============
     public static String idProveedorRepetido(Scanner scr, ProveedorRepository proveedor){
         String identificador = scr.nextLine();
         boolean proveedorExistente = proveedor.buscarIdentificador(identificador);
@@ -64,7 +64,7 @@ public class InputValidator {
         return identificador;
     }
 
-    // =========== IDENTIFICADOR REPETIDO PRODUCTO ============
+    // =========== IDENTIFICADOR PRODUCTO REPETIDO ============
     public static String idProductoRepetido(Scanner scr, ProductoRepository producto){
         String codigo = scr.nextLine();
         boolean productoExistente = producto.buscarCodigo(codigo);
