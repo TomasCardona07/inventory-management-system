@@ -30,26 +30,31 @@ public class InputValidator {
     }
     
     // ============ VALIDACIÓN ENTRADAS QUE NO PUEDEN SER NEGATIVAS ==============
-    public static int validarNegativos(Scanner scr, String mensaje){
-        int dato = 0;
-        boolean entradaValida = false;
-        do {
-            try {
-                System.out.println(mensaje);
-                dato = Integer.parseInt(scr.nextLine());
-                if (dato < 0) {
-                    System.err.println("dato no valido");
-                }
-                else{
-                    entradaValida = true;
-                }
-            } 
-            catch (NumberFormatException e) {
-                System.err.println("¡Ingresa un numero porfavor!");
+public static int validarNegativos(Scanner scr, String mensaje, boolean permiteDecimales) {
+    int dato = 0;
+    boolean entradaValida = false;
+    do {
+        try {
+            System.out.println(mensaje);
+            String entrada = scr.nextLine();
+            if (permiteDecimales) {
+                double lecturaDecimal = Double.parseDouble(entrada);
+                dato = (int)lecturaDecimal;
+            } else {
+                dato = Integer.parseInt(entrada);
             }
-        } while (!entradaValida);
-        return dato;
-    }
+            if (dato < 0) {
+                System.err.println("dato no valido");
+            } else {
+                entradaValida = true;
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("¡Ingresa un numero porfavor!");
+        }
+    } while (!entradaValida);
+    return dato;
+}
+
 
     // =========== IDENTIFICADOR REPETIDO PROVEEDOR ============
     public static String idProveedorRepetido(Scanner scr, ProveedorRepository proveedor){
