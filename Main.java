@@ -19,7 +19,6 @@ public class Main {
                     InventarioService.registrarEntrada(scr);    
                     break;
                 case 4:
-                    //PENDIENTE: ORGANIZAR Y SEPARAR SCANNER DEL REPOSITORY CON EL DE SERVICES
                     InventarioService.registrarSalida(scr);
                     break;
                 case 5:

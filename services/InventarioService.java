@@ -62,10 +62,19 @@ public class InventarioService {
     public static void registrarSalida(Scanner scr){
         System.out.println("Ingrese el codigo del producto");
         String codigo = scr.nextLine();
+        boolean stockEliminado = false;
         boolean productoEncontrado = producto.buscarCodigo(codigo);
-        if (productoEncontrado) {
-            producto.eliminarStock(scr, codigo);
-            System.out.println("SALIDA REGISTRADA");
+        if (productoEncontrado){
+            do {
+                int cantidad = InputValidator.validarNegativos(scr, "Ingrese la cantidad que desea retirar");
+                stockEliminado = producto.eliminarStock(cantidad, codigo);
+                if (stockEliminado) {
+                    System.out.println("SALIDA REGISTRADA CON EXITO");
+                }
+                else{
+                    System.err.println("LA CANTIDAD INGRESADA SOBREPASA EL STOCK DISPONIBLE");
+                }
+            } while (!stockEliminado);
         }
         else{
             System.err.println("PRODUCTO INEXISTENTE");
@@ -88,7 +97,7 @@ public class InventarioService {
 
     // ========== CASE 6 DEL BLOQUE DE ENTRADAS: ELIMINAR PROVEEDOR ============
     public static void eliminarProveedor(Scanner scr){
-        System.out.println("Ingrese el identificador del proveedor que dese eliminar");
+        System.out.println("Ingrese el identificador del proveedor que desee eliminar");
         String identificador = scr.nextLine();
         boolean proveedorExistente = proveedor.buscarIdentificador(identificador);
         if (proveedorExistente) {

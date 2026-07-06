@@ -1,8 +1,6 @@
 package repository;
 import model.Producto;
-import util.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ProductoRepository {
 
@@ -36,23 +34,16 @@ public class ProductoRepository {
     } 
 
     // ======== ELIMINAR STOCK DEL PRODUCTO =============
-    public void eliminarStock(Scanner scr, String codigo){
-        int cantidad;
-        eliminarProducto:
+    public boolean eliminarStock(int cantidad, String codigo){
         for (Producto producto : productos) {
-            if (producto.getCodigo().equals(codigo)) {
-                do {
-                    cantidad = InputValidator.validarNegativos(scr, "Ingrese la cantidad que desea retirar");
-                    if (cantidad > producto.getCantidad()) {
-                        System.err.println("La cantidad supera el stock disponible");
-                    }
-                    else{
-                        producto.setDeleteCantidad(cantidad);
-                        break eliminarProducto;
-                    }
-                } while (cantidad > producto.getCantidad());
+            if (codigo.equals(producto.getCodigo())) {
+                if (cantidad <= producto.getCantidad()) {
+                    producto.setDeleteCantidad(cantidad);
+                    return true;
+                }
             }
         }
+        return false;
     }
 
     // ============ ELIMINAR PRODUCTO ============

@@ -47,7 +47,7 @@ public class InputValidator {
             catch (NumberFormatException e) {
                 System.err.println("¡Ingresa un numero porfavor!");
             }
-        } while (entradaValida == false );
+        } while (!entradaValida);
         return dato;
     }
 
