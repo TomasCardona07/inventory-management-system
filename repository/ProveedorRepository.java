@@ -7,6 +7,16 @@ public class ProveedorRepository {
     private final ArrayList<Proveedor> proveedores = new ArrayList<>();
 
 
+    // ======== RETORNAR PROVEEDOR ===========
+    public Proveedor retornarProveedor(String identificador){
+        for (Proveedor proveedor : proveedores) {
+            if (identificador.equals(proveedor.getIdentificador())) {
+                return proveedor;
+            }
+        }
+        return null;
+    }
+
     // ======== AGREGAR NUEVO PROVEEDOR =========
     public void agregarProveedor(Proveedor proveedor){
         this.proveedores.add(proveedor);
@@ -33,5 +43,10 @@ public class ProveedorRepository {
             }
         }
         proveedores.removeAll(eliminarProveedor);
+    }
+
+    // ========== MOSTRAR PROVEEDORES ==========
+    public ArrayList<Proveedor> getProveedores(){
+        return proveedores;
     }
 }

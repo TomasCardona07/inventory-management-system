@@ -1,5 +1,7 @@
 package services;
 import util.InputValidator;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
 import repository.*;
@@ -7,6 +9,10 @@ import repository.*;
 public class InventarioService {
     private static final ProductoRepository producto = new ProductoRepository();
     private static final ProveedorRepository proveedor = new ProveedorRepository();
+
+    /*=======================================================
+      ============= MENU PRINCIPAL: REGISTROS ===============
+      =======================================================*/
 
     // ========== CASE 1 DEL BLOQUE DE ENTRADAS: REGISTRAR PRODUCTO ============
     public static void registrarProducto( Scanner scr){
@@ -38,15 +44,15 @@ public class InventarioService {
     // ========== CASE 3 DEL BLOQUE DE ENTRADAS: REGISTRAR ENTRADA ============
     public static void registrarEntrada(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
-        String identEntradaProv = scr.nextLine();
-        boolean proveedorEncontrado = proveedor.buscarIdentificador(identEntradaProv);
-        if (proveedorEncontrado) {
+        String identificador = scr.nextLine();
+        Proveedor proveedorA = proveedor.retornarProveedor(identificador);
+        if (proveedorA != null) {
             System.out.println("Ingresa el código del producto");
-            String codEntradaProd = scr.nextLine();
-            boolean productoEncontrado = producto.buscarCodigo(codEntradaProd);
-            if (productoEncontrado) {
+            String codigo = scr.nextLine();
+            Producto productoA = producto.retornarProducto(codigo);
+            if (productoA != null) {
                 int cantRecibida = InputValidator.validarNegativos(scr, "Ingresa la cantidad recibida", false);
-                producto.agregarStock(cantRecibida, codEntradaProd);
+                productoA.setAddCantidad(cantRecibida);
                 System.out.println("¡ENTRADA REGISTRADA!");
             }
             else{
@@ -107,6 +113,64 @@ public class InventarioService {
         }
         else{
             System.err.println("PROVEEDOR NO ENCONTRADO");
+        }
+    }
+
+    /*=======================================================
+      ================= MENU DE REPORTES ====================
+      =======================================================*/
+    
+    // ========== CASE 1: MOSTRAR TODOS LOS PROVEEDORES REGISTRADOS =============
+    public static void proveedoresRegistrados(){
+        ArrayList<Proveedor> proveedores = proveedor.getProveedores();
+        if (!proveedores.isEmpty()) {
+            for (Proveedor proveedor : proveedores) {
+                System.out.println("IDENTIFICADOR: " + proveedor.getIdentificador());
+                System.out.println("NOMBRE: " + proveedor.getNombre());
+                System.out.println("TELEFONO: " + proveedor.getTelefono());
+            }
+        }
+        else{
+            System.err.println("NO HAY PROVEEDORES REGISTRADOS");
+        }
+    }
+
+
+    // ========== CASE 2: MOSTRAR TODOS LOS PRODUCTOS REGISTRADOS =============
+    public static void productosRegistrados(){
+        ArrayList<Producto> productos = producto.getProductos();
+        if (!productos.isEmpty()) {
+            for (Producto producto : productos) {
+                System.out.println("CODIGO: " + producto.getCodigo());
+                System.out.println("NOMBRE: " + producto.getNombre());
+                System.out.println("CATEGORIA: " + producto.getCategoria());
+                System.out.println("PRECIO: " + producto.getPrecio() + " PESOS");
+                System.out.println("STOCK DISPONIBLE: " + producto.getCantidad() + " UNIDADES");
+                System.out.println("==========================");
+            }
+        }
+        else{
+            System.err.println("NO HAY PRODUCTOS REGISTRADOS");
+        }
+    }
+
+    // ========== CASE 3: MOSTRAR PRODUCTO CON MAYOR STOCK =============
+    public static void mayorStock(){
+        ArrayList<Producto> productos = producto.getProductos();
+        int mayorStock = 0;
+        String mayorStockCodigo = null;
+        if (!productos.isEmpty()) {
+            for (Producto producto : productos) {
+                if (producto.getCantidad() > mayorStock) {
+                    mayorStock = producto.getCantidad();
+                    mayorStockCodigo = producto.getCodigo();
+                }
+            }
+            System.out.println("EL PRODUCTO CON MAYOR STOCK ES: #" + mayorStockCodigo);
+            System.out.println("CON " + mayorStock + " UNIDADES");
+        }
+        else{
+            System.err.println("NO HAY PRODUCTOS REGISTRADOS");
         }
     }
 }

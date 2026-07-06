@@ -8,14 +8,14 @@ public class InputValidator {
         int elegirRegistro = 0;
         do {
             try{
-                System.out.println("Ingresa que deseas hacer");
+                System.out.println("¿Qué acción deseas hacer?");
                 System.out.println("[1] REGISTRAR PRODUCTO");
                 System.out.println("[2] REGISTRAR PROVEEDOR");
                 System.out.println("[3] REGISTRAR ENTRADA DE INVENTARIO");
                 System.out.println("[4] REGISTRAR SALIDA DE INVENTARIO");
                 System.out.println("[5] ELIMINAR PRODUCTO");
                 System.out.println("[6] ELIMINAR PROVEEDOR");
-                System.out.println("[7] VER MENU INTERACTIVO");
+                System.out.println("[7] VER MENU DE REPORTES");
                 System.out.println("[8] SALIR");
                 elegirRegistro = Integer.parseInt(scr.nextLine());
                 if (elegirRegistro < 1 || elegirRegistro > 8) {
@@ -83,4 +83,29 @@ public static int validarNegativos(Scanner scr, String mensaje, boolean permiteD
 
     }
 
+    // ============ VALIDAR INGRESO DE ELECCIÓN DE REPORTE ==============
+    public static int elegirReporte(Scanner scr){
+        int elegirReporte = 0;
+        do {
+            try{
+                System.out.println("¿Qué reporte deseas hacer?");
+                System.out.println("[1] TOTAL PROVEEDORES REGISTRADOS");
+                System.out.println("[2] TOTAL PRODUCTOS REGISTRADOS");
+                System.out.println("[3] PRODUCTO CON MAYOR STOCK");
+                System.out.println("[4] PRODUCTO CON MENOR STOCK");
+                System.out.println("[5] VALOR TOTAL DEL INVENTARIO");
+                System.out.println("[6] PRODUCTOS AGOTADOS");
+                System.out.println("[7] PRODUCTOS CON MENOS DE 5 UNIDADES");
+                System.out.println("[8] REGRESAR");
+                elegirReporte = Integer.parseInt(scr.nextLine());
+                if (elegirReporte < 1 || elegirReporte > 8) {
+                    System.err.println("Numero incorrecto");
+                }
+            } 
+            catch (NumberFormatException e) {
+                System.err.println("¡Ingresa un numero porfavor!");
+            }
+        } while (elegirReporte < 1 || elegirReporte > 8);
+        return elegirReporte;
+    }
 }

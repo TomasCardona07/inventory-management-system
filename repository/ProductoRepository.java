@@ -7,6 +7,15 @@ public class ProductoRepository {
     // ========= CREAR ARRAY DE PRODUCTOS ==========
     private final ArrayList<Producto> productos = new ArrayList<>();
 
+    // ======== RETORNAR PRODUCTO ===========
+    public Producto retornarProducto(String codigo){
+        for (Producto producto : productos) {
+            if (codigo.equals(producto.getCodigo())) {
+                return producto;
+            }
+        }
+        return null;
+    }
 
     // ========= AGREGAR NUEVO PRODUCTO =========
     public void agregarProducto(Producto producto){
@@ -56,5 +65,11 @@ public class ProductoRepository {
             }
         }
         productos.removeAll(eliminarProductos);
+    }
+
+
+    // ========== MOSTRAR PRODUCTOS ==========
+    public ArrayList<Producto> getProductos() {
+        return productos;
     }
 }
