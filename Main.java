@@ -29,6 +29,7 @@ public class Main {
                     InventarioService.eliminarProveedor(scr);
                     break;
                 case 7:
+                    elegirReporte:
                     while (elegirReporte != 8) {
                         elegirReporte = InputValidator.elegirReporte(scr);
                         switch (elegirReporte) {
@@ -40,6 +41,16 @@ public class Main {
                                 break;
                             case 3:
                                 InventarioService.mayorStock();
+                                break;
+                            case 4:
+                                InventarioService.menorStock();
+                                break;
+                            case 5:
+                                InventarioService.valorInventario();
+                                break;
+                            case 8:
+                                elegirRegistro = 0;
+                                break elegirReporte;
                             default:
                                 break;
                         }

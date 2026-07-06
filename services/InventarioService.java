@@ -1,6 +1,5 @@
 package services;
 import util.InputValidator;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
@@ -157,9 +156,9 @@ public class InventarioService {
     // ========== CASE 3: MOSTRAR PRODUCTO CON MAYOR STOCK =============
     public static void mayorStock(){
         ArrayList<Producto> productos = producto.getProductos();
-        int mayorStock = 0;
-        String mayorStockCodigo = null;
         if (!productos.isEmpty()) {
+            int mayorStock = -1;
+            String mayorStockCodigo = null;
             for (Producto producto : productos) {
                 if (producto.getCantidad() > mayorStock) {
                     mayorStock = producto.getCantidad();
@@ -168,6 +167,42 @@ public class InventarioService {
             }
             System.out.println("EL PRODUCTO CON MAYOR STOCK ES: #" + mayorStockCodigo);
             System.out.println("CON " + mayorStock + " UNIDADES");
+        }
+        else{
+            System.err.println("NO HAY PRODUCTOS REGISTRADOS");
+        }
+    }
+
+    // ========== CASE 4: MOSTRAR PRODUCTO CON MENOR STOCK =============
+    public static void menorStock(){
+        ArrayList<Producto> productos = producto.getProductos();
+        if (!productos.isEmpty()) {
+            int menorStock = 999999999;
+            String menorStockCodigo = null;
+            for (Producto producto : productos) {
+                if (producto.getCantidad() < menorStock) {
+                    menorStock = producto.getCantidad();
+                    menorStockCodigo = producto.getCodigo();
+                }
+            }
+            System.out.println("EL PRODUCTO CON MENOR STOCK ES: #" + menorStockCodigo);
+            System.out.println("CON " + menorStock + " UNIDADES");
+        }
+        else{
+            System.err.println("NO HAY PRODUCTOS REGISTRADOS");
+        }
+    }
+
+
+    // ============= CASE 5: SUMA DE LOS PRECIOS DE CADA PRODUCTO ============
+    public static void valorInventario(){
+        ArrayList<Producto> productos = producto.getProductos();
+        if (!productos.isEmpty()) {
+            double sumaPrecios = 0;
+            for (Producto producto : productos) {
+                sumaPrecios += producto.getPrecio();
+            }
+            System.out.println("EL VALOR DEL INVENTARIO ES DE: " + sumaPrecios + " PESOS");
         }
         else{
             System.err.println("NO HAY PRODUCTOS REGISTRADOS");
