@@ -5,9 +5,10 @@ public class Main {
     public static void main(String[] args) {
         Scanner scr = new Scanner(System.in);
         int elegirRegistro = 0;
-        int elegirReporte = 0;
+        int salidaRegistro = 8;
         System.out.println("BIENVENIDO AL SISTEMA DE INVENTARIO");
-        while (elegirRegistro != 8) {
+        while (elegirRegistro != salidaRegistro) {
+            System.out.println("MENU DE REGISTROS");
             elegirRegistro = InputValidator.elegirRegistro(scr);
             switch (elegirRegistro) {
                 case 1:
@@ -29,8 +30,10 @@ public class Main {
                     InventarioService.eliminarProveedor(scr);
                     break;
                 case 7:
-                    elegirReporte:
-                    while (elegirReporte != 8) {
+                    int elegirReporte = 0;
+                    int salidaReporte = 8;
+                    while (elegirReporte != salidaReporte) {
+                        System.out.println("MENU DE REPORTES");
                         elegirReporte = InputValidator.elegirReporte(scr);
                         switch (elegirReporte) {
                             case 1:  
@@ -48,18 +51,22 @@ public class Main {
                             case 5:
                                 InventarioService.valorInventario();
                                 break;
-                            case 8:
-                                elegirRegistro = 0;
-                                break elegirReporte;
+                            case 6:
+                                InventarioService.productosAgotados();
+                                break;
+                            case 7:
+                                InventarioService.productosEscasos();
+                                break;
                             default:
                                 break;
                         }
                     }
                     break;
                 default:
-                    System.out.println("GRACIAS POR USAR NUESTRO SISTEMA");
+                    System.out.println("GRACIAS POR USAR NUESTRO SISTEMA :)");
                     break;
             }
         }
+        scr.close();
     }
 }

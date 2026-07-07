@@ -96,7 +96,7 @@ public static int validarNegativos(Scanner scr, String mensaje, boolean permiteD
                 System.out.println("[5] VALOR TOTAL DEL INVENTARIO");
                 System.out.println("[6] PRODUCTOS AGOTADOS");
                 System.out.println("[7] PRODUCTOS CON MENOS DE 5 UNIDADES");
-                System.out.println("[8] REGRESAR");
+                System.out.println("[8] REGRESAR AL MENU DE REGISTROS");
                 elegirReporte = Integer.parseInt(scr.nextLine());
                 if (elegirReporte < 1 || elegirReporte > 8) {
                     System.err.println("Numero incorrecto");

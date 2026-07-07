@@ -8,7 +8,7 @@ public class Producto{
     private int cantidad;
     private double precio;
 
-    // ========= CONSTRUCTOR ========
+    // ========= CONSTRUCTOR =========
     public Producto (String codigo, String nombre, String categoria, int cantidad, double precio){
         this.codigo = codigo;
         this.nombre = nombre;
@@ -17,7 +17,7 @@ public class Producto{
         this.precio = precio;
     }
 
-    // ========= GETTERS ============
+    // ========== GETTERS ============
     public String getCodigo(){return this.codigo;}
     public String getNombre(){return this.nombre;}
     public String getCategoria(){return this.categoria;}

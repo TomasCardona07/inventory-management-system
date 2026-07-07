@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class ProductoRepository {
 
-    // ========= CREAR ARRAY DE PRODUCTOS ==========
+    // ========== CREAR ARRAY DE PRODUCTOS ==========
     private final ArrayList<Producto> productos = new ArrayList<>();
 
-    // ======== RETORNAR PRODUCTO ===========
+    // ========= RETORNAR PRODUCTO ===========
     public Producto retornarProducto(String codigo){
         for (Producto producto : productos) {
             if (codigo.equals(producto.getCodigo())) {
@@ -17,7 +17,7 @@ public class ProductoRepository {
         return null;
     }
 
-    // ========= AGREGAR NUEVO PRODUCTO =========
+    // ========== AGREGAR NUEVO PRODUCTO =========
     public void agregarProducto(Producto producto){
         this.productos.add(producto);
     }
@@ -32,7 +32,7 @@ public class ProductoRepository {
         return false;
     } 
 
-    // ======== AGREGAR STOCK DEL PRODUCTO =============
+    // ========= AGREGAR STOCK DEL PRODUCTO =============
     public void agregarStock(int cantidad, String codigo){
         for (Producto producto : productos) {
             if (producto.getCodigo().equals(codigo)) {
@@ -42,7 +42,7 @@ public class ProductoRepository {
         }
     } 
 
-    // ======== ELIMINAR STOCK DEL PRODUCTO =============
+    // ========= ELIMINAR STOCK DEL PRODUCTO =============
     public boolean eliminarStock(int cantidad, String codigo){
         for (Producto producto : productos) {
             if (codigo.equals(producto.getCodigo())) {

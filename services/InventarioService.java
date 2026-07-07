@@ -194,18 +194,62 @@ public class InventarioService {
     }
 
 
-    // ============= CASE 5: SUMA DE LOS PRECIOS DE CADA PRODUCTO ============
+    // ============= CASE 5: VALOR DEL INVENTARIO ============
     public static void valorInventario(){
         ArrayList<Producto> productos = producto.getProductos();
         if (!productos.isEmpty()) {
-            double sumaPrecios = 0;
+            double sumaValor = 0;
             for (Producto producto : productos) {
-                sumaPrecios += producto.getPrecio();
+                sumaValor += producto.getPrecio() * producto.getCantidad();
             }
-            System.out.println("EL VALOR DEL INVENTARIO ES DE: " + sumaPrecios + " PESOS");
+            System.out.println("EL VALOR DEL INVENTARIO ES DE: " + sumaValor + " PESOS");
         }
         else{
             System.err.println("NO HAY PRODUCTOS REGISTRADOS");
         }
     }
+
+   // ============= CASE 6: MOSTRAR PRODUCTOS AGOTADOS ============ 
+    public static void productosAgotados(){
+        ArrayList<Producto> productos = producto.getProductos();
+        int contadorProductos = 0;
+        if (!productos.isEmpty()) {
+            for (Producto producto : productos) {
+                if (producto.getCantidad() == 0) {
+                    System.out.println("El producto con codigo: " + producto.getCodigo()+ " Esta agotado");
+                    System.out.println("----------------------------------");
+                    contadorProductos++;
+                }
+            }
+            if (contadorProductos == 0) {
+                System.out.println("NO HAY PRODUCTOS CON UNIDADES AGOTADAS");
+            }
+        }
+        else{
+            System.err.println("NO HAY PRODUCTOS REGISTRADOS");
+        }
+    }
+
+
+   // ============= CASE 7: MOSTRAR PRODUCTOS CON MENOS DE 5 UNIDADES  ============ 
+    public static void productosEscasos(){
+        ArrayList<Producto> productos = producto.getProductos();
+        int contadorProductos = 0;
+        if (!productos.isEmpty()) {
+            for (Producto producto : productos) {
+                if (producto.getCantidad() < 5) {
+                    System.out.println("El producto con código: " + producto.getCodigo());
+                    System.out.println("Tiene " + producto.getCantidad() + " unidades disponibles");
+                    System.out.println("===============================");
+                    contadorProductos++;
+                }
+            }
+            if (contadorProductos == 0) {
+                System.out.println("NO HAY PRODUCTOS CON MENOS DE 5 UNIDADES");
+            }
+        }
+        else{
+            System.err.println("NO HAY PRODUCTOS REGISTRADOS");
+        }
+    }    
 }
