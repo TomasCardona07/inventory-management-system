@@ -1,36 +1,70 @@
 # Inventory Management System
 
-A Java project created as part of my learning journey.
+A Java backend project developed as part of my software engineering learning journey.
 
-The goal is to build this project step by step, starting with basic Object-Oriented Programming (OOP) concepts and evolving into a complete backend application.
+The goal of this project is to evolve from a simple console application into a complete backend system by progressively applying professional software development practices and technologies.
 
-## Objectives
+---
 
-- Learn Java fundamentals
-- Practice Object-Oriented Programming
-- Use Git and GitHub professionally
-- Implement data structures
-- Work with databases
-- Build REST APIs
-- Learn Spring Boot
+## Features
 
-## Technologies (planned)
+### Current (v1.0.0)
+
+- Product management
+- Supplier management
+- Inventory entries
+- Inventory outputs
+- Inventory reports
+- Input validation
+- Console application
+
+---
+
+## Roadmap
+
+- ✅ V1.0 — Console Application + Object-Oriented Programming
+- 🚧 V2.0 — Collections (HashMap, HashSet, equals(), hashCode())
+- ⏳ V3.0 — File Persistence
+- ⏳ V4.0 — PostgreSQL + JDBC
+- ⏳ V5.0 — Professional Refactoring (SOLID, DRY, Clean Code)
+- ⏳ V6.0 — Spring Boot
+- ⏳ V7.0 — JPA / Hibernate
+- ⏳ V8.0 — Authentication & Authorization
+- ⏳ V9.0 — Swagger / OpenAPI Documentation
+- ⏳ V10.0 — Docker
+- ⏳ V11.0 — Testing (JUnit & Mockito)
+- ⏳ V12.0 — Deployment
+
+---
+
+## Technologies
+
+### Current
 
 - Java
-- Git
-- GitHub
+
+### Planned
+
 - Maven
+- PostgreSQL
 - JDBC
-- MySQL
 - Spring Boot
+- JPA / Hibernate
+- Docker
+- JUnit
+- Mockito
+
+---
 
 ## Current Status
 
-🚧 In development
+**Current Version:** `v1.0.0`
 
-Current stage:
-- Learning OOP java
-- Console application
+The first stable version of the project has been completed as a console application.
+
+The next milestone focuses on improving the internal architecture using Java Collections while maintaining the existing functionality.
+
+---
 
 ## Author
 
