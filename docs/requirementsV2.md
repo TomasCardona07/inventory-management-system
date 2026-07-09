@@ -1,4 +1,3 @@
-Inventory Management System
 Versión 2.0 — Optimización del rendimiento
 Contexto
 
