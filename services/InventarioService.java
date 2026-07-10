@@ -14,7 +14,7 @@ public class InventarioService {
       =======================================================*/
 
     // ========== CASE 1 DEL BLOQUE DE ENTRADAS: REGISTRAR PRODUCTO ============
-    public static void registrarProducto( Scanner scr){
+    public void registrarProducto( Scanner scr){
         System.out.println("Ingresa el codigo del producto");
         String codigo = InputValidator.idProductoRepetido(scr, producto);
         System.out.println("Ingresa el nombre del producto");
@@ -28,7 +28,7 @@ public class InventarioService {
     }
 
     // ========== CASE 2 DEL BLOQUE DE ENTRADAS: REGISTRAR PROVEEDOR ============
-    public static void registrarProveedor(Scanner scr){
+    public void registrarProveedor(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
         String identificadorProv = InputValidator.idProveedorRepetido(scr, proveedor);
         System.out.println("Ingresa el nombre del proveedor");
@@ -41,7 +41,7 @@ public class InventarioService {
 
 
     // ========== CASE 3 DEL BLOQUE DE ENTRADAS: REGISTRAR ENTRADA ============
-    public static void registrarEntrada(Scanner scr){
+    public void registrarEntrada(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
         String identificador = scr.nextLine();
         Proveedor proveedorA = proveedor.retornarProveedor(identificador);
@@ -65,7 +65,7 @@ public class InventarioService {
 
 
     // ========== CASE 4 DEL BLOQUE DE ENTRADAS: REGISTRAR SALIDA ============
-    public static void registrarSalida(Scanner scr){
+    public void registrarSalida(Scanner scr){
         System.out.println("Ingrese el codigo del producto");
         String codigo = scr.nextLine();
         boolean stockEliminado = false;
@@ -88,7 +88,7 @@ public class InventarioService {
     }
     
     // ========== CASE 5 DEL BLOQUE DE ENTRADAS: ELIMINAR PRODUCTO ============
-    public static void eliminarProducto(Scanner scr){
+    public void eliminarProducto(Scanner scr){
         System.out.println("Ingrese el codigo del producto que dese eliminar");
         String codigo = scr.nextLine();
         boolean productoExistente = producto.buscarCodigo(codigo);
@@ -102,7 +102,7 @@ public class InventarioService {
     }
 
     // ========== CASE 6 DEL BLOQUE DE ENTRADAS: ELIMINAR PROVEEDOR ============
-    public static void eliminarProveedor(Scanner scr){
+    public void eliminarProveedor(Scanner scr){
         System.out.println("Ingrese el identificador del proveedor que desee eliminar");
         String identificador = scr.nextLine();
         boolean proveedorExistente = proveedor.buscarIdentificador(identificador);
@@ -120,7 +120,7 @@ public class InventarioService {
       =======================================================*/
     
     // ========== CASE 1: MOSTRAR TODOS LOS PROVEEDORES REGISTRADOS =============
-    public static void proveedoresRegistrados(){
+    public void proveedoresRegistrados(){
         ArrayList<Proveedor> proveedores = proveedor.getProveedores();
         if (!proveedores.isEmpty()) {
             for (Proveedor proveedor : proveedores) {
@@ -136,7 +136,7 @@ public class InventarioService {
 
 
     // ========== CASE 2: MOSTRAR TODOS LOS PRODUCTOS REGISTRADOS =============
-    public static void productosRegistrados(){
+    public void productosRegistrados(){
         ArrayList<Producto> productos = producto.getProductos();
         if (!productos.isEmpty()) {
             for (Producto producto : productos) {
@@ -154,7 +154,7 @@ public class InventarioService {
     }
 
     // ========== CASE 3: MOSTRAR PRODUCTO CON MAYOR STOCK =============
-    public static void mayorStock(){
+    public void mayorStock(){
         ArrayList<Producto> productos = producto.getProductos();
         if (!productos.isEmpty()) {
             int mayorStock = -1;
@@ -174,7 +174,7 @@ public class InventarioService {
     }
 
     // ========== CASE 4: MOSTRAR PRODUCTO CON MENOR STOCK =============
-    public static void menorStock(){
+    public void menorStock(){
         ArrayList<Producto> productos = producto.getProductos();
         if (!productos.isEmpty()) {
             int menorStock = 999999999;
@@ -195,7 +195,7 @@ public class InventarioService {
 
 
     // ============= CASE 5: VALOR DEL INVENTARIO ============
-    public static void valorInventario(){
+    public void valorInventario(){
         ArrayList<Producto> productos = producto.getProductos();
         if (!productos.isEmpty()) {
             double sumaValor = 0;
@@ -210,7 +210,7 @@ public class InventarioService {
     }
 
    // ============= CASE 6: MOSTRAR PRODUCTOS AGOTADOS ============ 
-    public static void productosAgotados(){
+    public void productosAgotados(){
         ArrayList<Producto> productos = producto.getProductos();
         int contadorProductos = 0;
         if (!productos.isEmpty()) {
@@ -232,7 +232,7 @@ public class InventarioService {
 
 
    // ============= CASE 7: MOSTRAR PRODUCTOS CON MENOS DE 5 UNIDADES  ============ 
-    public static void productosEscasos(){
+    public void productosEscasos(){
         ArrayList<Producto> productos = producto.getProductos();
         int contadorProductos = 0;
         if (!productos.isEmpty()) {

@@ -4,6 +4,7 @@ import services.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scr = new Scanner(System.in);
+        InventarioService inventarioService = new InventarioService();
         int elegirRegistro = 0;
         int salidaRegistro = 8;
         System.out.println("BIENVENIDO AL SISTEMA DE INVENTARIO");
@@ -12,7 +13,7 @@ public class Main {
             elegirRegistro = InputValidator.elegirRegistro(scr);
             switch (elegirRegistro) {
                 case 1:
-                    InventarioService.registrarProducto(scr);
+                    inventarioService.registrarProducto(scr);
                     break;
                 case 2:
                     InventarioService.registrarProveedor(scr);
