@@ -6,8 +6,8 @@ import model.*;
 import repository.*;
 
 public class InventarioService {
-    private static final ProductoRepository producto = new ProductoRepository();
-    private static final ProveedorRepository proveedor = new ProveedorRepository();
+    private final ProductoRepository producto = new ProductoRepository();
+    private final ProveedorRepository proveedor = new ProveedorRepository();
 
     /*=======================================================
       ============= MENU PRINCIPAL: REGISTROS ===============
@@ -23,7 +23,7 @@ public class InventarioService {
         String categoria = scr.nextLine();
         int cantidad = InputValidator.validarNegativos(scr, "Ingresa la cantidad",false);
         double precio = InputValidator.validarNegativos(scr, "Ingresa el precio del producto", true);
-        producto.agregarProducto(new Producto(codigo, nombreProd, categoria, cantidad, precio));
+        producto.agregarProducto(codigo, new Producto(codigo, nombreProd, categoria, cantidad, precio));
         System.out.println("¡PRODUCTO REGISTRADO CON EXITO!");
     }
 
@@ -35,7 +35,7 @@ public class InventarioService {
         String nombreProv = scr.nextLine();
         System.out.println("Ingresa el numero del Proveedor");
         String telefono = scr.nextLine();
-        proveedor.agregarProveedor(new Proveedor(identificadorProv, nombreProv, telefono));
+        proveedor.agregarProveedor(identificadorProv, new Proveedor(identificadorProv, nombreProv, telefono));
         System.out.println("¡PROVEEDOR REGISTRADO CON EXITO!");
     }
 
@@ -44,14 +44,14 @@ public class InventarioService {
     public void registrarEntrada(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
         String identificador = scr.nextLine();
-        Proveedor proveedorA = proveedor.retornarProveedor(identificador);
-        if (proveedorA != null) {
+        Proveedor proveedorRepository = proveedor.retornarProveedor(identificador);
+        if (proveedorRepository != null) {
             System.out.println("Ingresa el código del producto");
             String codigo = scr.nextLine();
-            Producto productoA = producto.retornarProducto(codigo);
-            if (productoA != null) {
+            Producto productoRepository = producto.retornarProducto(codigo);
+            if (productoRepository != null) {
                 int cantRecibida = InputValidator.validarNegativos(scr, "Ingresa la cantidad recibida", false);
-                productoA.setAddCantidad(cantRecibida);
+                productoRepository.setAddCantidad(cantRecibida);
                 System.out.println("¡ENTRADA REGISTRADA!");
             }
             else{
@@ -68,19 +68,18 @@ public class InventarioService {
     public void registrarSalida(Scanner scr){
         System.out.println("Ingrese el codigo del producto");
         String codigo = scr.nextLine();
-        boolean stockEliminado = false;
-        boolean productoEncontrado = producto.buscarCodigo(codigo);
-        if (productoEncontrado){
+        int cantidad;
+        Producto productoRepository = producto.retornarProducto(codigo);
+        if (productoRepository != null){
             do {
-                int cantidad = InputValidator.validarNegativos(scr, "Ingrese la cantidad que desea retirar", false);
-                stockEliminado = producto.eliminarStock(cantidad, codigo);
-                if (stockEliminado) {
+                cantidad = InputValidator.validarNegativos(scr, "Ingrese la cantidad que desea retirar", false);
+                if (cantidad <= productoRepository.getCantidad()) {
                     System.out.println("SALIDA REGISTRADA CON EXITO");
                 }
                 else{
                     System.err.println("LA CANTIDAD INGRESADA SOBREPASA EL STOCK DISPONIBLE");
                 }
-            } while (!stockEliminado);
+            } while (cantidad > productoRepository.getCantidad());
         }
         else{
             System.err.println("PRODUCTO INEXISTENTE");
@@ -91,13 +90,13 @@ public class InventarioService {
     public void eliminarProducto(Scanner scr){
         System.out.println("Ingrese el codigo del producto que dese eliminar");
         String codigo = scr.nextLine();
-        boolean productoExistente = producto.buscarCodigo(codigo);
-        if (productoExistente) {
+        Producto productoExistente = producto.retornarProducto(codigo);
+        if (productoExistente != null) {
             producto.eliminarProducto(codigo);
             System.out.println("PRODUCTO ELIMINADO CON EXITO");
         }
         else{
-            System.err.println("PRODUCTO NO ENCONTRADO");
+            System.err.println("PRODUCTO NO EXISTENTE");
         }
     }
 
@@ -105,8 +104,8 @@ public class InventarioService {
     public void eliminarProveedor(Scanner scr){
         System.out.println("Ingrese el identificador del proveedor que desee eliminar");
         String identificador = scr.nextLine();
-        boolean proveedorExistente = proveedor.buscarIdentificador(identificador);
-        if (proveedorExistente) {
+        Proveedor proveedorExistente = proveedor.retornarProveedor(identificador);
+        if (proveedorExistente != null) {
             proveedor.eliminarProveedor(identificador);
             System.out.println("PROVEEDOR ELIMINADO CON EXITO");
         }

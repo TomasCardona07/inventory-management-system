@@ -1,48 +1,28 @@
 package repository;
-import java.util.ArrayList;
+import java.util.*;
 import model.Proveedor;
 
 public class ProveedorRepository {
-    // ========= CREAR ARRAY DE PROVEEDORES ==========
+    // ========= CREAR COLECCIONES DE PROVEEDORES ==========
     private final ArrayList<Proveedor> proveedores = new ArrayList<>();
+    private final Map<String, Proveedor> mapaProveedores = new HashMap<>();
 
 
     // ========== RETORNAR PROVEEDOR ===========
     public Proveedor retornarProveedor(String identificador){
-        for (Proveedor proveedor : proveedores) {
-            if (identificador.equals(proveedor.getIdentificador())) {
-                return proveedor;
-            }
-        }
-        return null;
+        Proveedor proveedor = mapaProveedores.get(identificador);
+        return proveedor;
     }
 
     // ========= AGREGAR NUEVO PROVEEDOR =========
-    public void agregarProveedor(Proveedor proveedor){
-        this.proveedores.add(proveedor);
+    public void agregarProveedor(String identificador, Proveedor proveedor){
+        mapaProveedores.put(identificador, proveedor);
     }
 
-
-    // =========== BUSCAR IDENTIFICADOR ===========
-    public boolean buscarIdentificador(String identificador){
-        for (Proveedor proveedor : proveedores) {
-            if (proveedor.getIdentificador().equals(identificador)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     // ============= ELIMINAR PROVEEDOR =============
     public void eliminarProveedor(String identificador){
-        ArrayList<Proveedor> eliminarProveedor = new ArrayList<>();
-        for (Proveedor proveedor : proveedores) {
-            if (identificador.equals(proveedor.getIdentificador())) {
-                eliminarProveedor.add(proveedor);
-                break;
-            }
-        }
-        proveedores.removeAll(eliminarProveedor);
+        mapaProveedores.remove(identificador);
     }
 
     // ========== MOSTRAR PROVEEDORES ==========

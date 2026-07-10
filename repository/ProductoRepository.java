@@ -1,70 +1,27 @@
 package repository;
 import model.Producto;
-import java.util.ArrayList;
+import java.util.*;
 
 public class ProductoRepository {
 
-    // ========== CREAR ARRAY DE PRODUCTOS ==========
+    // ========== CREAR COLECCIONES DE PRODUCTOS ==========
     private final ArrayList<Producto> productos = new ArrayList<>();
+    private final Map<String, Producto> mapaProductos = new HashMap<>();
 
     // ========= RETORNAR PRODUCTO ===========
     public Producto retornarProducto(String codigo){
-        for (Producto producto : productos) {
-            if (codigo.equals(producto.getCodigo())) {
-                return producto;
-            }
-        }
-        return null;
+        Producto producto = mapaProductos.get(codigo);
+        return producto;
     }
 
     // ========== AGREGAR NUEVO PRODUCTO =========
-    public void agregarProducto(Producto producto){
-        this.productos.add(producto);
-    }
-
-    // =========== BUSCAR CÓDIGO =============
-    public boolean buscarCodigo(String codigo){
-        for (Producto producto : productos) {
-            if (producto.getCodigo().equals(codigo)) {
-                return true;
-            }
-        }
-        return false;
-    } 
-
-    // ========= AGREGAR STOCK DEL PRODUCTO =============
-    public void agregarStock(int cantidad, String codigo){
-        for (Producto producto : productos) {
-            if (producto.getCodigo().equals(codigo)) {
-                producto.setAddCantidad(cantidad);
-                break;
-            }
-        }
-    } 
-
-    // ========= ELIMINAR STOCK DEL PRODUCTO =============
-    public boolean eliminarStock(int cantidad, String codigo){
-        for (Producto producto : productos) {
-            if (codigo.equals(producto.getCodigo())) {
-                if (cantidad <= producto.getCantidad()) {
-                    producto.setDeleteCantidad(cantidad);
-                    return true;
-                }
-            }
-        }
-        return false;
+    public void agregarProducto(String codigo, Producto producto){
+        this.mapaProductos.put(codigo, producto);
     }
 
     // ============ ELIMINAR PRODUCTO ============
     public void eliminarProducto(String codigo){
-        ArrayList<Producto> eliminarProductos = new ArrayList<>();
-        for (Producto producto : productos) {
-            if (codigo.equals(producto.getCodigo())) {
-                eliminarProductos.add(producto);
-                break;
-            }
-        }
-        productos.removeAll(eliminarProductos);
+        mapaProductos.remove(codigo);
     }
 
 

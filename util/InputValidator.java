@@ -1,6 +1,9 @@
 package util;
 import repository.*;
 import java.util.Scanner;
+
+import model.Producto;
+import model.Proveedor;
 public class InputValidator {
 
     // ============ VALIDAR INGRESO DE ELECCIÓN DE REGISTRO ==============
@@ -59,12 +62,12 @@ public static int validarNegativos(Scanner scr, String mensaje, boolean permiteD
     // =========== IDENTIFICADOR PROVEEDOR REPETIDO ============
     public static String idProveedorRepetido(Scanner scr, ProveedorRepository proveedor){
         String identificador = scr.nextLine();
-        boolean proveedorExistente = proveedor.buscarIdentificador(identificador);
-        while (proveedorExistente) {
+        Proveedor proveedorExistente = proveedor.retornarProveedor(identificador);
+        while (proveedorExistente != null) {
            System.out.println("EL PROVEEDOR YA EXISTE");
            System.out.println("INGRESE UN NUEVO IDENTIFICADOR");
            identificador = scr.nextLine();
-           proveedorExistente = proveedor.buscarIdentificador(identificador);
+           proveedorExistente = proveedor.retornarProveedor(identificador);
         }
         return identificador;
     }
@@ -72,15 +75,14 @@ public static int validarNegativos(Scanner scr, String mensaje, boolean permiteD
     // =========== IDENTIFICADOR PRODUCTO REPETIDO ============
     public static String idProductoRepetido(Scanner scr, ProductoRepository producto){
         String codigo = scr.nextLine();
-        boolean productoExistente = producto.buscarCodigo(codigo);
-        while (productoExistente) {
+        Producto productoExistente = producto.retornarProducto(codigo);
+        while (productoExistente != null) {
            System.out.println("EL PRODUCTO YA EXISTE");
            System.out.println("INGRESE UN NUEVO CODIGO");
            codigo = scr.nextLine();
-           productoExistente = producto.buscarCodigo(codigo);
+           productoExistente = producto.retornarProducto(codigo);
         }
         return codigo;
-
     }
 
     // ============ VALIDAR INGRESO DE ELECCIÓN DE REPORTE ==============

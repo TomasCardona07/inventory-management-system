@@ -16,19 +16,19 @@ public class Main {
                     inventarioService.registrarProducto(scr);
                     break;
                 case 2:
-                    InventarioService.registrarProveedor(scr);
+                    inventarioService.registrarProveedor(scr);
                     break;
                 case 3: 
-                    InventarioService.registrarEntrada(scr);    
+                    inventarioService.registrarEntrada(scr);    
                     break;
                 case 4:
-                    InventarioService.registrarSalida(scr);
+                    inventarioService.registrarSalida(scr);
                     break;
                 case 5:
-                    InventarioService.eliminarProducto(scr);
+                    inventarioService.eliminarProducto(scr);
                     break;
                 case 6:
-                    InventarioService.eliminarProveedor(scr);
+                    inventarioService.eliminarProveedor(scr);
                     break;
                 case 7:
                     int elegirReporte = 0;
@@ -38,25 +38,25 @@ public class Main {
                         elegirReporte = InputValidator.elegirReporte(scr);
                         switch (elegirReporte) {
                             case 1:  
-                                InventarioService.proveedoresRegistrados();                            
+                                inventarioService.proveedoresRegistrados();                            
                                 break;
                             case 2:
-                                InventarioService.productosRegistrados();
+                                inventarioService.productosRegistrados();
                                 break;
                             case 3:
-                                InventarioService.mayorStock();
+                                inventarioService.mayorStock();
                                 break;
                             case 4:
-                                InventarioService.menorStock();
+                                inventarioService.menorStock();
                                 break;
                             case 5:
-                                InventarioService.valorInventario();
+                                inventarioService.valorInventario();
                                 break;
                             case 6:
-                                InventarioService.productosAgotados();
+                                inventarioService.productosAgotados();
                                 break;
                             case 7:
-                                InventarioService.productosEscasos();
+                                inventarioService.productosEscasos();
                                 break;
                             default:
                                 break;
