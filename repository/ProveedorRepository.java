@@ -4,7 +4,6 @@ import model.Proveedor;
 
 public class ProveedorRepository {
     // ========= CREAR COLECCIONES DE PROVEEDORES ==========
-    private final ArrayList<Proveedor> proveedores = new ArrayList<>();
     private final Map<String, Proveedor> mapaProveedores = new HashMap<>();
 
 
@@ -26,7 +25,15 @@ public class ProveedorRepository {
     }
 
     // ========== MOSTRAR PROVEEDORES ==========
-    public ArrayList<Proveedor> getProveedores(){
-        return proveedores;
+    public Map<String,Proveedor> getProveedores(){
+        return this.mapaProveedores;
+    }
+
+    // ========== VERIFICAR SI EL MAPA ESTA VACIO ==========
+    public boolean mapaVacio(Map<?, ?>mapa){
+        if (mapa.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }

@@ -1,7 +1,6 @@
 package services;
 import util.InputValidator;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import model.*;
 import repository.*;
 
@@ -74,12 +73,13 @@ public class InventarioService {
             do {
                 cantidad = InputValidator.validarNegativos(scr, "Ingrese la cantidad que desea retirar", false);
                 if (cantidad <= productoRepository.getCantidad()) {
+                    productoRepository.setDeleteCantidad(cantidad);
                     System.out.println("SALIDA REGISTRADA CON EXITO");
                 }
                 else{
                     System.err.println("LA CANTIDAD INGRESADA SOBREPASA EL STOCK DISPONIBLE");
                 }
-            } while (cantidad > productoRepository.getCantidad());
+            } while (cantidad <= productoRepository.getCantidad());
         }
         else{
             System.err.println("PRODUCTO INEXISTENTE");
@@ -120,9 +120,10 @@ public class InventarioService {
     
     // ========== CASE 1: MOSTRAR TODOS LOS PROVEEDORES REGISTRADOS =============
     public void proveedoresRegistrados(){
-        ArrayList<Proveedor> proveedores = proveedor.getProveedores();
-        if (!proveedores.isEmpty()) {
-            for (Proveedor proveedor : proveedores) {
+        Map<String,Proveedor> mapaProveedores = proveedor.getProveedores();
+        boolean mapaVacio = producto.mapaVacio(mapaProveedores);
+        if (mapaVacio) {
+            for (Proveedor proveedor : mapaProveedores.values()) {
                 System.out.println("IDENTIFICADOR: " + proveedor.getIdentificador());
                 System.out.println("NOMBRE: " + proveedor.getNombre());
                 System.out.println("TELEFONO: " + proveedor.getTelefono());
@@ -136,9 +137,10 @@ public class InventarioService {
 
     // ========== CASE 2: MOSTRAR TODOS LOS PRODUCTOS REGISTRADOS =============
     public void productosRegistrados(){
-        ArrayList<Producto> productos = producto.getProductos();
-        if (!productos.isEmpty()) {
-            for (Producto producto : productos) {
+        Map<String,Producto> mapaProductos = producto.getProductos();
+        boolean mapaVacio = producto.mapaVacio(mapaProductos);
+        if (mapaVacio) {
+            for (Producto producto : mapaProductos.values()) {
                 System.out.println("CODIGO: " + producto.getCodigo());
                 System.out.println("NOMBRE: " + producto.getNombre());
                 System.out.println("CATEGORIA: " + producto.getCategoria());
@@ -154,11 +156,12 @@ public class InventarioService {
 
     // ========== CASE 3: MOSTRAR PRODUCTO CON MAYOR STOCK =============
     public void mayorStock(){
-        ArrayList<Producto> productos = producto.getProductos();
-        if (!productos.isEmpty()) {
+        Map<String,Producto> mapaProductos = producto.getProductos();
+        boolean mapaVacio = producto.mapaVacio(mapaProductos);
+        if (mapaVacio) {
             int mayorStock = -1;
             String mayorStockCodigo = null;
-            for (Producto producto : productos) {
+            for (Producto producto : mapaProductos.values()) {
                 if (producto.getCantidad() > mayorStock) {
                     mayorStock = producto.getCantidad();
                     mayorStockCodigo = producto.getCodigo();
@@ -174,11 +177,12 @@ public class InventarioService {
 
     // ========== CASE 4: MOSTRAR PRODUCTO CON MENOR STOCK =============
     public void menorStock(){
-        ArrayList<Producto> productos = producto.getProductos();
-        if (!productos.isEmpty()) {
+        Map<String,Producto> mapaProductos = producto.getProductos();
+        boolean mapaVacio = producto.mapaVacio(mapaProductos);
+        if (mapaVacio) {
             int menorStock = 999999999;
             String menorStockCodigo = null;
-            for (Producto producto : productos) {
+            for (Producto producto : mapaProductos.values()) {
                 if (producto.getCantidad() < menorStock) {
                     menorStock = producto.getCantidad();
                     menorStockCodigo = producto.getCodigo();
@@ -195,10 +199,11 @@ public class InventarioService {
 
     // ============= CASE 5: VALOR DEL INVENTARIO ============
     public void valorInventario(){
-        ArrayList<Producto> productos = producto.getProductos();
-        if (!productos.isEmpty()) {
+        Map<String,Producto> mapaProductos = producto.getProductos();
+        boolean mapaVacio = producto.mapaVacio(mapaProductos);
+        if (mapaVacio) {
             double sumaValor = 0;
-            for (Producto producto : productos) {
+            for (Producto producto : mapaProductos.values()) {
                 sumaValor += producto.getPrecio() * producto.getCantidad();
             }
             System.out.println("EL VALOR DEL INVENTARIO ES DE: " + sumaValor + " PESOS");
@@ -210,10 +215,11 @@ public class InventarioService {
 
    // ============= CASE 6: MOSTRAR PRODUCTOS AGOTADOS ============ 
     public void productosAgotados(){
-        ArrayList<Producto> productos = producto.getProductos();
+        Map<String,Producto> mapaProductos = producto.getProductos();
+        boolean mapaVacio = producto.mapaVacio(mapaProductos);
         int contadorProductos = 0;
-        if (!productos.isEmpty()) {
-            for (Producto producto : productos) {
+        if (mapaVacio) {
+            for (Producto producto : mapaProductos.values()) {
                 if (producto.getCantidad() == 0) {
                     System.out.println("El producto con codigo: " + producto.getCodigo()+ " Esta agotado");
                     System.out.println("----------------------------------");
@@ -232,10 +238,11 @@ public class InventarioService {
 
    // ============= CASE 7: MOSTRAR PRODUCTOS CON MENOS DE 5 UNIDADES  ============ 
     public void productosEscasos(){
-        ArrayList<Producto> productos = producto.getProductos();
+        Map<String,Producto> mapaProductos = producto.getProductos();
+        boolean mapaVacio = producto.mapaVacio(mapaProductos);
         int contadorProductos = 0;
-        if (!productos.isEmpty()) {
-            for (Producto producto : productos) {
+        if (mapaVacio) {
+            for (Producto producto : mapaProductos.values()) {
                 if (producto.getCantidad() < 5) {
                     System.out.println("El producto con código: " + producto.getCodigo());
                     System.out.println("Tiene " + producto.getCantidad() + " unidades disponibles");

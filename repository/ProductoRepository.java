@@ -5,7 +5,6 @@ import java.util.*;
 public class ProductoRepository {
 
     // ========== CREAR COLECCIONES DE PRODUCTOS ==========
-    private final ArrayList<Producto> productos = new ArrayList<>();
     private final Map<String, Producto> mapaProductos = new HashMap<>();
 
     // ========= RETORNAR PRODUCTO ===========
@@ -26,7 +25,16 @@ public class ProductoRepository {
 
 
     // ========== MOSTRAR PRODUCTOS ==========
-    public ArrayList<Producto> getProductos() {
-        return productos;
+    public Map<String,Producto> getProductos(){
+        return this.mapaProductos;
+    }
+
+
+    // ========== VERIFICAR SI EL MAPA ESTA VACIO ==========
+    public boolean mapaVacio(Map<?, ?>mapa){
+        if (mapa.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }
