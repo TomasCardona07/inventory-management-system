@@ -180,7 +180,7 @@ public class InventarioService {
         Map<String,Producto> mapaProductos = producto.getProductos();
         boolean mapaVacio = producto.mapaVacio(mapaProductos);
         if (mapaVacio) {
-            int menorStock = 999999999;
+            int menorStock = Integer.MAX_VALUE;
             String menorStockCodigo = null;
             for (Producto producto : mapaProductos.values()) {
                 if (producto.getCantidad() < menorStock) {
