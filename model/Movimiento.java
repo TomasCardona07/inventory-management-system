@@ -1,27 +1,24 @@
 package model;
-
+import java.time.LocalDateTime;
 public class Movimiento {
     // ========= ATRIBUTOS ==========
     private String tipoMovimiento;
     private String codigoProducto;
     private int cantidad;
-    private String fecha;
-    private String hora;
+    private LocalDateTime fecha;
 
 
     // ========= CONSTRUCTOR ========= 
-    public Movimiento(String tipoMovimiento, String codigoProducto, int cantidad, String fecha, String hora){
+    public Movimiento(String tipoMovimiento, String codigoProducto, int cantidad){
         this.tipoMovimiento = tipoMovimiento;
         this.codigoProducto = codigoProducto;
         this.cantidad = cantidad;
-        this.fecha = fecha;
-        this.hora = hora;
+        this.fecha = LocalDateTime.now();
     }
 
     // ========== GETTERS ============
     public String getTipoMovimiento(){return this.tipoMovimiento;}
-    public String getCodigoProducro(){return this.codigoProducto;}
+    public String getCodigoProducto(){return this.codigoProducto;}
     public int getCantidad(){return this.cantidad;}
-    public String getFecha(){return this.fecha;}
-    public String getHora(){return this.hora;}
+    public LocalDateTime getFecha(){return this.fecha;}
 }

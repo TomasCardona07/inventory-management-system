@@ -52,6 +52,7 @@ public class InventarioService {
                 int cantRecibida = InputValidator.validarNegativos(scr, "Ingresa la cantidad recibida", false);
                 productoRepository.setAddCantidad(cantRecibida);
                 System.out.println("¡ENTRADA REGISTRADA!");
+                // AQUI SE AGREGARÁ EL REGISTRO DE MOVIMIENTOS
             }
             else{
                 System.err.println("PRODUCTO NO EXISTENTE");
@@ -74,7 +75,8 @@ public class InventarioService {
                 cantidad = InputValidator.validarNegativos(scr, "Ingrese la cantidad que desea retirar", false);
                 if (cantidad <= productoRepository.getCantidad()) {
                     productoRepository.setDeleteCantidad(cantidad);
-                    System.out.println("SALIDA REGISTRADA CON EXITO");
+                    System.out.println("SALIDA REGISTRADA");
+                    // AQUI SE AGREGARÁ EL REGISTRO DE MOVIMIENTOS
                 }
                 else{
                     System.err.println("LA CANTIDAD INGRESADA SOBREPASA EL STOCK DISPONIBLE");
