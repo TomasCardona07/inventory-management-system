@@ -5,6 +5,9 @@ import model.*;
 import repository.*;
 
 public class InventarioService {
+    InputValidator inputValidator = new InputValidator();
+    // ======== IMPORTANDO COLECCIÓNES DESDE REPOSITORY ==========
+    private final MovimientoRepository movimiento = new MovimientoRepository();
     private final ProductoRepository producto = new ProductoRepository();
     private final ProveedorRepository proveedor = new ProveedorRepository();
 
@@ -15,13 +18,13 @@ public class InventarioService {
     // ========== CASE 1 DEL BLOQUE DE ENTRADAS: REGISTRAR PRODUCTO ============
     public void registrarProducto( Scanner scr){
         System.out.println("Ingresa el codigo del producto");
-        String codigo = InputValidator.idProductoRepetido(scr, producto);
+        String codigo = inputValidator.idProductoRepetido(scr, producto);
         System.out.println("Ingresa el nombre del producto");
         String nombreProd = scr.nextLine();
         System.out.println("Ingresa la categoria en la que se encuentra el producto");
         String categoria = scr.nextLine();
-        int cantidad = InputValidator.validarNegativos(scr, "Ingresa la cantidad",false);
-        double precio = InputValidator.validarNegativos(scr, "Ingresa el precio del producto", true);
+        int cantidad = inputValidator.validarNegativos(scr, "Ingresa la cantidad",false);
+        double precio = inputValidator.validarNegativos(scr, "Ingresa el precio del producto", true);
         producto.agregarProducto(codigo, new Producto(codigo, nombreProd, categoria, cantidad, precio));
         System.out.println("¡PRODUCTO REGISTRADO CON EXITO!");
     }
@@ -29,7 +32,7 @@ public class InventarioService {
     // ========== CASE 2 DEL BLOQUE DE ENTRADAS: REGISTRAR PROVEEDOR ============
     public void registrarProveedor(Scanner scr){
         System.out.println("Ingresa el identificador del proveedor");
-        String identificadorProv = InputValidator.idProveedorRepetido(scr, proveedor);
+        String identificadorProv = inputValidator.idProveedorRepetido(scr, proveedor);
         System.out.println("Ingresa el nombre del proveedor");
         String nombreProv = scr.nextLine();
         System.out.println("Ingresa el numero del Proveedor");
@@ -49,10 +52,10 @@ public class InventarioService {
             String codigo = scr.nextLine();
             Producto productoRepository = producto.retornarProducto(codigo);
             if (productoRepository != null) {
-                int cantRecibida = InputValidator.validarNegativos(scr, "Ingresa la cantidad recibida", false);
+                int cantRecibida = inputValidator.validarNegativos(scr, "Ingresa la cantidad recibida", false);
                 productoRepository.setAddCantidad(cantRecibida);
                 System.out.println("¡ENTRADA REGISTRADA!");
-                // AQUI SE AGREGARÁ EL REGISTRO DE MOVIMIENTOS
+                movimiento.addMovimiento("ENTRADA", codigo, cantRecibida);
             }
             else{
                 System.err.println("PRODUCTO NO EXISTENTE");
@@ -72,16 +75,17 @@ public class InventarioService {
         Producto productoRepository = producto.retornarProducto(codigo);
         if (productoRepository != null){
             do {
-                cantidad = InputValidator.validarNegativos(scr, "Ingrese la cantidad que desea retirar", false);
+                cantidad = inputValidator.validarNegativos(scr, "Ingrese la cantidad que desea retirar", false);
                 if (cantidad <= productoRepository.getCantidad()) {
                     productoRepository.setDeleteCantidad(cantidad);
                     System.out.println("SALIDA REGISTRADA");
-                    // AQUI SE AGREGARÁ EL REGISTRO DE MOVIMIENTOS
+                    movimiento.addMovimiento("SALIDA", codigo, cantidad);
+                    break;
                 }
                 else{
                     System.err.println("LA CANTIDAD INGRESADA SOBREPASA EL STOCK DISPONIBLE");
                 }
-            } while (cantidad <= productoRepository.getCantidad());
+            } while (cantidad > productoRepository.getCantidad());
         }
         else{
             System.err.println("PRODUCTO INEXISTENTE");
@@ -259,5 +263,43 @@ public class InventarioService {
         else{
             System.err.println("NO HAY PRODUCTOS REGISTRADOS");
         }
-    }    
+    } 
+
+    /*=======================================================
+      ================ MENU DE MOVIMIENTOS ==================
+      =======================================================*/
+    
+    // ============= CASE 1: MOSTRAR TOTAL DE ENTRADAS REGISTRADAS  ============ 
+    public void entradasRegistradas(){
+        ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
+        int entradasRegistrads = 0;
+        for (Movimiento movimiento : movimientos) {
+            if (movimiento.getTipoMovimiento().equalsIgnoreCase("ENTRADA")) {
+                entradasRegistrads++;
+            }
+        }
+        if (movimiento.arrayVacio()) {
+            System.out.println("El total de entradas registradas es: " + entradasRegistrads + " entradas");
+        }
+        else{
+            System.err.println("NO HAY ENTRADAS REGISTRADSS");
+        }
+    }
+
+    // ============= CASE 2: MOSTRAR TOTAL DE SALIDAS REGISTRADAS  ============ 
+    public void salidasRegistradas(){
+        ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
+        int salidasRegistrads = 0;
+        for (Movimiento movimiento : movimientos) {
+            if (movimiento.getTipoMovimiento().equalsIgnoreCase("salida")) {
+                salidasRegistrads++;
+            }
+        }
+        if (movimiento.arrayVacio()) {
+            System.out.println("El total de salidas registradas es: " + salidasRegistrads + " entradas");
+        }
+        else{
+            System.err.println("NO HAY SALIDAS REGISTRADAS");
+        }
+    }
 }

@@ -7,7 +7,7 @@ import model.Proveedor;
 public class InputValidator {
 
     // ============ VALIDAR INGRESO DE ELECCIÓN DE REGISTRO ==============
-    public static int elegirRegistro(Scanner scr){
+    public int elegirRegistro(Scanner scr){
         int elegirRegistro = 0;
         do {
             try{
@@ -33,7 +33,7 @@ public class InputValidator {
     }
     
     // ============ VALIDACIÓN ENTRADAS QUE NO PUEDEN SER NEGATIVAS ==============
-public static int validarNegativos(Scanner scr, String mensaje, boolean permiteDecimales) {
+public int validarNegativos(Scanner scr, String mensaje, boolean permiteDecimales) {
     int dato = 0;
     boolean entradaValida = false;
     do {
@@ -60,7 +60,7 @@ public static int validarNegativos(Scanner scr, String mensaje, boolean permiteD
 
 
     // =========== IDENTIFICADOR PROVEEDOR REPETIDO ============
-    public static String idProveedorRepetido(Scanner scr, ProveedorRepository proveedor){
+    public String idProveedorRepetido(Scanner scr, ProveedorRepository proveedor){
         String identificador = scr.nextLine();
         Proveedor proveedorExistente = proveedor.retornarProveedor(identificador);
         while (proveedorExistente != null) {
@@ -73,7 +73,7 @@ public static int validarNegativos(Scanner scr, String mensaje, boolean permiteD
     }
 
     // =========== IDENTIFICADOR PRODUCTO REPETIDO ============
-    public static String idProductoRepetido(Scanner scr, ProductoRepository producto){
+    public String idProductoRepetido(Scanner scr, ProductoRepository producto){
         String codigo = scr.nextLine();
         Producto productoExistente = producto.retornarProducto(codigo);
         while (productoExistente != null) {
@@ -86,7 +86,7 @@ public static int validarNegativos(Scanner scr, String mensaje, boolean permiteD
     }
 
     // ============ VALIDAR INGRESO DE ELECCIÓN DE REPORTE ==============
-    public static int elegirReporte(Scanner scr){
+    public int elegirReporte(Scanner scr){
         int elegirReporte = 0;
         do {
             try{
@@ -98,16 +98,43 @@ public static int validarNegativos(Scanner scr, String mensaje, boolean permiteD
                 System.out.println("[5] VALOR TOTAL DEL INVENTARIO");
                 System.out.println("[6] PRODUCTOS AGOTADOS");
                 System.out.println("[7] PRODUCTOS CON MENOS DE 5 UNIDADES");
-                System.out.println("[8] REGRESAR AL MENU DE REGISTROS");
+                System.out.println("[8] VER MENU DE HISTORIAL DE MOVIMIENTOS");
+                System.out.println("[9] REGRESAR AL MENU DE REGISTROS");
                 elegirReporte = Integer.parseInt(scr.nextLine());
-                if (elegirReporte < 1 || elegirReporte > 8) {
+                if (elegirReporte < 1 || elegirReporte > 9) {
                     System.err.println("Numero incorrecto");
                 }
             } 
             catch (NumberFormatException e) {
                 System.err.println("¡Ingresa un numero porfavor!");
             }
-        } while (elegirReporte < 1 || elegirReporte > 8);
+        } while (elegirReporte < 1 || elegirReporte > 9);
+        return elegirReporte;
+    }
+
+
+    // ============ VALIDAR INGRESO DE ELECCIÓN DE MOVIMIENTOS ==============
+    public int verMovimientos(Scanner scr){
+        int elegirReporte = 0;
+        do {
+            try{
+                System.out.println("¿Qué movimientos deseas ver?");
+                System.out.println("[1] CANTIDAD TOTAL DE ENTRADAS REGISTRADAS");
+                System.out.println("[2] CANTIDAD TOTAL DE SALIDAS REGISTRADAS");
+                System.out.println("[3] ULTIMOS MOVIMIENTOS REGISTRADOS");
+                System.out.println("[4] PRODUCTOS QUE NO HAN RECIBIDO ENTRADAS");
+                System.out.println("[5] PRODUCTOS QUE NO HAN TENIDO SALIDA");
+                System.out.println("[6] REGRESAR AL MENU DE REPORTES");
+                System.out.println("[7] REGRESAR AL MENU DE REGISTROS");
+                elegirReporte = Integer.parseInt(scr.nextLine());
+                if (elegirReporte < 1 || elegirReporte > 7) {
+                    System.err.println("Numero incorrecto");
+                }
+            } 
+            catch (NumberFormatException e) {
+                System.err.println("¡Ingresa un numero porfavor!");
+            }
+        } while (elegirReporte < 1 || elegirReporte >7);
         return elegirReporte;
     }
 }
