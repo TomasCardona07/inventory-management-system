@@ -33,7 +33,7 @@ public class InputValidator {
     }
     
     // ============ VALIDACIÓN ENTRADAS QUE NO PUEDEN SER NEGATIVAS ==============
-public int validarNegativos(Scanner scr, String mensaje, boolean permiteDecimales) {
+    public int validarNegativos(Scanner scr, String mensaje, boolean permiteDecimales) {
     int dato = 0;
     boolean entradaValida = false;
     do {

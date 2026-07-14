@@ -7,14 +7,18 @@ public class Producto{
     private String categoria;
     private int cantidad;
     private double precio;
+    private int contadorEntradas;
+    private int contadorSalidas;
 
     // ========= CONSTRUCTOR =========
-    public Producto (String codigo, String nombre, String categoria, int cantidad, double precio){
+    public Producto (String codigo, String nombre, String categoria, int cantidad, double precio, int contadorEntradas, int contadorSalidas){
         this.codigo = codigo;
         this.nombre = nombre;
         this.categoria = categoria;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.contadorEntradas = contadorEntradas;
+        this.contadorSalidas = contadorSalidas;
     }
 
     // ========== GETTERS ============
@@ -23,6 +27,8 @@ public class Producto{
     public String getCategoria(){return this.categoria;}
     public int getCantidad(){return this.cantidad;}
     public double getPrecio(){return this.precio;}
+    public int getContEntradas(){return this.contadorEntradas;}
+    public int getContSalidas(){return this.contadorSalidas;}
 
 
     // ======== SETTER ELIMINAR STACK DEL PRODUCTO ========

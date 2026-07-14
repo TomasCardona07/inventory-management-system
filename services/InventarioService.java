@@ -25,8 +25,9 @@ public class InventarioService {
         String categoria = scr.nextLine();
         int cantidad = inputValidator.validarNegativos(scr, "Ingresa la cantidad",false);
         double precio = inputValidator.validarNegativos(scr, "Ingresa el precio del producto", true);
-        producto.agregarProducto(codigo, new Producto(codigo, nombreProd, categoria, cantidad, precio));
+        producto.agregarProducto(codigo, new Producto(codigo, nombreProd, categoria, cantidad, precio,0,0));
         System.out.println("¡PRODUCTO REGISTRADO CON EXITO!");
+        movimiento.addMovimiento("null", codigo, cantidad,0,0);
     }
 
     // ========== CASE 2 DEL BLOQUE DE ENTRADAS: REGISTRAR PROVEEDOR ============
@@ -44,6 +45,7 @@ public class InventarioService {
 
     // ========== CASE 3 DEL BLOQUE DE ENTRADAS: REGISTRAR ENTRADA ============
     public void registrarEntrada(Scanner scr){
+        ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
         System.out.println("Ingresa el identificador del proveedor");
         String identificador = scr.nextLine();
         Proveedor proveedorRepository = proveedor.retornarProveedor(identificador);
@@ -55,7 +57,13 @@ public class InventarioService {
                 int cantRecibida = inputValidator.validarNegativos(scr, "Ingresa la cantidad recibida", false);
                 productoRepository.setAddCantidad(cantRecibida);
                 System.out.println("¡ENTRADA REGISTRADA!");
-                movimiento.addMovimiento("ENTRADA", codigo, cantRecibida);
+                for (int i = 0; i < movimientos.size(); i++) {
+                    if (movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("null") || movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("salida")) {
+                        movimiento.addMovimiento("entrada", codigo, cantRecibida, movimientos.get(i).agregarEntrada(), 0);
+                        //pendiente: idea pensada: agarrar el codigo del movimiento creado y editaro sin tener que crear otro
+                        break;
+                    }
+                }
             }
             else{
                 System.err.println("PRODUCTO NO EXISTENTE");
@@ -69,6 +77,7 @@ public class InventarioService {
 
     // ========== CASE 4 DEL BLOQUE DE ENTRADAS: REGISTRAR SALIDA ============
     public void registrarSalida(Scanner scr){
+        ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
         System.out.println("Ingrese el codigo del producto");
         String codigo = scr.nextLine();
         int cantidad;
@@ -79,7 +88,12 @@ public class InventarioService {
                 if (cantidad <= productoRepository.getCantidad()) {
                     productoRepository.setDeleteCantidad(cantidad);
                     System.out.println("SALIDA REGISTRADA");
-                    movimiento.addMovimiento("SALIDA", codigo, cantidad);
+                    for (int i = 0; i < movimientos.size(); i++) {
+                        if (movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("null") || movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("entrada")) {
+                            movimiento.addMovimiento("SALIDA", codigo, cantidad, 0,movimientos.get(i).agregarSalida());
+                            break;
+                        }
+                    }
                     break;
                 }
                 else{
@@ -300,6 +314,54 @@ public class InventarioService {
         }
         else{
             System.err.println("NO HAY SALIDAS REGISTRADAS");
+        }
+    }
+
+    // ============= CASE 3: MOSTRAR ULTIMOS MOVIMIENTOS REGISTRADOS ============ 
+    public void ultimosMovimientos(){
+        ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
+        if (movimiento.arrayVacio()) {
+            try {
+                for (int i = movimientos.size()-1; i >= movimientos.size()-5; i--){
+                    if (!movimientos.get(i).getTipoMovimiento().equalsIgnoreCase(null)) {
+                        System.out.println("TIPO DE MOVIMIENTO: " + movimientos.get(i).getTipoMovimiento());
+                        System.out.println("CODIGO DEL PRODUCTO: " + movimientos.get(i).getCodigoProducto());
+                        System.out.println("FECHA Y HORA DEL MOVIMIENTO: " + movimientos.get(i).getFecha());
+                        if (movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("ENTRADA")) {
+                            System.out.println("CANTIDAD INGRESADA: " + movimientos.get(i).getCantidad());
+                        }
+                        else{
+                            System.out.println("CANTIDAD EXPORTADA: " + movimientos.get(i).getCantidad());
+                        }
+                        System.out.println("========================");
+                    } 
+                }
+            }catch (IndexOutOfBoundsException e) {
+                System.out.println("ESTOS SON LOS ULTIMOS MOVIMIENTOS REGISTRADOS :)");
+            }
+        }
+        else{
+            System.err.println("NO HAY MOVIMIENTOS REGISTRADOS");
+        }
+    }
+
+    // ============= CASE 4: MOSTRAR PRODUCTOS QUE NUNCA HAN TENIDO ENTRADAS ============ 
+    public void productosSinEntradas(){
+        ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
+        if (movimiento.arrayVacio()) {
+            System.out.println("PRODUCTOS QUE NUNCA HAN TENIDO ENTRADAS:");
+            try {
+                for (Movimiento movimiento : movimientos) {
+                    if (movimiento.getContEntradas() == 0) {
+                        System.out.println("EL PRODUCTO CON CODIGO: " + movimiento.getCodigoProducto());
+                    }
+                }
+            } catch (NullPointerException e) {
+                System.err.println("");
+            }
+        }
+        else{
+            System.out.println("NO HAY PRODUCTOS REGISTRADOS");
         }
     }
 }

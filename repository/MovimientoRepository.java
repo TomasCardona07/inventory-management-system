@@ -5,8 +5,8 @@ public class MovimientoRepository {
     private ArrayList<Movimiento> historial = new ArrayList<>();
 
     // ========== AÑADIR MOVIMIENTO ============
-    public void addMovimiento(String tipoMovimiento, String codigo, int cantidad ){
-        historial.add(new Movimiento(tipoMovimiento, codigo, cantidad));
+    public void addMovimiento(String tipoMovimiento, String codigo, int cantidad, int entradas, int salidas ){
+        historial.add(new Movimiento(tipoMovimiento, codigo, cantidad,entradas,salidas));
     }
 
     // ========== MOSTRAR PRODUCTOS ==========
@@ -21,4 +21,5 @@ public class MovimientoRepository {
         }
         return true;
     }
+
 }

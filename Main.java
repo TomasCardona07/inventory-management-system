@@ -73,12 +73,15 @@ public class Main {
                                             inventarioService.salidasRegistradas();
                                             break;
                                         case 3:
+                                            inventarioService.ultimosMovimientos();
                                             break;
                                         case 4:
+                                            inventarioService.productosSinEntradas();
                                             break;
                                         case 5:
                                             break;
                                         case 6:
+                                            elegirMovimiento = salidaMovimientos;
                                             break;
                                         default:
                                             salidaReporte = elegirReporte;
