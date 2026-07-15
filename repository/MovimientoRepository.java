@@ -5,21 +5,31 @@ public class MovimientoRepository {
     private ArrayList<Movimiento> historial = new ArrayList<>();
 
     // ========== AÑADIR MOVIMIENTO ============
-    public void addMovimiento(String tipoMovimiento, String codigo, int cantidad, int entradas, int salidas ){
-        historial.add(new Movimiento(tipoMovimiento, codigo, cantidad,entradas,salidas));
+    public void addMovimiento(String tipoMovimiento, String codigo, int cantidad ){
+        historial.add(new Movimiento(tipoMovimiento, codigo, cantidad));
+    }
+
+    // ========== MOSTRAR MOVIMIENTOS ==========
+    public ArrayList<Movimiento> getMovimientos(){
+        return this.historial;
     }
 
     // ========== MOSTRAR PRODUCTOS ==========
-    public ArrayList<Movimiento> getMovimientos(){
-        return this.historial;
+    public void eliminarMovimiento(String codigo){
+        for (int i = 0; i < historial.size(); i++){
+            if (historial.get(i).getCodigoProducto().equalsIgnoreCase(codigo)) {
+                historial.remove(i);
+                break;
+            }
+        }
     }
 
     // ========== VERIFICAR SI EL ARRAY ESTA VACIO =========
     public boolean arrayVacio(){
         if (historial.isEmpty()) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 }

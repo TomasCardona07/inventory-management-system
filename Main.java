@@ -79,6 +79,7 @@ public class Main {
                                             inventarioService.productosSinEntradas();
                                             break;
                                         case 5:
+                                            inventarioService.productosSinSalidas();
                                             break;
                                         case 6:
                                             elegirMovimiento = salidaMovimientos;

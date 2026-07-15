@@ -31,16 +31,22 @@ public class Producto{
     public int getContSalidas(){return this.contadorSalidas;}
 
 
-    // ======== SETTER ELIMINAR STACK DEL PRODUCTO ========
+    // ======== ELIMINAR STACK DEL PRODUCTO ========
     public int setDeleteCantidad(int nCantidad){
         this.cantidad -= nCantidad;
         return cantidad;
     }
 
 
-    // ======== SETTER AGREGAR STACK DEL PRODUCTO ========
+    // ======== AGREGAR STACK DEL PRODUCTO ========
     public int setAddCantidad(int nCantidad){
         this.cantidad += nCantidad;
         return cantidad;
     }
+
+    // ======== AGREGAR ENTRADA ========
+    public int agregarEntrada(){return contadorEntradas++;}
+    
+    // ======== AGREGAR SALIDA ========
+    public int agregarSalida(){return contadorSalidas++;}
 }

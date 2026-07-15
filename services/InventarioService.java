@@ -27,7 +27,6 @@ public class InventarioService {
         double precio = inputValidator.validarNegativos(scr, "Ingresa el precio del producto", true);
         producto.agregarProducto(codigo, new Producto(codigo, nombreProd, categoria, cantidad, precio,0,0));
         System.out.println("¡PRODUCTO REGISTRADO CON EXITO!");
-        movimiento.addMovimiento("null", codigo, cantidad,0,0);
     }
 
     // ========== CASE 2 DEL BLOQUE DE ENTRADAS: REGISTRAR PROVEEDOR ============
@@ -46,6 +45,7 @@ public class InventarioService {
     // ========== CASE 3 DEL BLOQUE DE ENTRADAS: REGISTRAR ENTRADA ============
     public void registrarEntrada(Scanner scr){
         ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
+        Map<String,Producto> productos = producto.getProductos();
         System.out.println("Ingresa el identificador del proveedor");
         String identificador = scr.nextLine();
         Proveedor proveedorRepository = proveedor.retornarProveedor(identificador);
@@ -56,14 +56,10 @@ public class InventarioService {
             if (productoRepository != null) {
                 int cantRecibida = inputValidator.validarNegativos(scr, "Ingresa la cantidad recibida", false);
                 productoRepository.setAddCantidad(cantRecibida);
+                Producto entradaProducto = productos.get(codigo);
+                entradaProducto.agregarEntrada();
+                movimientos.add(new Movimiento("ENTRADA", codigo, cantRecibida));
                 System.out.println("¡ENTRADA REGISTRADA!");
-                for (int i = 0; i < movimientos.size(); i++) {
-                    if (movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("null") || movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("salida")) {
-                        movimiento.addMovimiento("entrada", codigo, cantRecibida, movimientos.get(i).agregarEntrada(), 0);
-                        //pendiente: idea pensada: agarrar el codigo del movimiento creado y editaro sin tener que crear otro
-                        break;
-                    }
-                }
             }
             else{
                 System.err.println("PRODUCTO NO EXISTENTE");
@@ -78,6 +74,7 @@ public class InventarioService {
     // ========== CASE 4 DEL BLOQUE DE ENTRADAS: REGISTRAR SALIDA ============
     public void registrarSalida(Scanner scr){
         ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
+        Map<String,Producto> productos = producto.getProductos();
         System.out.println("Ingrese el codigo del producto");
         String codigo = scr.nextLine();
         int cantidad;
@@ -87,13 +84,10 @@ public class InventarioService {
                 cantidad = inputValidator.validarNegativos(scr, "Ingrese la cantidad que desea retirar", false);
                 if (cantidad <= productoRepository.getCantidad()) {
                     productoRepository.setDeleteCantidad(cantidad);
+                    Producto salidaProducto = productos.get(codigo);
+                    salidaProducto.agregarSalida();
+                    movimientos.add(new Movimiento("SALIDA", codigo, cantidad));
                     System.out.println("SALIDA REGISTRADA");
-                    for (int i = 0; i < movimientos.size(); i++) {
-                        if (movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("null") || movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("entrada")) {
-                            movimiento.addMovimiento("SALIDA", codigo, cantidad, 0,movimientos.get(i).agregarSalida());
-                            break;
-                        }
-                    }
                     break;
                 }
                 else{
@@ -142,7 +136,7 @@ public class InventarioService {
     public void proveedoresRegistrados(){
         Map<String,Proveedor> mapaProveedores = proveedor.getProveedores();
         boolean mapaVacio = producto.mapaVacio(mapaProveedores);
-        if (mapaVacio) {
+        if (!mapaVacio) {
             for (Proveedor proveedor : mapaProveedores.values()) {
                 System.out.println("IDENTIFICADOR: " + proveedor.getIdentificador());
                 System.out.println("NOMBRE: " + proveedor.getNombre());
@@ -159,7 +153,7 @@ public class InventarioService {
     public void productosRegistrados(){
         Map<String,Producto> mapaProductos = producto.getProductos();
         boolean mapaVacio = producto.mapaVacio(mapaProductos);
-        if (mapaVacio) {
+        if (!mapaVacio) {
             for (Producto producto : mapaProductos.values()) {
                 System.out.println("CODIGO: " + producto.getCodigo());
                 System.out.println("NOMBRE: " + producto.getNombre());
@@ -178,7 +172,7 @@ public class InventarioService {
     public void mayorStock(){
         Map<String,Producto> mapaProductos = producto.getProductos();
         boolean mapaVacio = producto.mapaVacio(mapaProductos);
-        if (mapaVacio) {
+        if (!mapaVacio) {
             int mayorStock = -1;
             String mayorStockCodigo = null;
             for (Producto producto : mapaProductos.values()) {
@@ -199,7 +193,7 @@ public class InventarioService {
     public void menorStock(){
         Map<String,Producto> mapaProductos = producto.getProductos();
         boolean mapaVacio = producto.mapaVacio(mapaProductos);
-        if (mapaVacio) {
+        if (!mapaVacio) {
             int menorStock = Integer.MAX_VALUE;
             String menorStockCodigo = null;
             for (Producto producto : mapaProductos.values()) {
@@ -221,7 +215,7 @@ public class InventarioService {
     public void valorInventario(){
         Map<String,Producto> mapaProductos = producto.getProductos();
         boolean mapaVacio = producto.mapaVacio(mapaProductos);
-        if (mapaVacio) {
+        if (!mapaVacio) {
             double sumaValor = 0;
             for (Producto producto : mapaProductos.values()) {
                 sumaValor += producto.getPrecio() * producto.getCantidad();
@@ -238,7 +232,7 @@ public class InventarioService {
         Map<String,Producto> mapaProductos = producto.getProductos();
         boolean mapaVacio = producto.mapaVacio(mapaProductos);
         int contadorProductos = 0;
-        if (mapaVacio) {
+        if (!mapaVacio) {
             for (Producto producto : mapaProductos.values()) {
                 if (producto.getCantidad() == 0) {
                     System.out.println("El producto con codigo: " + producto.getCodigo()+ " Esta agotado");
@@ -261,7 +255,7 @@ public class InventarioService {
         Map<String,Producto> mapaProductos = producto.getProductos();
         boolean mapaVacio = producto.mapaVacio(mapaProductos);
         int contadorProductos = 0;
-        if (mapaVacio) {
+        if (!mapaVacio) {
             for (Producto producto : mapaProductos.values()) {
                 if (producto.getCantidad() < 5) {
                     System.out.println("El producto con código: " + producto.getCodigo());
@@ -286,47 +280,47 @@ public class InventarioService {
     // ============= CASE 1: MOSTRAR TOTAL DE ENTRADAS REGISTRADAS  ============ 
     public void entradasRegistradas(){
         ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
-        int entradasRegistrads = 0;
-        for (Movimiento movimiento : movimientos) {
-            if (movimiento.getTipoMovimiento().equalsIgnoreCase("ENTRADA")) {
-                entradasRegistrads++;
-            }
-        }
-        if (movimiento.arrayVacio()) {
-            System.out.println("El total de entradas registradas es: " + entradasRegistrads + " entradas");
+        Map<String,Producto> productos = producto.getProductos();
+        if (!movimiento.arrayVacio()) {
+            for (Movimiento movimiento : movimientos) {
+                if (movimiento.getTipoMovimiento().equalsIgnoreCase("ENTRADA")) {
+                    Producto productosEntradas = productos.get(movimiento.getCodigoProducto());
+                    System.out.println("ENTRADAS REGISTRADAS: " + productosEntradas.getContEntradas());
+                }
+            } 
         }
         else{
-            System.err.println("NO HAY ENTRADAS REGISTRADSS");
+            System.err.println("NO HAY MOVIMIENTOS REGISTRADOS");
         }
     }
 
     // ============= CASE 2: MOSTRAR TOTAL DE SALIDAS REGISTRADAS  ============ 
     public void salidasRegistradas(){
         ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
-        int salidasRegistrads = 0;
-        for (Movimiento movimiento : movimientos) {
-            if (movimiento.getTipoMovimiento().equalsIgnoreCase("salida")) {
-                salidasRegistrads++;
+        Map<String,Producto> productos = producto.getProductos();
+        if (!movimiento.arrayVacio()) {
+            for (Movimiento movimiento : movimientos) {
+                if (movimiento.getTipoMovimiento().equalsIgnoreCase("SALIDA")) {
+                    Producto productoSalidas = productos.get(movimiento.getCodigoProducto());
+                    System.out.println("SALIDAS REGISTRADAS: " + productoSalidas.getContSalidas());
+                }
             }
         }
-        if (movimiento.arrayVacio()) {
-            System.out.println("El total de salidas registradas es: " + salidasRegistrads + " entradas");
-        }
         else{
-            System.err.println("NO HAY SALIDAS REGISTRADAS");
+            System.err.println("NO HAY MOVIMIENTOS REGISTRADOS");
         }
     }
 
     // ============= CASE 3: MOSTRAR ULTIMOS MOVIMIENTOS REGISTRADOS ============ 
     public void ultimosMovimientos(){
         ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
-        if (movimiento.arrayVacio()) {
+        if (!movimiento.arrayVacio()) {
             try {
                 for (int i = movimientos.size()-1; i >= movimientos.size()-5; i--){
-                    if (!movimientos.get(i).getTipoMovimiento().equalsIgnoreCase(null)) {
+                    if (!movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("null")) {
                         System.out.println("TIPO DE MOVIMIENTO: " + movimientos.get(i).getTipoMovimiento());
                         System.out.println("CODIGO DEL PRODUCTO: " + movimientos.get(i).getCodigoProducto());
-                        System.out.println("FECHA Y HORA DEL MOVIMIENTO: " + movimientos.get(i).getFecha());
+                        System.out.println("FECHA Y HORA DEL MOVIMIENTO: " + movimientos.get(i).getFechaFormateada());
                         if (movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("ENTRADA")) {
                             System.out.println("CANTIDAD INGRESADA: " + movimientos.get(i).getCantidad());
                         }
@@ -334,7 +328,7 @@ public class InventarioService {
                             System.out.println("CANTIDAD EXPORTADA: " + movimientos.get(i).getCantidad());
                         }
                         System.out.println("========================");
-                    } 
+                    }
                 }
             }catch (IndexOutOfBoundsException e) {
                 System.out.println("ESTOS SON LOS ULTIMOS MOVIMIENTOS REGISTRADOS :)");
@@ -347,21 +341,35 @@ public class InventarioService {
 
     // ============= CASE 4: MOSTRAR PRODUCTOS QUE NUNCA HAN TENIDO ENTRADAS ============ 
     public void productosSinEntradas(){
-        ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
-        if (movimiento.arrayVacio()) {
+        Map<String,Producto> productos = producto.getProductos();
+        if (!producto.mapaVacio(productos)) {
             System.out.println("PRODUCTOS QUE NUNCA HAN TENIDO ENTRADAS:");
-            try {
-                for (Movimiento movimiento : movimientos) {
-                    if (movimiento.getContEntradas() == 0) {
-                        System.out.println("EL PRODUCTO CON CODIGO: " + movimiento.getCodigoProducto());
-                    }
+            for (Producto producto : productos.values()) {
+                if (producto.getContEntradas() == 0) {
+                    System.out.println("EL PRODUCTO CON CODIGO: " + producto.getCodigo());
+                    System.out.println("===========================");
                 }
-            } catch (NullPointerException e) {
-                System.err.println("");
             }
         }
         else{
-            System.out.println("NO HAY PRODUCTOS REGISTRADOS");
+            System.err.println("NO HAY PRODUCTOS REGISTRADOS");
+        }
+    }
+
+    // ============= CASE 5: MOSTRAR PRODUCTOS QUE NUNCA HAN TENIDO SALIDAS ============ 
+    public void productosSinSalidas(){
+        Map<String,Producto> productos = producto.getProductos();
+        if (!producto.mapaVacio(productos)) {
+            System.out.println("PRODUCTOS QUE NUNCA HAN TENIDO SALIDAS:");
+            for (Producto producto : productos.values()) {
+                if (producto.getContSalidas() == 0) {
+                    System.out.println("EL PRODUCTO CON CODIGO: " + producto.getCodigo());
+                    System.out.println("===========================");
+                }
+            }
+        }
+        else{
+            System.err.println("NO HAY PRODUCTOS REGISTRADOS");
         }
     }
 }
