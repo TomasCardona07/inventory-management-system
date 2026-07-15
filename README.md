@@ -25,7 +25,7 @@ The goal of this project is to evolve from a simple console application into a c
 ## Roadmap
 
 - ✅ V1.0 — Console Application + Object-Oriented Programming
-- ✅ V2.0 — Collections (HashMap, HashSet, equals(), hashCode())
+- ✅ V2.0 — Collections
 - 🚧 V3.0 — File Persistence
 - ⏳ V4.0 — PostgreSQL + JDBC
 - ⏳ V5.0 — Professional Refactoring (SOLID, DRY, Clean Code)
@@ -44,7 +44,7 @@ The goal of this project is to evolve from a simple console application into a c
 ### Current
 
 - Java
-- Java Collections Framework
+- Java Collections
 
 ### Planned
 
