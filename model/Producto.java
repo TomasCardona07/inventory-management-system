@@ -10,7 +10,7 @@ public class Producto{
     private int contadorEntradas;
     private int contadorSalidas;
 
-    // ========= CONSTRUCTOR =========
+    // ========= CONSTRUCTOR ==========
     public Producto (String codigo, String nombre, String categoria, int cantidad, double precio, int contadorEntradas, int contadorSalidas){
         this.codigo = codigo;
         this.nombre = nombre;

@@ -218,7 +218,7 @@ public class InventarioService {
         if (!mapaVacio) {
             double sumaValor = 0;
             for (Producto producto : mapaProductos.values()) {
-                sumaValor += producto.getPrecio() * producto.getCantidad();
+                sumaValor += (producto.getPrecio() * producto.getCantidad());
             }
             System.out.println("EL VALOR DEL INVENTARIO ES DE: " + sumaValor + " PESOS");
         }
@@ -279,15 +279,13 @@ public class InventarioService {
     
     // ============= CASE 1: MOSTRAR TOTAL DE ENTRADAS REGISTRADAS  ============ 
     public void entradasRegistradas(){
-        ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
         Map<String,Producto> productos = producto.getProductos();
+        int sumaEntradas = 0;
         if (!movimiento.arrayVacio()) {
-            for (Movimiento movimiento : movimientos) {
-                if (movimiento.getTipoMovimiento().equalsIgnoreCase("ENTRADA")) {
-                    Producto productosEntradas = productos.get(movimiento.getCodigoProducto());
-                    System.out.println("ENTRADAS REGISTRADAS: " + productosEntradas.getContEntradas());
-                }
-            } 
+            for (Producto producto : productos.values()) {
+                sumaEntradas += producto.getContEntradas();
+            }
+            System.out.println("ENTRADAS REGISTRADAS: " + sumaEntradas);
         }
         else{
             System.err.println("NO HAY MOVIMIENTOS REGISTRADOS");
@@ -296,15 +294,13 @@ public class InventarioService {
 
     // ============= CASE 2: MOSTRAR TOTAL DE SALIDAS REGISTRADAS  ============ 
     public void salidasRegistradas(){
-        ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
         Map<String,Producto> productos = producto.getProductos();
+        int sumaSalidas = 0;
         if (!movimiento.arrayVacio()) {
-            for (Movimiento movimiento : movimientos) {
-                if (movimiento.getTipoMovimiento().equalsIgnoreCase("SALIDA")) {
-                    Producto productoSalidas = productos.get(movimiento.getCodigoProducto());
-                    System.out.println("SALIDAS REGISTRADAS: " + productoSalidas.getContSalidas());
-                }
+            for (Producto producto : productos.values()) {
+                sumaSalidas += producto.getContSalidas();
             }
+            System.out.println("SALIDAS REGISTRADAS: " + sumaSalidas);
         }
         else{
             System.err.println("NO HAY MOVIMIENTOS REGISTRADOS");
@@ -342,13 +338,22 @@ public class InventarioService {
     // ============= CASE 4: MOSTRAR PRODUCTOS QUE NUNCA HAN TENIDO ENTRADAS ============ 
     public void productosSinEntradas(){
         Map<String,Producto> productos = producto.getProductos();
+        int contadorTrue = 0;
+        int contadorFalse = 0;
         if (!producto.mapaVacio(productos)) {
             System.out.println("PRODUCTOS QUE NUNCA HAN TENIDO ENTRADAS:");
             for (Producto producto : productos.values()) {
                 if (producto.getContEntradas() == 0) {
                     System.out.println("EL PRODUCTO CON CODIGO: " + producto.getCodigo());
                     System.out.println("===========================");
+                    contadorTrue++;
                 }
+                else{
+                    contadorFalse++;
+                }
+            }
+            if (contadorFalse > 0 && contadorTrue == 0) {
+                System.out.println("NO HAY PRODUCTOS QUE NUNCA HAN TENIDO ENTRADAS");
             }
         }
         else{
@@ -359,13 +364,22 @@ public class InventarioService {
     // ============= CASE 5: MOSTRAR PRODUCTOS QUE NUNCA HAN TENIDO SALIDAS ============ 
     public void productosSinSalidas(){
         Map<String,Producto> productos = producto.getProductos();
+        int contadorTrue = 0;
+        int contadorFalse = 0;
         if (!producto.mapaVacio(productos)) {
             System.out.println("PRODUCTOS QUE NUNCA HAN TENIDO SALIDAS:");
             for (Producto producto : productos.values()) {
                 if (producto.getContSalidas() == 0) {
                     System.out.println("EL PRODUCTO CON CODIGO: " + producto.getCodigo());
                     System.out.println("===========================");
+                    contadorTrue++;
                 }
+                else{
+                    contadorFalse++;
+                }
+            }
+            if (contadorFalse > 0 && contadorTrue == 0) {
+                System.out.println("NO HAY PRODUCTOS QUE NUNCA HAN TENIDO SALIDAS");
             }
         }
         else{

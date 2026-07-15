@@ -113,7 +113,7 @@ public class InputValidator {
     }
 
 
-    // ============ VALIDAR INGRESO DE ELECCIÓN DE MOVIMIENTOS ==============
+    // ============= VALIDAR INGRESO DE ELECCIÓN DE MOVIMIENTOS ==============
     public int verMovimientos(Scanner scr){
         int elegirReporte = 0;
         do {

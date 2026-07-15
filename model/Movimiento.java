@@ -9,7 +9,7 @@ public class Movimiento {
     private LocalDateTime fecha;
 
 
-    // ========= CONSTRUCTOR ========= 
+    // ========== CONSTRUCTOR ========== 
     public Movimiento(String tipoMovimiento, String codigoProducto, int cantidad){
         this.tipoMovimiento = tipoMovimiento;
         this.codigoProducto = codigoProducto;

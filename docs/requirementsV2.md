@@ -32,6 +32,7 @@ Buscar proveedores.
 Eliminar productos.
 Eliminar proveedores.
 Generar reportes.
+
 Nuevas funcionalidades
 Historial de movimientos
 

@@ -9,8 +9,7 @@ public class ProductoRepository {
 
     // ========= RETORNAR PRODUCTO ===========
     public Producto retornarProducto(String codigo){
-        Producto producto = mapaProductos.get(codigo);
-        return producto;
+        return mapaProductos.get(codigo);
     }
 
     // ========== AGREGAR NUEVO PRODUCTO =========

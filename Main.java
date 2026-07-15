@@ -9,6 +9,7 @@ public class Main {
         int elegirRegistro = 0;
         int salidaRegistro = 9;
         System.out.println("BIENVENIDO AL SISTEMA DE INVENTARIO");
+        // ======= MENU DE REGISTROS =======
         while (elegirRegistro != salidaRegistro) {
             System.out.println("MENU DE REGISTROS");
             elegirRegistro = inputValidator.elegirRegistro(scr);
@@ -34,6 +35,7 @@ public class Main {
                 case 7:
                     int elegirReporte = 0;
                     int salidaReporte = 9;
+                    // ======= MENU DE REPORTES =======
                     while (elegirReporte != salidaReporte) {
                         System.out.println("MENU DE REPORTES");
                         elegirReporte = inputValidator.elegirReporte(scr);
@@ -62,6 +64,7 @@ public class Main {
                             case 8:
                                 int elegirMovimiento = 0;
                                 int salidaMovimientos = 7;
+                                // ======= MENU DE MOVIMIENTOS =======
                                 while (salidaMovimientos != elegirMovimiento ) {
                                     System.out.println("MENU DE MOVIMIENTOS");
                                     elegirMovimiento = inputValidator.verMovimientos(scr);
