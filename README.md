@@ -8,13 +8,15 @@ The goal of this project is to evolve from a simple console application into a c
 
 ## Features
 
-### Current (v1.0.0)
+### Current (v2.0.0)
 
 - Product management
 - Supplier management
 - Inventory entries
 - Inventory outputs
+- Inventory movement history
 - Inventory reports
+- Performance optimization using HashMap
 - Input validation
 - Console application
 
@@ -23,8 +25,8 @@ The goal of this project is to evolve from a simple console application into a c
 ## Roadmap
 
 - ✅ V1.0 — Console Application + Object-Oriented Programming
-- 🚧 V2.0 — Collections (HashMap, HashSet, equals(), hashCode())
-- ⏳ V3.0 — File Persistence
+- ✅ V2.0 — Collections (HashMap, HashSet, equals(), hashCode())
+- 🚧 V3.0 — File Persistence
 - ⏳ V4.0 — PostgreSQL + JDBC
 - ⏳ V5.0 — Professional Refactoring (SOLID, DRY, Clean Code)
 - ⏳ V6.0 — Spring Boot
@@ -42,6 +44,7 @@ The goal of this project is to evolve from a simple console application into a c
 ### Current
 
 - Java
+- Java Collections Framework
 
 ### Planned
 
@@ -58,11 +61,17 @@ The goal of this project is to evolve from a simple console application into a c
 
 ## Current Status
 
-**Current Version:** `v1.0.0`
+**Current Version:** `v2.0.0`
 
-The first stable version of the project has been completed as a console application.
+The project has been optimized using Java Collections to improve lookup performance while preserving all functionality from the first version.
 
-The next milestone focuses on improving the internal architecture using Java Collections while maintaining the existing functionality.
+Current implementation includes:
+
+- HashMap-based repositories
+- Inventory movement history
+- Performance-oriented data structures
+- Enhanced reports
+- Console application
 
 ---
 
