@@ -105,6 +105,7 @@ public class Main {
                     break;
             }
         }
+        inventarioService.guardarJson(); //Se guardan los objetos en el Json
         scr.close();
     }
 }

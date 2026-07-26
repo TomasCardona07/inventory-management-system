@@ -1,0 +1,11 @@
+{
+  "12" : {
+    "codigo" : "12",
+    "nombre" : "celular",
+    "categoria" : "tecnologia",
+    "cantidad" : 30,
+    "precio" : 3000.0,
+    "contadorEntradas" : 0,
+    "contadorSalidas" : 0
+  }
+}

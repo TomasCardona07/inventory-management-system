@@ -6,10 +6,21 @@ import java.util.*;
 
 public class InventarioService {
     InputValidator inputValidator = new InputValidator();
+
     // ======== IMPORTANDO COLECCIÓNES DESDE REPOSITORY ==========
     private final MovimientoRepository movimiento = new MovimientoRepository();
     private final ProductoRepository producto = new ProductoRepository();
     private final ProveedorRepository proveedor = new ProveedorRepository();
+
+    // ======== CARGAR JSON (Constructor) =========
+    public InventarioService(){
+        producto.cargarJson();
+    }
+
+    // ======== GUARDAR JSON (para el Main) =========
+    public void guardarJson(){
+        producto.guardarJson();
+    }
 
     /*=======================================================
       ============= MENU PRINCIPAL: REGISTROS ===============
@@ -283,7 +294,7 @@ public class InventarioService {
         int sumaEntradas = 0;
         if (!movimiento.arrayVacio()) {
             for (Producto producto : productos.values()) {
-                sumaEntradas += producto.getContEntradas();
+                sumaEntradas += producto.getContadorEntradas();
             }
             System.out.println("ENTRADAS REGISTRADAS: " + sumaEntradas);
         }
@@ -298,7 +309,7 @@ public class InventarioService {
         int sumaSalidas = 0;
         if (!movimiento.arrayVacio()) {
             for (Producto producto : productos.values()) {
-                sumaSalidas += producto.getContSalidas();
+                sumaSalidas += producto.getContadorSalidas();
             }
             System.out.println("SALIDAS REGISTRADAS: " + sumaSalidas);
         }
@@ -343,7 +354,7 @@ public class InventarioService {
         if (!producto.mapaVacio()) {
             System.out.println("PRODUCTOS QUE NUNCA HAN TENIDO ENTRADAS:");
             for (Producto producto : productos.values()) {
-                if (producto.getContEntradas() == 0) {
+                if (producto.getContadorEntradas() == 0) {
                     System.out.println("EL PRODUCTO CON CODIGO: " + producto.getCodigo());
                     System.out.println("===========================");
                     contadorTrue++;
@@ -369,7 +380,7 @@ public class InventarioService {
         if (!producto.mapaVacio()) {
             System.out.println("PRODUCTOS QUE NUNCA HAN TENIDO SALIDAS:");
             for (Producto producto : productos.values()) {
-                if (producto.getContSalidas() == 0) {
+                if (producto.getContadorSalidas() == 0) {
                     System.out.println("EL PRODUCTO CON CODIGO: " + producto.getCodigo());
                     System.out.println("===========================");
                     contadorTrue++;

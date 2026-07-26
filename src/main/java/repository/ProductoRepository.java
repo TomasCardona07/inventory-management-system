@@ -1,6 +1,11 @@
 package repository;
 import java.util.*;
 import model.*;
+//JACKSON Y EXCEPCIONES
+import java.io.File;
+import java.io.IOException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ProductoRepository {
 
@@ -32,5 +37,33 @@ public class ProductoRepository {
     // ========== VERIFICAR SI EL MAPA ESTA VACIO ==========
     public boolean mapaVacio(){
         return this.mapaProductos.isEmpty();
+    }
+
+    //=========== GUARDAR MAPA EN JSON ============
+    public void guardarJson(){
+        File productoJson = new File("data/producto.json");
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            mapper
+                .writerWithDefaultPrettyPrinter()
+                .writeValue(productoJson,mapaProductos);
+        } catch (IOException e) {
+            System.err.println("Error al guardar productos en json");
+        }
+    }
+
+    //=========== CARGAR JSON ============
+    public void cargarJson(){
+        File cargarProductos = new File("data/producto.json");
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            Map<String,Producto> datos = mapper.readValue(cargarProductos,
+                new TypeReference<Map<String,Producto>>() {}
+            );
+            mapaProductos.clear();
+            mapaProductos.putAll(datos);
+        } catch (IOException e) {
+            System.out.println("Error en cargar Productos");
+        }
     }
 }
