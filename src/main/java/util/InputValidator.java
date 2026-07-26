@@ -1,9 +1,8 @@
 package util;
-import repository.*;
 import java.util.Scanner;
+import model.*;
+import repository.*;
 
-import model.Producto;
-import model.Proveedor;
 public class InputValidator {
 
     // ============ VALIDAR INGRESO DE ELECCIÓN DE REGISTRO ==============

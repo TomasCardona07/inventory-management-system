@@ -1,6 +1,6 @@
 package repository;
-import model.Producto;
 import java.util.*;
+import model.*;
 
 public class ProductoRepository {
 

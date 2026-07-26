@@ -1,6 +1,7 @@
+
 import java.util.Scanner;
-import util.InputValidator;
 import services.*;
+import util.InputValidator;
 public class Main {
     public static void main(String[] args) {
         Scanner scr = new Scanner(System.in);
