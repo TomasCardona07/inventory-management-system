@@ -15,11 +15,15 @@ public class InventarioService {
     // ======== CARGAR JSON (Constructor) =========
     public InventarioService(){
         producto.cargarJson();
+        movimiento.cargarJson();
+        proveedor.cargarJson();
     }
 
     // ======== GUARDAR JSON (para el Main) =========
     public void guardarJson(){
         producto.guardarJson();
+        movimiento.guardarJson();
+        proveedor.guardarJson();
     }
 
     /*=======================================================
@@ -327,7 +331,6 @@ public class InventarioService {
                     if (!movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("null")) {
                         System.out.println("TIPO DE MOVIMIENTO: " + movimientos.get(i).getTipoMovimiento());
                         System.out.println("CODIGO DEL PRODUCTO: " + movimientos.get(i).getCodigoProducto());
-                        System.out.println("FECHA Y HORA DEL MOVIMIENTO: " + movimientos.get(i).getFechaFormateada());
                         if (movimientos.get(i).getTipoMovimiento().equalsIgnoreCase("ENTRADA")) {
                             System.out.println("CANTIDAD INGRESADA: " + movimientos.get(i).getCantidad());
                         }

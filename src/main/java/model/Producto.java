@@ -20,7 +20,7 @@ public class Producto{
         this.contadorEntradas = contadorEntradas;
         this.contadorSalidas = contadorSalidas;
     }
-    //CONSTRUCTOR PARA JSON
+    //CONSTRUCTOR PARA JSON (SIEMPRE)
     public Producto(){
 
     }

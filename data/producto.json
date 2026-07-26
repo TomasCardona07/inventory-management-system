@@ -1,10 +1,19 @@
 {
   "12" : {
     "codigo" : "12",
-    "nombre" : "celular",
-    "categoria" : "tecnologia",
-    "cantidad" : 30,
+    "nombre" : "Celular",
+    "categoria" : "Tecnologia",
+    "cantidad" : 12,
     "precio" : 3000.0,
+    "contadorEntradas" : 0,
+    "contadorSalidas" : 2
+  },
+  "787" : {
+    "codigo" : "787",
+    "nombre" : "Computador",
+    "categoria" : "Tecnologia",
+    "cantidad" : 2342,
+    "precio" : 40000.0,
     "contadorEntradas" : 0,
     "contadorSalidas" : 0
   }

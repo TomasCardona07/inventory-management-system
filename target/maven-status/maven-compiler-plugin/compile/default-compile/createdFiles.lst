@@ -1,9 +1,0 @@
-src\Main\java\services\InventarioService.class
-src\Main\java\repository\ProductoRepository.class
-src\Main\java\model\Producto.class
-src\Main\java\repository\MovimientoRepository.class
-src\Main\java\util\InputValidator.class
-src\Main\java\model\Movimiento.class
-src\Main\java\model\Proveedor.class
-src\Main\java\Main.class
-src\Main\java\repository\ProveedorRepository.class
