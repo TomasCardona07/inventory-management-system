@@ -14,7 +14,7 @@ public class MovimientoRepository {
         return this.historial;
     }
 
-    // ========== MOSTRAR PRODUCTOS ==========
+    // ========== ELIMINAR MOVIMIENTO ==========
     public void eliminarMovimiento(String codigo){
         for (int i = 0; i < historial.size(); i++){
             if (historial.get(i).getCodigoProducto().equalsIgnoreCase(codigo)) {
@@ -25,10 +25,7 @@ public class MovimientoRepository {
     }
 
     // ========== VERIFICAR SI EL ARRAY ESTA VACIO =========
-    public boolean arrayVacio(){
-        if (historial.isEmpty()) {
-            return true;
-        }
-        return false;
+    public boolean arrayVacio (){
+        return this.historial.isEmpty();
     }
 }

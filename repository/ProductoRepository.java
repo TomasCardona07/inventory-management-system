@@ -30,10 +30,7 @@ public class ProductoRepository {
 
 
     // ========== VERIFICAR SI EL MAPA ESTA VACIO ==========
-    public boolean mapaVacio(Map<?, ?>mapa){
-        if (mapa.isEmpty()) {
-            return true;
-        }
-        return false;
+    public boolean mapaVacio(){
+        return this.mapaProductos.isEmpty();
     }
 }

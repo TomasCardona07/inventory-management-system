@@ -32,14 +32,14 @@ public class Producto{
 
 
     // ======== ELIMINAR STACK DEL PRODUCTO ========
-    public int setDeleteCantidad(int nCantidad){
+    public int disminiurCantidad(int nCantidad){
         this.cantidad -= nCantidad;
         return cantidad;
     }
 
 
     // ======== AGREGAR STACK DEL PRODUCTO ========
-    public int setAddCantidad(int nCantidad){
+    public int aumentarCantidad(int nCantidad){
         this.cantidad += nCantidad;
         return cantidad;
     }
