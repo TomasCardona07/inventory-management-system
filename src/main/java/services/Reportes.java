@@ -8,18 +8,16 @@ public class Reportes {
     InputValidator inputValidator = new InputValidator();
 
     // ======== COLECCIÓNES DESDE REPOSITORY ==========
-    private final ProductoRepository producto = new ProductoRepository();
-    private final ProveedorRepository proveedor = new ProveedorRepository();
 
     // ========== CASE 1: MOSTRAR TODOS LOS PROVEEDORES REGISTRADOS =============
-    public void proveedoresRegistrados(){
+    public void proveedoresRegistrados(ProductoRepository productos, ProveedorRepository proveedor){
         Map<String,Proveedor> mapaProveedores = proveedor.getProveedores();
-        boolean mapaVacio = producto.mapaVacio();
+        boolean mapaVacio = productos.mapaVacio();
         if (!mapaVacio) {
-            for (Proveedor proveedor : mapaProveedores.values()) {
-                System.out.println("IDENTIFICADOR: " + proveedor.getIdentificador());
-                System.out.println("NOMBRE: " + proveedor.getNombre());
-                System.out.println("TELEFONO: " + proveedor.getTelefono());
+            for (Proveedor proveedores : mapaProveedores.values()) {
+                System.out.println("IDENTIFICADOR: " + proveedores.getIdentificador());
+                System.out.println("NOMBRE: " + proveedores.getNombre());
+                System.out.println("TELEFONO: " + proveedores.getTelefono());
             }
         }
         else{
@@ -29,9 +27,9 @@ public class Reportes {
 
 
     // ========== CASE 2: MOSTRAR TODOS LOS PRODUCTOS REGISTRADOS =============
-    public void productosRegistrados(){
-        Map<String,Producto> mapaProductos = producto.getProductos();
-        boolean mapaVacio = producto.mapaVacio();
+    public void productosRegistrados(ProductoRepository productos){
+        Map<String,Producto> mapaProductos = productos.getProductos();
+        boolean mapaVacio = productos.mapaVacio();
         if (!mapaVacio) {
             for (Producto producto : mapaProductos.values()) {
                 System.out.println("CODIGO: " + producto.getCodigo());
@@ -48,9 +46,9 @@ public class Reportes {
     }
 
     // ========== CASE 3: MOSTRAR PRODUCTO CON MAYOR STOCK =============
-    public void mayorStock(){
-        Map<String,Producto> mapaProductos = producto.getProductos();
-        boolean mapaVacio = producto.mapaVacio();
+    public void mayorStock(ProductoRepository productos){
+        Map<String,Producto> mapaProductos = productos.getProductos();
+        boolean mapaVacio = productos.mapaVacio();
         if (!mapaVacio) {
             int mayorStock = -1;
             String mayorStockCodigo = null;
@@ -69,9 +67,9 @@ public class Reportes {
     }
 
     // ========== CASE 4: MOSTRAR PRODUCTO CON MENOR STOCK =============
-    public void menorStock(){
-        Map<String,Producto> mapaProductos = producto.getProductos();
-        boolean mapaVacio = producto.mapaVacio();
+    public void menorStock(ProductoRepository productos){
+        Map<String,Producto> mapaProductos = productos.getProductos();
+        boolean mapaVacio = productos.mapaVacio();
         if (!mapaVacio) {
             int menorStock = Integer.MAX_VALUE;
             String menorStockCodigo = null;
@@ -91,9 +89,9 @@ public class Reportes {
 
 
     // ============= CASE 5: VALOR DEL INVENTARIO ============
-    public void valorInventario(){
-        Map<String,Producto> mapaProductos = producto.getProductos();
-        boolean mapaVacio = producto.mapaVacio();
+    public void valorInventario(ProductoRepository productos){
+        Map<String,Producto> mapaProductos = productos.getProductos();
+        boolean mapaVacio = productos.mapaVacio();
         if (!mapaVacio) {
             double sumaValor = 0;
             for (Producto producto : mapaProductos.values()) {
@@ -107,9 +105,9 @@ public class Reportes {
     }
 
    // ============= CASE 6: MOSTRAR PRODUCTOS AGOTADOS ============ 
-    public void productosAgotados(){
-        Map<String,Producto> mapaProductos = producto.getProductos();
-        boolean mapaVacio = producto.mapaVacio();
+    public void productosAgotados(ProductoRepository productos){
+        Map<String,Producto> mapaProductos = productos.getProductos();
+        boolean mapaVacio = productos.mapaVacio();
         int contadorProductos = 0;
         if (!mapaVacio) {
             for (Producto producto : mapaProductos.values()) {
@@ -130,9 +128,9 @@ public class Reportes {
 
 
    // ============= CASE 7: MOSTRAR PRODUCTOS CON MENOS DE 5 UNIDADES  ============ 
-    public void productosEscasos(){
-        Map<String,Producto> mapaProductos = producto.getProductos();
-        boolean mapaVacio = producto.mapaVacio();
+    public void productosEscasos(ProductoRepository productos){
+        Map<String,Producto> mapaProductos = productos.getProductos();
+        boolean mapaVacio = productos.mapaVacio();
         int contadorProductos = 0;
         if (!mapaVacio) {
             for (Producto producto : mapaProductos.values()) {

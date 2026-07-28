@@ -11,13 +11,10 @@ public class Registros {
     InputValidator inputValidator = new InputValidator();
 
     // ======== COLECCIÓNES DESDE REPOSITORY ==========
-    private final MovimientoRepository movimiento = new MovimientoRepository();
-    private final ProductoRepository producto = new ProductoRepository();
-    private final ProveedorRepository proveedor = new ProveedorRepository();
 
 
     // ========== CASE 1 DEL BLOQUE DE ENTRADAS: REGISTRAR PRODUCTO ============
-    public void registrarProducto( Scanner scr){
+    public void registrarProducto( Scanner scr, ProductoRepository producto){
         System.out.println("Ingresa el codigo del producto");
         String codigo = inputValidator.idProductoRepetido(scr, producto);
         System.out.println("Ingresa el nombre del producto");
@@ -31,7 +28,7 @@ public class Registros {
     }
 
     // ========== CASE 2 DEL BLOQUE DE ENTRADAS: REGISTRAR PROVEEDOR ============
-    public void registrarProveedor(Scanner scr){
+    public void registrarProveedor(Scanner scr, ProveedorRepository proveedor){
         System.out.println("Ingresa el identificador del proveedor");
         String identificadorProv = inputValidator.idProveedorRepetido(scr, proveedor);
         System.out.println("Ingresa el nombre del proveedor");
@@ -44,7 +41,7 @@ public class Registros {
 
 
     // ========== CASE 3 DEL BLOQUE DE ENTRADAS: REGISTRAR ENTRADA ============
-    public void registrarEntrada(Scanner scr){
+    public void registrarEntrada(Scanner scr,ProductoRepository producto,ProveedorRepository proveedor, MovimientoRepository movimiento){
         ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
         Map<String,Producto> productos = producto.getProductos();
         System.out.println("Ingresa el identificador del proveedor");
@@ -73,7 +70,7 @@ public class Registros {
 
 
     // ========== CASE 4 DEL BLOQUE DE ENTRADAS: REGISTRAR SALIDA ============
-    public void registrarSalida(Scanner scr){
+    public void registrarSalida(Scanner scr,ProductoRepository producto, MovimientoRepository movimiento){
         ArrayList<Movimiento> movimientos = movimiento.getMovimientos();
         Map<String,Producto> productos = producto.getProductos();
         System.out.println("Ingrese el codigo del producto");
@@ -102,7 +99,7 @@ public class Registros {
     }
     
     // ========== CASE 5 DEL BLOQUE DE ENTRADAS: ELIMINAR PRODUCTO ============
-    public void eliminarProducto(Scanner scr){
+    public void eliminarProducto(Scanner scr,ProductoRepository producto){
         System.out.println("Ingrese el codigo del producto que dese eliminar");
         String codigo = scr.nextLine();
         Producto productoExistente = producto.retornarProducto(codigo);
@@ -116,7 +113,7 @@ public class Registros {
     }
 
     // ========== CASE 6 DEL BLOQUE DE ENTRADAS: ELIMINAR PROVEEDOR ============
-    public void eliminarProveedor(Scanner scr){
+    public void eliminarProveedor(Scanner scr,ProveedorRepository proveedor){
         System.out.println("Ingrese el identificador del proveedor que desee eliminar");
         String identificador = scr.nextLine();
         Proveedor proveedorExistente = proveedor.retornarProveedor(identificador);
