@@ -5,7 +5,7 @@ public class Proveedor {
     private String nombre;
     private String telefono;
 
-    // ========== CONSTRUCTOR ==========
+    // ========== CONSTRUCTOR ===========
     public Proveedor(String identificador, String nombre, String telefono){
         this.identificador = identificador;
         this.nombre = nombre;

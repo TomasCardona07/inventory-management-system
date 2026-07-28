@@ -10,7 +10,7 @@ public class Main {
         int elegirRegistro = 0;
         int salidaRegistro = 9;
         System.out.println("BIENVENIDO AL SISTEMA DE INVENTARIO");
-        // ======= MENU DE REGISTROS =======
+        // ======== MENU DE REGISTROS =======
         while (elegirRegistro != salidaRegistro) {
             System.out.println("MENU DE REGISTROS");
             elegirRegistro = inputValidator.elegirRegistro(scr);

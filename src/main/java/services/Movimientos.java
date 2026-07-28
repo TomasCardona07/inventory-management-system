@@ -8,7 +8,6 @@ import util.InputValidator;
 public class Movimientos {
     InputValidator inputValidator = new InputValidator();
 
-    // ======== COLECCIÓNES DESDE REPOSITORY ==========
     
     // ============= CASE 1: MOSTRAR TOTAL DE ENTRADAS REGISTRADAS  ============ 
     public void entradasRegistradas(ProductoRepository productoRepository, MovimientoRepository movimiento){
@@ -93,7 +92,7 @@ public class Movimientos {
         }
     }
 
-    // ============= CASE 5: MOSTRAR PRODUCTOS QUE NUNCA HAN TENIDO SALIDAS ============ 
+    // ============== CASE 5: MOSTRAR PRODUCTOS QUE NUNCA HAN TENIDO SALIDAS ============ 
     public void productosSinSalidas(ProductoRepository productoRepository){
         Map<String,Producto> productos = productoRepository.getProductos();
         int contadorTrue = 0;

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ProveedorRepository {
-    // ========= CREAR COLECCIONES DE PROVEEDORES ==========
+    // ========== CREAR COLECCIONES DE PROVEEDORES ==========
     private final Map<String, Proveedor> mapaProveedores = new HashMap<>();
 
 

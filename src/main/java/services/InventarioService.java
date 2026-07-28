@@ -127,7 +127,7 @@ public class InventarioService {
         movimientos.productosSinEntradas(producto);
     }
 
-    // ============= CASE 5: MOSTRAR PRODUCTOS QUE NUNCA HAN TENIDO SALIDAS ============ 
+    // =====s========= CASE 5: MOSTRAR PRODUCTOS QUE NUNCA HAN TENIDO SALIDAS ============ 
     public void productosSinSalidas(){
         movimientos.productosSinSalidas(producto);
     }

@@ -1,7 +1,7 @@
 package model;
 public class Producto{
 
-    // ========= ATRIBUTOS ==========
+    // ========== ATRIBUTOS ==========
     private String codigo;
     private String nombre;
     private String categoria;

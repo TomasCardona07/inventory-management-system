@@ -5,7 +5,7 @@ import repository.*;
 
 public class InputValidator {
 
-    // ============ VALIDAR INGRESO DE ELECCIÓN DE REGISTRO ==============
+    // ============= VALIDAR INGRESO DE ELECCIÓN DE REGISTRO ==============
     public int elegirRegistro(Scanner scr){
         int elegirRegistro = 0;
         do {

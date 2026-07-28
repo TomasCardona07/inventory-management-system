@@ -7,8 +7,6 @@ import util.InputValidator;
 public class Reportes {
     InputValidator inputValidator = new InputValidator();
 
-    // ======== COLECCIÓNES DESDE REPOSITORY ==========
-
     // ========== CASE 1: MOSTRAR TODOS LOS PROVEEDORES REGISTRADOS =============
     public void proveedoresRegistrados(ProductoRepository productos, ProveedorRepository proveedor){
         Map<String,Proveedor> mapaProveedores = proveedor.getProveedores();

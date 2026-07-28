@@ -21,7 +21,7 @@ public class Movimiento {
     public String getCodigoProducto(){return this.codigoProducto;}
     public int getCantidad(){return this.cantidad;}
 
-    // ========== SETTERS ============
+    // =========== SETTERS =============
     public void setTipoMovimiento(String tipoMovimiento){
         this.tipoMovimiento = tipoMovimiento;
     }

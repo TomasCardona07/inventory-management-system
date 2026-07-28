@@ -82,7 +82,6 @@ Está permitido utilizar:
 
 Lectura de archivos.
 Escritura de archivos.
-Serialización (si decides utilizarla).
 Excepciones.
 Java Collections.
 

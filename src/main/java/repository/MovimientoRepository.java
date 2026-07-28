@@ -47,7 +47,7 @@ public class MovimientoRepository {
             System.err.println("Error en guardar los movimientos");
         }
     }
-    // ========= CARGAR JSON =========
+    // ========= CARGAR JSON ==========
     public void cargarJson(){
         File movimiento = new File("data/movimiento.json");
         ObjectMapper mapper = new ObjectMapper();

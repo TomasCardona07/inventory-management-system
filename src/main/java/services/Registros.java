@@ -10,7 +10,6 @@ import util.InputValidator;
 public class Registros {
     InputValidator inputValidator = new InputValidator();
 
-    // ======== COLECCIÓNES DESDE REPOSITORY ==========
 
 
     // ========== CASE 1 DEL BLOQUE DE ENTRADAS: REGISTRAR PRODUCTO ============
@@ -112,7 +111,7 @@ public class Registros {
         }
     }
 
-    // ========== CASE 6 DEL BLOQUE DE ENTRADAS: ELIMINAR PROVEEDOR ============
+    // =========== CASE 6 DEL BLOQUE DE ENTRADAS: ELIMINAR PROVEEDOR ============
     public void eliminarProveedor(Scanner scr,ProveedorRepository proveedor){
         System.out.println("Ingrese el identificador del proveedor que desee eliminar");
         String identificador = scr.nextLine();

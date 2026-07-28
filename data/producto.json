@@ -12,7 +12,7 @@
     "codigo" : "787",
     "nombre" : "Computador",
     "categoria" : "Tecnologia",
-    "cantidad" : 2342,
+    "cantidad" : 23422,
     "precio" : 40000.0,
     "contadorEntradas" : 0,
     "contadorSalidas" : 0
