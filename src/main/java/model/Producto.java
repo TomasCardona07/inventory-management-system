@@ -1,40 +1,39 @@
 package model;
 public class Producto{
 
-    // ========== ATRIBUTOS ==========
+
     private String codigo;
     private String nombre;
     private String categoria;
     private int cantidad;
     private double precio;
-    private int contadorEntradas;
-    private int contadorSalidas;
+    private int entradas;
+    private int salidas;
 
-    // ========= CONSTRUCTOR ==========
-    public Producto (String codigo, String nombre, String categoria, int cantidad, double precio, int contadorEntradas, int contadorSalidas){
+    public Producto (String codigo, String nombre, String categoria, int cantidad, double precio, int entradas, int salidas){
         this.codigo = codigo;
         this.nombre = nombre;
         this.categoria = categoria;
         this.cantidad = cantidad;
         this.precio = precio;
-        this.contadorEntradas = contadorEntradas;
-        this.contadorSalidas = contadorSalidas;
+        this.entradas = entradas;
+        this.salidas = salidas;
     }
     //CONSTRUCTOR PARA JSON (SIEMPRE)
     public Producto(){
 
     }
 
-    // ========== GETTERS ============
+
     public String getCodigo(){return this.codigo;}
     public String getNombre(){return this.nombre;}
     public String getCategoria(){return this.categoria;} //NOTA: los getters tienen que tener los mismos nombres que los setters para jackson
     public int getCantidad(){return this.cantidad;}
     public double getPrecio(){return this.precio;}
-    public int getContadorEntradas(){return this.contadorEntradas;}
-    public int getContadorSalidas(){return this.contadorSalidas;}
+    public int getContadorEntradas(){return this.entradas;}
+    public int getContadorSalidas(){return this.salidas;}
 
-    // ========== SETTERS ============
+
     public void setCodigo(String codigo){
         this.codigo = codigo;
     }
@@ -50,32 +49,26 @@ public class Producto{
     public void setPrecio(double precio){
         this.precio = precio;
     }
-    public void setContadorEntradas(int contadorEntradas){
-        this.contadorEntradas = contadorEntradas;
+    public void setContadorEntradas(int entradas){
+        this.entradas = entradas;
     }
-    public void setContadorSalidas(int contadorSalidas){
-        this.contadorSalidas = contadorSalidas;
+    public void setsalidas(int salidas){
+        this.salidas = salidas;
     }
 
-        // ======== ELIMINAR STACK DEL PRODUCTO ========
     public int disminiurCantidad(int nCantidad){
         this.cantidad -= nCantidad;
         return cantidad;
     }
 
 
-    //============================================
-    //           METODOS DEL OBJETO
-    //============================================
-    // ======== AGREGAR STACK DEL PRODUCTO ========
     public int aumentarCantidad(int nCantidad){
         this.cantidad += nCantidad;
         return cantidad;
     }
 
-    // ======== AGREGAR ENTRADA ========
-    public int agregarEntrada(){return contadorEntradas++;}
+    public int agregarEntrada(){return entradas++;}
+
     
-    // ======== AGREGAR SALIDA ========
-    public int agregarSalida(){return contadorSalidas++;}
+    public int agregarSalida(){return salidas++;}
 }

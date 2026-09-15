@@ -6,6 +6,7 @@ import repository.*;
 public class InputValidator {
 
     // ============= VALIDAR INGRESO DE ELECCIÓN DE REGISTRO ==============
+    //se queda por el momento
     public int elegirRegistro(Scanner scr){
         int elegirRegistro = 0;
         do {
@@ -31,7 +32,8 @@ public class InputValidator {
         return elegirRegistro;
     }
     
-    // ============ VALIDACIÓN ENTRADAS QUE NO PUEDEN SER NEGATIVAS ==============
+
+    // HAY QUE MODIFICAR
     public int validarNegativos(Scanner scr, String mensaje, boolean permiteDecimales) {
     int dato = 0;
     boolean entradaValida = false;
@@ -58,7 +60,7 @@ public class InputValidator {
 }
 
 
-    // =========== IDENTIFICADOR PROVEEDOR REPETIDO ============
+    //SE TIENE QUE ELIMINAR
     public String idProveedorRepetido(Scanner scr, ProveedorRepository proveedor){
         String identificador = scr.nextLine();
         Proveedor proveedorExistente = proveedor.retornarProveedor(identificador);
@@ -71,7 +73,7 @@ public class InputValidator {
         return identificador;
     }
 
-    // =========== IDENTIFICADOR PRODUCTO REPETIDO ============
+    //SE TIENE QUE ELIMINAR
     public String idProductoRepetido(Scanner scr, ProductoRepository producto){
         String codigo = scr.nextLine();
         Producto productoExistente = producto.retornarProducto(codigo);
@@ -85,6 +87,7 @@ public class InputValidator {
     }
 
     // ============ VALIDAR INGRESO DE ELECCIÓN DE REPORTE ==============
+    //se queda por el momento
     public int elegirReporte(Scanner scr){
         int elegirReporte = 0;
         do {
@@ -113,6 +116,7 @@ public class InputValidator {
 
 
     // ============= VALIDAR INGRESO DE ELECCIÓN DE MOVIMIENTOS ==============
+    // se queda por el momento
     public int verMovimientos(Scanner scr){
         int elegirReporte = 0;
         do {

@@ -11,6 +11,14 @@ public class Registros {
     InputValidator inputValidator = new InputValidator();
 
 
+    // nuevos metodos para el flujo de registro, se van a llamar desde el controller:
+
+
+
+
+
+
+
 
     // ========== CASE 1 DEL BLOQUE DE ENTRADAS: REGISTRAR PRODUCTO ============
     public void registrarProducto( Scanner scr, ProductoRepository producto){
