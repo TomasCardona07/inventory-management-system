@@ -12,7 +12,9 @@ public class Registros {
 
 
     // nuevos metodos para el flujo de registro, se van a llamar desde el controller:
-
+    public void registrarProducto(Producto producto){
+        if(producto != null){}
+    }
 
 
 

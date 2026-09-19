@@ -12,6 +12,11 @@ public class ProductoRepository {
     // ========== CREAR COLECCIONES DE PRODUCTOS ==========
     private final Map<String, Producto> mapaProductos = new HashMap<>();
 
+
+    
+
+
+
     // ========= RETORNAR PRODUCTO ===========
     public Producto retornarProducto(String codigo){
         return mapaProductos.get(codigo);

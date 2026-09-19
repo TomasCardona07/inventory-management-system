@@ -1,11 +1,13 @@
 package model;
 public class Movimiento {
-    private String tipoMovimiento;
+    private Salida salida;
+    private Entrada entrada;
     private String codigoProducto;
     private int cantidad;
 
-    public Movimiento(String tipoMovimiento, String codigoProducto, int cantidad){
-        this.tipoMovimiento = tipoMovimiento;
+    public Movimiento(Salida salida, Entrada entrada, String codigoProducto, int cantidad){
+        this.salida = salida;
+        this.entrada = entrada;
         this.codigoProducto = codigoProducto;
         this.cantidad = cantidad;
     }
@@ -13,14 +15,12 @@ public class Movimiento {
 
     }
 
-    public String getTipoMovimiento(){return this.tipoMovimiento;}
+    public Salida getSalida(){return this.salida;}
+    public Entrada getEntrada(){return this.entrada;}
     public String getCodigoProducto(){return this.codigoProducto;}
     public int getCantidad(){return this.cantidad;}
 
     // =========== SETTERS =============
-    public void setTipoMovimiento(String tipoMovimiento){
-        this.tipoMovimiento = tipoMovimiento;
-    }
     public void setCodigoProducto(String codigoProducto){
         this.codigoProducto = codigoProducto;
     }
