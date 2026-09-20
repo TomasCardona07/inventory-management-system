@@ -5,14 +5,14 @@ import java.math.BigDecimal;
 public class Producto{
 
 
-    private Integer codigo;
+    private Integer idProducto;
     private String nombre;
     private String categoria;
     private int cantidad;
     private BigDecimal precio;
 
-    public Producto (Integer codigo, String nombre, String categoria, int cantidad, BigDecimal precio){
-        this.codigo = codigo;
+    public Producto (Integer idProducto, String nombre, String categoria, int cantidad, BigDecimal precio){
+        this.idProducto = idProducto;
         this.nombre = nombre;
         this.categoria = categoria;
         this.cantidad = cantidad;
@@ -24,16 +24,13 @@ public class Producto{
     }
 
 
-    public Integer getCodigo(){return this.codigo;}
+    public Integer getIdProducto(){return this.idProducto;}
     public String getNombre(){return this.nombre;}
     public String getCategoria(){return this.categoria;}                                                   //NOTA: los getters tienen que tener los mismos nombres que los setters para jackson
     public int getCantidad(){return this.cantidad;}
     public BigDecimal getPrecio(){return this.precio;}
 
 
-    public void setCodigo(Integer codigo){
-        this.codigo = codigo;
-    }
     public void setNombre(String nombre){ //NOTA: jackson solo busca set y get para los atributos del objeto
         this.nombre = nombre;
     }
@@ -52,7 +49,7 @@ public class Producto{
         return cantidad;
     }
 
-
+    
     public int aumentarCantidad(int nCantidad){
         this.cantidad += nCantidad;
         return cantidad;

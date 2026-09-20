@@ -1,5 +1,6 @@
-package services;
+package service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
@@ -7,13 +8,36 @@ import model.*;
 import repository.*;
 import util.InputValidator;
 
-public class Registros {
+public class Registro {
     InputValidator inputValidator = new InputValidator();
 
+    private ProductoRepository productoRepository;
+
+    public Registro(ProductoRepository productoRepository) {
+        this.productoRepository = productoRepository;
+    }
 
     // nuevos metodos para el flujo de registro, se van a llamar desde el controller:
     public void registrarProducto(Producto producto){
-        if(producto != null){}
+        Integer idProducto = productoRepository.retornarIdProducto(producto.getIdProducto());
+        if(idProducto != null){
+            throw new IllegalArgumentException("El código del producto ya existe.");
+        }
+        if(producto.getCantidad() < 0){
+            throw new IllegalArgumentException("La cantidad no puede ser negativa.");
+        }
+        if(producto.getPrecio().compareTo(BigDecimal.ZERO) < 0){
+            throw new IllegalArgumentException("El precio no puede ser negativo.");
+        }
+        productoRepository.agregarProducto(producto);
+    }
+
+    public void registrarProveedor(Proveedor proveedor){
+        Integer idProveedor = proveedorRepository.retornarIdProveedor(proveedor.getIdProveedor());
+        if(idProveedor != null){
+            throw new IllegalArgumentException("El identificador del proveedor ya existe.");
+        }
+        proveedorRepository.agregarProveedor(idProveedor, proveedor);
     }
 
 
@@ -23,16 +47,16 @@ public class Registros {
 
 
     // ========== CASE 1 DEL BLOQUE DE ENTRADAS: REGISTRAR PRODUCTO ============
-    public void registrarProducto( Scanner scr, ProductoRepository producto){
+    public void registrarProductoA( Scanner scr, ProductoRepository producto){
         System.out.println("Ingresa el codigo del producto");
-        String codigo = inputValidator.idProductoRepetido(scr, producto);
+        Integer codigo = inputValidator.idProductoRepetido(scr, producto);
         System.out.println("Ingresa el nombre del producto");
         String nombreProd = scr.nextLine();
         System.out.println("Ingresa la categoria en la que se encuentra el producto");
         String categoria = scr.nextLine();
         int cantidad = inputValidator.validarNegativos(scr, "Ingresa la cantidad",false);
         double precio = inputValidator.validarNegativos(scr, "Ingresa el precio del producto", true);
-        producto.agregarProducto(codigo, new Producto(codigo, nombreProd, categoria, cantidad, precio,0,0));
+        producto.agregarProducto(new Producto(codigo, nombreProd, categoria, cantidad, new java.math.BigDecimal(String.valueOf(precio)),0,0));
         System.out.println("¡PRODUCTO REGISTRADO CON EXITO!");
     }
 

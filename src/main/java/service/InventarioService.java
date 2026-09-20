@@ -1,10 +1,10 @@
-package services;
+package service;
 import util.*;
 import repository.*;
 import java.util.*;
 
 public class InventarioService {
-    Registros registros = new Registros();
+    Registro registros = new Registro();
     Reportes reportes = new Reportes();
     Movimientos movimientos = new Movimientos();
     InputValidator inputValidator = new InputValidator();

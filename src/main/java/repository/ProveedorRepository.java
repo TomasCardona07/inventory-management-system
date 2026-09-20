@@ -7,30 +7,66 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+// SQL:
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class ProveedorRepository {
-    // ========== CREAR COLECCIONES DE PROVEEDORES ==========
-    private final Map<String, Proveedor> mapaProveedores = new HashMap<>();
+    private Connection connection;
+
+    public ProveedorRepository(Connection connection) {
+        this.connection = connection;
+    }
+
+    
+    private final Map<Integer, Proveedor> mapaProveedores = new HashMap<>();
 
 
     // ========== RETORNAR PROVEEDOR ===========
-    public Proveedor retornarProveedor(String identificador){
-        Proveedor proveedor = mapaProveedores.get(identificador);
-        return proveedor;
+    public Integer retornarIdProveedor(Integer identificador){
+        String sql = "SELECT id_proveedor FROM proveedores WHERE id_proveedor = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, identificador);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("id_proveedor");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+        return null;
     }
 
     // ========= AGREGAR NUEVO PROVEEDOR =========
-    public void agregarProveedor(String identificador, Proveedor proveedor){
-        mapaProveedores.put(identificador, proveedor);
+    public void agregarProveedor(Proveedor proveedor){
+        String sql = """
+            INSERT INTO proveedores (id_proveedor, nombre_proveedor, telefono_proveedor)
+            VALUES (?, ?, ?)
+                """;
+            try {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, proveedor.getIdentificador());
+                statement.setString(2, proveedor.getNombre());
+                statement.setString(3, proveedor.getTelefono());
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+            }
+
+        mapaProveedores.put(proveedor.getIdentificador(), proveedor);
     }
 
 
     // ============= ELIMINAR PROVEEDOR =============
-    public void eliminarProveedor(String identificador){
+    public void eliminarProveedor(Integer identificador){
         mapaProveedores.remove(identificador);
     }
 
     // ========== MOSTRAR PROVEEDORES ==========
-    public Map<String,Proveedor> getProveedores(){
+    public Map<Integer  ,Proveedor> getProveedores(){
         return this.mapaProveedores;
     }
 
@@ -58,8 +94,8 @@ public class ProveedorRepository {
         File proveedor = new File("data/proveedor.json");
         ObjectMapper mapper = new ObjectMapper();
         try {
-            Map<String,Proveedor> proveedores = mapper
-                .readValue(proveedor, new TypeReference <Map<String,Proveedor>>(){});
+            Map<Integer, Proveedor> proveedores = mapper
+                .readValue(proveedor, new TypeReference <Map<Integer,Proveedor>>(){});
             mapaProveedores.clear();
             mapaProveedores.putAll(proveedores);
         } catch (IOException e) {

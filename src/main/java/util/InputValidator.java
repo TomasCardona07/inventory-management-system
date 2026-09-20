@@ -1,11 +1,63 @@
 package util;
 import java.util.Scanner;
-import model.*;
-import repository.*;
+import java.math.BigDecimal;
 
 public class InputValidator {
 
     // ============= VALIDAR INGRESO DE ELECCIÓN DE REGISTRO ==============
+
+    public Integer solicitarEntero(Scanner entrada, String mensaje) {
+        while (true) {
+            System.out.println(mensaje);
+            String texto = entrada.nextLine();
+            if (esTextoValido(texto)) {
+                try {
+                    return Integer.parseInt(texto.trim());
+                } catch (NumberFormatException e) {
+                    System.err.println("Error: Debe ser un número entero válido.");
+                }
+            } else {
+                System.err.println("El campo no puede estar vacío.");
+            }
+        }
+    }
+
+    public String solicitarTextoValidado(Scanner entrada, String mensaje) {
+        String valor;
+        while (true) {
+            System.out.println(mensaje);
+            valor = entrada.nextLine();
+            if (esTextoValido(valor)) {
+                break;
+            }
+            System.err.println("Este campo no puede estar vacío. Inténtalo de nuevo.");
+        }
+        return valor.trim();
+    }
+    public BigDecimal solicitarBigDecimalValidado(Scanner entrada, String mensaje) {
+        String texto = solicitarTextoValidado(entrada, mensaje);
+        BigDecimal numero = convertirABigDecimal(texto);
+        return numero;
+    }
+
+    public boolean esTextoValido(String texto) {
+        return texto != null && !texto.trim().isEmpty();
+    }
+
+
+    //Formatear para precios
+    public BigDecimal convertirABigDecimal(String numeroTexto) {
+        if (numeroTexto == null || numeroTexto.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            String valido = numeroTexto.replace(",", ".");
+            return new BigDecimal(valido);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
     //se queda por el momento
     public int elegirRegistro(Scanner scr){
         int elegirRegistro = 0;
@@ -60,31 +112,6 @@ public class InputValidator {
 }
 
 
-    //SE TIENE QUE ELIMINAR
-    public String idProveedorRepetido(Scanner scr, ProveedorRepository proveedor){
-        String identificador = scr.nextLine();
-        Proveedor proveedorExistente = proveedor.retornarProveedor(identificador);
-        while (proveedorExistente != null) {
-           System.out.println("EL PROVEEDOR YA EXISTE");
-           System.out.println("INGRESE UN NUEVO IDENTIFICADOR");
-           identificador = scr.nextLine();
-           proveedorExistente = proveedor.retornarProveedor(identificador);
-        }
-        return identificador;
-    }
-
-    //SE TIENE QUE ELIMINAR
-    public String idProductoRepetido(Scanner scr, ProductoRepository producto){
-        String codigo = scr.nextLine();
-        Producto productoExistente = producto.retornarProducto(codigo);
-        while (productoExistente != null) {
-           System.out.println("EL PRODUCTO YA EXISTE");
-           System.out.println("INGRESE UN NUEVO CODIGO");
-           codigo = scr.nextLine();
-           productoExistente = producto.retornarProducto(codigo);
-        }
-        return codigo;
-    }
 
     // ============ VALIDAR INGRESO DE ELECCIÓN DE REPORTE ==============
     //se queda por el momento

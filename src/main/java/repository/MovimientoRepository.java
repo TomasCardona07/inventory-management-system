@@ -10,6 +10,14 @@ import model.Movimiento;
 public class MovimientoRepository {
     private ArrayList<Movimiento> historial = new ArrayList<>();
 
+
+
+
+
+
+
+    
+
     // ========== AÑADIR MOVIMIENTO ============
     public void addMovimiento(String tipoMovimiento, String codigo, int cantidad ){
         historial.add(new Movimiento(tipoMovimiento, codigo, cantidad));

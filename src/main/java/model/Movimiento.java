@@ -1,28 +1,33 @@
 package model;
 public class Movimiento {
-    private Salida salida;
-    private Entrada entrada;
-    private String codigoProducto;
+    private Integer idMovimiento;
+    private Proveedor proveedor;
+    private Producto producto;
+    private String tipoMovimiento;
     private int cantidad;
+    private String fechaMovimiento; //se formaterará en Spring Boot
 
-    public Movimiento(Salida salida, Entrada entrada, String codigoProducto, int cantidad){
-        this.salida = salida;
-        this.entrada = entrada;
-        this.codigoProducto = codigoProducto;
+    public Movimiento(Integer idMovimiento, Proveedor proveedor, Producto producto, String tipoMovimiento, int cantidad, String fechaMovimiento){
+        this.idMovimiento = idMovimiento;
+        this.proveedor = proveedor;
+        this.producto = producto;
+        this.tipoMovimiento = tipoMovimiento;
         this.cantidad = cantidad;
+        this.fechaMovimiento = fechaMovimiento;
     }
-    public Movimiento(){
+    public Movimiento(){//JSON
 
     }
-
-    public Salida getSalida(){return this.salida;}
-    public Entrada getEntrada(){return this.entrada;}
-    public String getCodigoProducto(){return this.codigoProducto;}
+    public Integer getIdMovimiento(){return this.idMovimiento;}
+    public Proveedor getProveedor(){return this.proveedor;}
+    public Producto getProducto(){return this.producto;}
+    public String getTipoMovimiento(){return this.tipoMovimiento;}
     public int getCantidad(){return this.cantidad;}
+    public String getFechaMovimiento(){return this.fechaMovimiento;}
 
     // =========== SETTERS =============
-    public void setCodigoProducto(String codigoProducto){
-        this.codigoProducto = codigoProducto;
+    public void setTipoMovimiento(String tipoMovimiento){
+        this.tipoMovimiento = tipoMovimiento;
     }
     public void setCantidad(int cantidad){
         this.cantidad = cantidad;
