@@ -9,7 +9,7 @@ public class ConexionDB {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/Inventario";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "tomi.cardo";
 
     public Connection conectar() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);

@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 
 public class InputValidator {
 
-    // ============= VALIDAR INGRESO DE ELECCIÓN DE REGISTRO ==============
-
     public Integer solicitarEntero(Scanner entrada, String mensaje) {
         while (true) {
             System.out.println(mensaje);
@@ -83,33 +81,6 @@ public class InputValidator {
         } while (elegirRegistro < 1 || elegirRegistro > 8);
         return elegirRegistro;
     }
-    
-
-    // HAY QUE MODIFICAR
-    public int validarNegativos(Scanner scr, String mensaje, boolean permiteDecimales) {
-    int dato = 0;
-    boolean entradaValida = false;
-    do {
-        try {
-            System.out.println(mensaje);
-            String entrada = scr.nextLine();
-            if (permiteDecimales) {
-                double lecturaDecimal = Double.parseDouble(entrada);
-                dato = (int)lecturaDecimal;
-            } else {
-                dato = Integer.parseInt(entrada);
-            }
-            if (dato < 0) {
-                System.err.println("dato no valido");
-            } else {
-                entradaValida = true;
-            }
-        } catch (NumberFormatException e) {
-            System.err.println("¡Ingresa un numero porfavor!");
-        }
-    } while (!entradaValida);
-    return dato;
-}
 
 
 

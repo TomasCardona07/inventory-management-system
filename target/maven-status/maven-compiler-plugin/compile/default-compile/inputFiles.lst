@@ -1,0 +1,14 @@
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\config\ConexionDB.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\controller\RegistroController.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\controller\ReporteController.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\Main.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\model\Movimiento.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\model\Producto.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\model\Proveedor.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\repository\MovimientoRepository.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\repository\ProductoRepository.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\repository\ProveedorRepository.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\service\MovimientoService.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\service\ProductoService.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\service\ProveedorService.java
+C:\Users\tomas\OneDrive\Desktop\inventory-management-system\src\main\java\util\InputValidator.java

@@ -1,6 +1,7 @@
 package repository;
 import java.util.*;
 import model.*;
+import java.math.BigDecimal;
 //JACKSON Y EXCEPCIONES
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.sql.SQLException;
 public class ProductoRepository {
 
     // ========== CREAR COLECCIONES DE PRODUCTOS ==========
-    private final Map<Integer, Producto> mapaProductos = new HashMap<>();
+    private final HashMap<Integer, Producto> mapaProductos = new HashMap<>();
 
     private Connection connection;
     public ProductoRepository(Connection connection) {
@@ -25,8 +26,7 @@ public class ProductoRepository {
 
     public Integer retornarIdProducto(Integer idProducto){
         String sql = "SELECT id_producto FROM productos WHERE id_producto = ?";
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, idProducto);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -43,8 +43,7 @@ public class ProductoRepository {
             INSERT INTO productos (id_producto, nombre_producto, categoria_producto, cantidad_producto, precio_producto)
             VALUES (?, ?, ?, ?, ?)
                 """;
-            try {
-                PreparedStatement statement = connection.prepareStatement(sql);
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, producto.getIdProducto());
                 statement.setString(2, producto.getNombre());
                 statement.setString(3, producto.getCategoria());
@@ -59,28 +58,132 @@ public class ProductoRepository {
 
 
 
-    // ========= RETORNAR PRODUCTO ===========
-    public Producto retornarProducto(Integer idProducto){
-        return mapaProductos.get(idProducto);
-    }
-
-
-
-    // ============ ELIMINAR PRODUCTO ============
     public void eliminarProducto(Integer idProducto){
-        mapaProductos.remove(idProducto);
+        String sql = "DELETE FROM productos WHERE id_producto = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, idProducto);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+        this.mapaProductos.remove(idProducto);
     }
 
+    public HashMap<Integer, Producto> listarProductos(){
+        String sql = "SELECT * FROM productos";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                Integer idProducto = resultSet.getInt("id_producto");
+                String nombre = resultSet.getString("nombre_producto");
+                String categoria = resultSet.getString("categoria_producto");
+                Integer cantidad = resultSet.getInt("cantidad_producto");
+                BigDecimal precio = resultSet.getBigDecimal("precio_producto");
 
-    // ========== MOSTRAR PRODUCTOS ==========
-    public Map<Integer,Producto> getProductos(){
+                Producto producto = new Producto(idProducto, nombre, categoria, cantidad, precio);
+                this.mapaProductos.put(idProducto, producto);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
         return this.mapaProductos;
     }
 
+    public Producto productoMayorStock() {
+        String sql = "SELECT * FROM productos ORDER BY cantidad_producto DESC LIMIT 1";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                Integer idProducto = resultSet.getInt("id_producto");
+                String nombre = resultSet.getString("nombre_producto");
+                String categoria = resultSet.getString("categoria_producto");
+                Integer cantidad = resultSet.getInt("cantidad_producto");
+                BigDecimal precio = resultSet.getBigDecimal("precio_producto");
 
-    // ========== VERIFICAR SI EL MAPA ESTA VACIO ==========
-    public boolean mapaVacio(){
-        return this.mapaProductos.isEmpty();
+                Producto producto = new Producto(idProducto, nombre, categoria, cantidad, precio);
+                return producto;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public Producto productoMenorStock() {
+        String sql = "SELECT * FROM productos ORDER BY cantidad_producto ASC LIMIT 1";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                Integer idProducto = resultSet.getInt("id_producto");
+                String nombre = resultSet.getString("nombre_producto");
+                String categoria = resultSet.getString("categoria_producto");
+                Integer cantidad = resultSet.getInt("cantidad_producto");
+                BigDecimal precio = resultSet.getBigDecimal("precio_producto");
+
+                Producto producto = new Producto(idProducto, nombre, categoria, cantidad, precio);
+                return producto;
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+        return null;
+    }
+
+
+    public BigDecimal valorTotalInventario() {
+        String sql = "SELECT SUM(cantidad_producto * precio_producto) AS valor_total FROM productos";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getBigDecimal("valor_total");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public HashMap<Integer, Producto> productosAgotados() {
+        HashMap<Integer, Producto> productosAgotados = new HashMap<>();
+        String sql = "SELECT * FROM productos WHERE cantidad_producto = 0";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                Integer idProducto = resultSet.getInt("id_producto");
+                String nombre = resultSet.getString("nombre_producto");
+                String categoria = resultSet.getString("categoria_producto");
+                Integer cantidad = resultSet.getInt("cantidad_producto");
+                BigDecimal precio = resultSet.getBigDecimal("precio_producto");
+
+                Producto producto = new Producto(idProducto, nombre, categoria, cantidad, precio);
+                productosAgotados.put(idProducto, producto);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+        return productosAgotados;
+    }
+
+    public HashMap<Integer, Producto> productosConMenosDeCincoUnidades() {
+        HashMap<Integer, Producto> productosMenosCincoUnidades = new HashMap<>();
+        String sql = "SELECT * FROM productos WHERE cantidad_producto < 5";
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                Integer idProducto = resultSet.getInt("id_producto");
+                String nombre = resultSet.getString("nombre_producto");
+                String categoria = resultSet.getString("categoria_producto");
+                Integer cantidad = resultSet.getInt("cantidad_producto");
+                BigDecimal precio = resultSet.getBigDecimal("precio_producto");
+
+                Producto producto = new Producto(idProducto, nombre, categoria, cantidad, precio);
+                productosMenosCincoUnidades.put(idProducto, producto);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+        return productosMenosCincoUnidades;
     }
 
     //=========== GUARDAR MAPA EN JSON ============

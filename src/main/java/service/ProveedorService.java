@@ -1,6 +1,7 @@
 package service;
 import model.Proveedor;
 import repository.ProveedorRepository;
+import java.util.HashMap;
 
 public class ProveedorService {
     private ProveedorRepository proveedorRepository;
@@ -15,5 +16,22 @@ public class ProveedorService {
             throw new IllegalArgumentException("El identificador del proveedor ya existe.");
         }
         proveedorRepository.agregarProveedor(proveedor);
+    }
+
+    public void eliminarProveedor(Integer idProveedor) {
+
+        Integer idProv = proveedorRepository.retornarIdProveedor(idProveedor);
+        if (idProv == null) {
+            throw new IllegalArgumentException("El identificador del proveedor no existe.");
+        }
+        proveedorRepository.eliminarProveedor(idProveedor);
+    }
+
+    public HashMap<Integer, Proveedor> listarProveedores() {
+        HashMap<Integer, Proveedor> proveedores = proveedorRepository.listarProveedores();
+        if (proveedores.isEmpty()) {
+            throw new IllegalArgumentException("No hay proveedores registrados.");
+        }
+        return proveedores;
     }
 }
