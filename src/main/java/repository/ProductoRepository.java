@@ -2,11 +2,6 @@ package repository;
 import java.util.*;
 import model.*;
 import java.math.BigDecimal;
-//JACKSON Y EXCEPCIONES
-import java.io.File;
-import java.io.IOException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 // SQL:
 import java.sql.Connection;
@@ -184,33 +179,5 @@ public class ProductoRepository {
             System.err.println("Error al ejecutar la consulta: " + e.getMessage());
         }
         return productosMenosCincoUnidades;
-    }
-
-    //=========== GUARDAR MAPA EN JSON ============
-    public void guardarJson(){
-        File productoJson = new File("data/producto.json");
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            mapper
-                .writerWithDefaultPrettyPrinter()
-                .writeValue(productoJson,mapaProductos);
-        } catch (IOException e) {
-            System.err.println("Error al guardar productos en json");
-        }
-    }
-
-    //============ CARGAR JSON ============
-    public void cargarJson(){
-        File cargarProductos = new File("data/producto.json");
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            Map<Integer, Producto> datos = mapper.readValue(cargarProductos,
-                new TypeReference<Map<Integer, Producto>>() {}
-            );
-            mapaProductos.clear();
-            mapaProductos.putAll(datos);
-        } catch (IOException e) {
-            System.out.println("Error en cargar Productos");
-        }
     }
 }
