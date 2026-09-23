@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 
 public class ReporteController {
     InputValidator inputValidator = new InputValidator();
+    MovimientoController movimientoController = new MovimientoController();
 
     
     public void flujoReporte(Scanner entrada,ProductoService productoService,ProveedorService proveedorServices,MovimientoService movimientoServices) {
@@ -114,7 +115,7 @@ public class ReporteController {
                     }
                     break;
                 case 8:
-                    
+                    movimientoController.flujoMovimiento(entrada, movimientoServices, productoService, proveedorServices);
                     break;
                 default:
                     continuar = false;

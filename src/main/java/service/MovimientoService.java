@@ -2,6 +2,7 @@ package service;
 import repository.MovimientoRepository;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import model.Movimiento;
 public class MovimientoService {
@@ -18,6 +19,14 @@ public class MovimientoService {
         }
         
         movimientoRepository.agregarMovimiento(movimiento);
+    }
+
+    public HashMap<Integer,Movimiento> mostrarCantidadTotalEntradas(){
+        return movimientoRepository.mostrarCantidadTotalEntradas();
+    }
+
+    public HashMap<Integer,Movimiento> mostrarCantidadTotalSalidas(){
+        return movimientoRepository.mostrarCantidadTotalSalidas();
     }
 
 }

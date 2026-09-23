@@ -15,9 +15,11 @@ public class Movimiento {
         this.cantidad = cantidad;
         this.fechaMovimiento = fechaMovimiento;
     }
+    
     public Movimiento(){//JSON
 
     }
+
     public Integer getIdMovimiento(){return this.idMovimiento;}
     public Integer getProveedor(){return this.proveedor;}
     public Integer getProducto(){return this.producto;}

@@ -115,11 +115,11 @@ public class InputValidator {
 
     // ============= VALIDAR INGRESO DE ELECCIÓN DE MOVIMIENTOS ==============
     // se queda por el momento
-    public int verMovimientos(Scanner scr){
+    public int elegirMovimiento(Scanner scr){
         int elegirReporte = 0;
         do {
             try{
-                System.out.println("¿Qué movimientos deseas ver?");
+                System.out.println("¿Qué movimientos deseas consultar?");
                 System.out.println("[1] CANTIDAD TOTAL DE ENTRADAS REGISTRADAS");
                 System.out.println("[2] CANTIDAD TOTAL DE SALIDAS REGISTRADAS");
                 System.out.println("[3] ULTIMOS MOVIMIENTOS REGISTRADOS");
