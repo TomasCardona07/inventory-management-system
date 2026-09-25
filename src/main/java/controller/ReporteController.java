@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 public class ReporteController {
     InputValidator inputValidator = new InputValidator();
-    MovimientoController movimientoController = new MovimientoController();
+    ReporteMovimientoController movimientoController = new ReporteMovimientoController();
 
     
     public void flujoReporte(Scanner entrada,ProductoService productoService,ProveedorService proveedorServices,MovimientoService movimientoServices) {

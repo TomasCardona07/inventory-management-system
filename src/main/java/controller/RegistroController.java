@@ -58,8 +58,7 @@ public class RegistroController {
                         Integer idProductoEntrada = inputValidator.solicitarEntero(entrada, "Ingresa el código del producto existente");
                         String tipoMovimiento = "entrada";
                         int cantidadEntrada = inputValidator.solicitarEntero(entrada, "Ingresa la cantidad de entrada");
-                        String fechaMovimiento = inputValidator.solicitarTextoValidado(entrada, "Ingresa la fecha del movimiento (YYYY-MM-DD)");
-                        Movimiento movimientoEntrada = new Movimiento(idEntrada, idProveedorEntrada, idProductoEntrada, tipoMovimiento, cantidadEntrada, fechaMovimiento);
+                        Movimiento movimientoEntrada = new Movimiento(idEntrada, idProveedorEntrada, idProductoEntrada, tipoMovimiento, cantidadEntrada, null);
                         movimientoServices.registrarMovimiento(movimientoEntrada);
                         System.out.println("¡Entrada registrada correctamente!");
                     } catch (IllegalArgumentException e) {

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class ProductoRepository {
 
-    // ========== CREAR COLECCIONES DE PRODUCTOS ==========
+
     private final HashMap<Integer, Producto> mapaProductos = new HashMap<>();
 
     private Connection connection;

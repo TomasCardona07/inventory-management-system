@@ -122,7 +122,7 @@ public class InputValidator {
                 System.out.println("¿Qué movimientos deseas consultar?");
                 System.out.println("[1] CANTIDAD TOTAL DE ENTRADAS REGISTRADAS");
                 System.out.println("[2] CANTIDAD TOTAL DE SALIDAS REGISTRADAS");
-                System.out.println("[3] ULTIMOS MOVIMIENTOS REGISTRADOS");
+                System.out.println("[3] ULTIMOS 10 MOVIMIENTOS REGISTRADOS");
                 System.out.println("[4] PRODUCTOS QUE NO HAN RECIBIDO ENTRADAS");
                 System.out.println("[5] PRODUCTOS QUE NO HAN TENIDO SALIDA");
                 System.out.println("[6] REGRESAR AL MENU DE REPORTES");

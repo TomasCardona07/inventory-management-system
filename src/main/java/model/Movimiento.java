@@ -16,9 +16,7 @@ public class Movimiento {
         this.fechaMovimiento = fechaMovimiento;
     }
     
-    public Movimiento(){//JSON
 
-    }
 
     public Integer getIdMovimiento(){return this.idMovimiento;}
     public Integer getProveedor(){return this.proveedor;}
@@ -27,7 +25,7 @@ public class Movimiento {
     public int getCantidad(){return this.cantidad;}
     public String getFechaMovimiento(){return this.fechaMovimiento;}
 
-    // =========== SETTERS =============
+    
     public void setTipoMovimiento(String tipoMovimiento){
         this.tipoMovimiento = tipoMovimiento;
     }

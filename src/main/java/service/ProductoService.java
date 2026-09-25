@@ -1,6 +1,6 @@
 package service;
 
-import java.math.BigDecimal;
+import java.math.BigDecimal; //Para precios
 import model.Producto;
 import repository.ProductoRepository;
 import java.util.HashMap;

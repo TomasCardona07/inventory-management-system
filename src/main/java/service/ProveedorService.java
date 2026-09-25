@@ -29,7 +29,7 @@ public class ProveedorService {
 
     public HashMap<Integer, Proveedor> listarProveedores() {
         HashMap<Integer, Proveedor> proveedores = proveedorRepository.listarProveedores();
-        if (proveedores.isEmpty()) {
+        if (proveedores.isEmpty()) {  //se retornó el mapa, asi que solo se evalua si es vacio o no
             throw new IllegalArgumentException("No hay proveedores registrados.");
         }
         return proveedores;

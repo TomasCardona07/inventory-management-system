@@ -8,6 +8,8 @@ import config.ConexionDB;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+// VERSION 4.0 POSTGRESQL DE MANERA LOCAL
+
 public class Main {
     public static void main(String[] args) {
 

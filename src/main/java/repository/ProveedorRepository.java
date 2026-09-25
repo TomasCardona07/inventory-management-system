@@ -19,7 +19,7 @@ public class ProveedorRepository {
     private final HashMap<Integer, Proveedor> mapaProveedores = new HashMap<>();
 
 
-    // ========== RETORNAR PROVEEDOR ===========
+
     public Integer retornarIdProveedor(Integer identificador){
         String sql = "SELECT id_proveedor FROM proveedores WHERE id_proveedor = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -34,7 +34,7 @@ public class ProveedorRepository {
         return null;
     }
 
-    // ========= AGREGAR NUEVO PROVEEDOR =========
+
     public void agregarProveedor(Proveedor proveedor){
         String sql = """
             INSERT INTO proveedores (id_proveedor, nombre_proveedor, telefono_proveedor)

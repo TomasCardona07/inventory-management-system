@@ -19,19 +19,15 @@ public class Producto{
         this.precio = precio;
     }
 
-    public Producto(){
-
-    }
-
 
     public Integer getIdProducto(){return this.idProducto;}
     public String getNombre(){return this.nombre;}
-    public String getCategoria(){return this.categoria;}                                                   //NOTA: los getters tienen que tener los mismos nombres que los setters para jackson
+    public String getCategoria(){return this.categoria;}                                            
     public int getCantidad(){return this.cantidad;}
     public BigDecimal getPrecio(){return this.precio;}
 
 
-    public void setNombre(String nombre){ //NOTA: jackson solo busca set y get para los atributos del objeto
+    public void setNombre(String nombre){
         this.nombre = nombre;
     }
     public void setCategoria(String categoria){
@@ -42,16 +38,5 @@ public class Producto{
     }
     public void setPrecio(BigDecimal precio){
         this.precio = precio;
-    }
-
-    public int disminiurCantidad(int nCantidad){
-        this.cantidad -= nCantidad;
-        return cantidad;
-    }
-
-    
-    public int aumentarCantidad(int nCantidad){
-        this.cantidad += nCantidad;
-        return cantidad;
     }
 }

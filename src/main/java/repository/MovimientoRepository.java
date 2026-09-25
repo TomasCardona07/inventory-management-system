@@ -56,6 +56,8 @@ public class MovimientoRepository {
         }
         return null;
     }
+
+
     public HashMap<Integer,Movimiento> mostrarCantidadTotalSalidas(){
         HashMap <Integer,Movimiento> mapaSalidas = new HashMap<>();
         String sql = "SELECT * FROM movimientos WHERE tipo_movimiento = 'salidas'";
@@ -73,6 +75,60 @@ public class MovimientoRepository {
             }
         } catch (SQLException e) {
             System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public ArrayList<Integer> productosSinEntradas(){
+        ArrayList<Integer> mapaProductosSinEntradas = new ArrayList<>();
+        String sql = """
+                SELECT p.id_producto
+                FROM productos p
+                WHERE NOT EXISTS (
+                    SELECT 1
+                    FROM movimientos m
+                    WHERE m.id_producto = p.id_producto
+                      AND m.tipo_movimiento = 'entrada'
+                )
+                """;
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                Integer id = resultSet.getInt("id_producto");
+                mapaProductosSinEntradas.add(id);
+            }
+            return mapaProductosSinEntradas;
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta " + e.getMessage());
+        }
+        return null;
+    }
+
+    public ArrayList<Integer> productosSinSalidas(){
+        ArrayList<Integer> mapaProductosSinEntradas = new ArrayList<>();
+        String sql = """
+                SELECT p.id_producto
+                FROM productos p
+                WHERE NOT EXISTS (
+                    SELECT 1
+                    FROM movimientos m
+                    WHERE m.id_producto = p.id_producto
+                      AND m.tipo_movimiento = 'salida'
+                )
+                """;
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                Integer id = resultSet.getInt("id_producto");
+                mapaProductosSinEntradas.add(id);
+            }
+            return mapaProductosSinEntradas;
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta " + e.getMessage());
         }
         return null;
     }

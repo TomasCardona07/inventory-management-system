@@ -11,10 +11,7 @@ public class Proveedor {
         this.nombre = nombre;
         this.telefono = telefono;
     }
-    // JSON
-    public Proveedor(){
 
-    }
 
 
     public Integer getIdentificador(){return this.identificador;}
