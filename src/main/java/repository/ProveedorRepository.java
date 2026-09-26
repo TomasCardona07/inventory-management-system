@@ -15,8 +15,6 @@ public class ProveedorRepository {
         this.connection = connection;
     }
 
-    
-    private final HashMap<Integer, Proveedor> mapaProveedores = new HashMap<>();
 
 
 
@@ -37,19 +35,17 @@ public class ProveedorRepository {
 
     public void agregarProveedor(Proveedor proveedor){
         String sql = """
-            INSERT INTO proveedores (id_proveedor, nombre_proveedor, telefono_proveedor)
-            VALUES (?, ?, ?)
-                """;
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setInt(1, proveedor.getIdentificador());
-                statement.setString(2, proveedor.getNombre());
-                statement.setString(3, proveedor.getTelefono());
-                statement.executeUpdate();
-            } catch (SQLException e) {
-                System.err.println("Error al ejecutar la consulta: " + e.getMessage());
-            }
-
-        mapaProveedores.put(proveedor.getIdentificador(), proveedor);
+        INSERT INTO proveedores (id_proveedor, nombre_proveedor, telefono_proveedor)
+        VALUES (?, ?, ?)
+            """;
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, proveedor.getIdentificador());
+            statement.setString(2, proveedor.getNombre());
+            statement.setString(3, proveedor.getTelefono());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error al ejecutar la consulta: " + e.getMessage());
+        }
     }
 
 
@@ -61,10 +57,10 @@ public class ProveedorRepository {
         } catch (SQLException e) {
             System.err.println("Error al ejecutar la consulta: " + e.getMessage());
         }
-        mapaProveedores.remove(identificador);
     }
 
     public HashMap<Integer, Proveedor> listarProveedores(){
+        HashMap<Integer,Proveedor> listarProveedores = new HashMap<>();
         String sql = "SELECT * FROM proveedores";
         try (PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
@@ -73,11 +69,11 @@ public class ProveedorRepository {
                 String nombreProveedor = resultSet.getString("nombre_proveedor");
                 String telefonoProveedor = resultSet.getString("telefono_proveedor");
                 Proveedor proveedor = new Proveedor(idProveedor, nombreProveedor, telefonoProveedor);
-                mapaProveedores.put(idProveedor, proveedor);
+                listarProveedores.put(idProveedor, proveedor);
             }
         } catch (SQLException e) {
             System.err.println("Error al ejecutar la consulta: " + e.getMessage());
         }
-        return mapaProveedores;
+        return listarProveedores;
     }
 }

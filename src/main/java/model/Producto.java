@@ -33,10 +33,13 @@ public class Producto{
     public void setCategoria(String categoria){
         this.categoria = categoria;
     }
-    public void setCantidad(int cantidad){
-        this.cantidad = cantidad;
-    }
     public void setPrecio(BigDecimal precio){
         this.precio = precio;
+    }
+    public void aumentarCantidad(Integer cantidad){
+        this.cantidad += cantidad;
+    }
+    public void disminuirCantidad(Integer cantidad){
+        this.cantidad -= cantidad;
     }
 }

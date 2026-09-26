@@ -4,6 +4,8 @@ import java.util.Scanner;
 import util.InputValidator;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
+
 import model.*;
 import service.*;
 
@@ -63,7 +65,7 @@ public class RegistroController {
                         System.out.println("¡Entrada registrada correctamente!");
                     } catch (IllegalArgumentException e) {
                         System.err.println("Error " + e.getMessage());
-                    } catch(Exception e) {
+                    } catch(SQLException e) {
                         System.err.println("Error al registrar la entrada: " + e.getMessage());
                     }
                     break;
@@ -76,13 +78,14 @@ public class RegistroController {
                         int cantidadSalida = inputValidator.solicitarEntero(entrada, "Ingresa la cantidad de salida");
                         String fechaMovimientoSalida = inputValidator.solicitarTextoValidado(entrada, "Ingresa la fecha del movimiento (YYYY-MM-DD)");
                         Movimiento movimientoSalida = new Movimiento(idSalida,null,idProductoSalida, tipoMovimientoSalida, cantidadSalida, fechaMovimientoSalida);
+                        
                         movimientoServices.registrarMovimiento(movimientoSalida);
 
                         System.out.println("¡Salida registrada correctamente!");
 
                     } catch (IllegalArgumentException e) {
                         System.err.println("Error " + e.getMessage());
-                    } catch(Exception e) {
+                    } catch(SQLException e) {
                         System.err.println("Error al registrar la salida: " + e.getMessage());
                     }
                     break;

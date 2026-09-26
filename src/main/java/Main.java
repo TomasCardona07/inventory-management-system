@@ -21,7 +21,7 @@ public class Main {
             MovimientoRepository movimientoRepository = new MovimientoRepository(connection);
             ProductoService productoServices = new ProductoService(productoRepository);
             ProveedorService proveedorServices = new ProveedorService(proveedorRepository);
-            MovimientoService movimientoServices = new MovimientoService(movimientoRepository);
+            MovimientoService movimientoServices = new MovimientoService(movimientoRepository,productoRepository,proveedorRepository);
             RegistroController registroController = new RegistroController();
             registroController.flujoRegistro(productoServices,proveedorServices,movimientoServices);
         } catch (SQLException e) {

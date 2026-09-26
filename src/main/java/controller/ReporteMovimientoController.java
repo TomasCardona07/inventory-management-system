@@ -20,9 +20,8 @@ public class ReporteMovimientoController {
                     try {
                         HashMap<Integer, Movimiento> cantidadTotalEntradas = movimientoService.mostrarCantidadTotalEntradas();
                         for (Movimiento movimiento : cantidadTotalEntradas.values()) {
-                            System.out.println("Código del producto: " + movimiento.getProducto());
-                            System.out.println("Id del proveedor: " + movimiento.getProveedor());
-                            System.out.println("ID del producto: " + movimiento.getProducto());
+                            System.out.println("Id del proveedor: " + movimiento.getIdProveedor());
+                            System.out.println("ID del producto: " + movimiento.getIdProducto());
                             System.out.println("Cantidad ingresada: " + movimiento.getCantidad());
                             System.out.println("Fecha: " + movimiento.getFechaMovimiento());
                             System.out.println("----------------------------------");
@@ -37,9 +36,8 @@ public class ReporteMovimientoController {
                     try {
                         HashMap<Integer, Movimiento> cantidadTotalSalidas = movimientoService.mostrarCantidadTotalSalidas();
                         for (Movimiento movimiento : cantidadTotalSalidas.values()) {
-                            System.out.println("Código del producto: " + movimiento.getProducto());
-                            System.out.println("Id del proveedor: " + movimiento.getProveedor());
-                            System.out.println("ID del producto: " + movimiento.getProducto());
+                            System.out.println("Id del proveedor: " + movimiento.getIdProveedor());
+                            System.out.println("ID del producto: " + movimiento.getIdProducto());
                             System.out.println("Cantidad de salida: " + movimiento.getCantidad());
                             System.out.println("Fecha: " + movimiento.getFechaMovimiento());
                             System.out.println("----------------------------------");

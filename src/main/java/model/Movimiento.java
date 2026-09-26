@@ -1,16 +1,16 @@
 package model;
 public class Movimiento {
     private Integer idMovimiento;
-    private Integer proveedor;
-    private Integer producto;
+    private Integer idProveedor;
+    private Integer idProducto;
     private String tipoMovimiento;
     private int cantidad;
     private String fechaMovimiento; //se formaterará en Spring Boot
 
     public Movimiento(Integer idMovimiento, Integer proveedor, Integer producto, String tipoMovimiento, int cantidad, String fechaMovimiento){
         this.idMovimiento = idMovimiento;
-        this.proveedor = proveedor;
-        this.producto = producto;
+        this.idProveedor = proveedor;
+        this.idProducto = producto;
         this.tipoMovimiento = tipoMovimiento;
         this.cantidad = cantidad;
         this.fechaMovimiento = fechaMovimiento;
@@ -19,8 +19,8 @@ public class Movimiento {
 
 
     public Integer getIdMovimiento(){return this.idMovimiento;}
-    public Integer getProveedor(){return this.proveedor;}
-    public Integer getProducto(){return this.producto;}
+    public Integer getIdProveedor(){return this.idProveedor;}
+    public Integer getIdProducto(){return this.idProducto;}
     public String getTipoMovimiento(){return this.tipoMovimiento;}
     public int getCantidad(){return this.cantidad;}
     public String getFechaMovimiento(){return this.fechaMovimiento;}

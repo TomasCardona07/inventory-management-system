@@ -12,7 +12,6 @@ import java.sql.SQLException;
 public class ProductoRepository {
 
 
-    private final HashMap<Integer, Producto> mapaProductos = new HashMap<>();
 
     private Connection connection;
     public ProductoRepository(Connection connection) {
@@ -33,6 +32,54 @@ public class ProductoRepository {
         return null;
     }
 
+    public void aumentarStock(Integer idProducto, Integer cantidad){
+        String sql = """
+                UPDATE productos
+                SET cantidad_producto = cantidad_producto + ?
+                WHERE id_producto = ?
+                """;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, cantidad);
+            preparedStatement.setInt(2, idProducto);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error en ejecutar la consulta " + e.getMessage());
+        }
+    }
+
+    public void disminuirStock(Integer idProducto, Integer cantidad){
+        String sql = """
+                UPDATE productos
+                SET cantidad_producto = cantidad_producto - ?
+                WHERE id_producto = ?
+                """;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, cantidad);
+            preparedStatement.setInt(2, idProducto);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Error en ejecutar la consulta " + e.getMessage());
+        }
+    }
+
+    public Integer stockActualProducto(Integer idProducto){ 
+        Integer stockActual = null;      
+        String sql = """
+                SELECT cantidad_producto FROM productos WHERE id_producto = ?
+                """;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, idProducto);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                stockActual = resultSet.getInt("cantidad_producto");
+            } 
+                   
+        } catch (SQLException e) {
+            System.err.println("Error al ejcutar la consulta " + e.getMessage());
+        }
+        return stockActual;
+    }
+
     public void agregarProducto(Producto producto){
         String sql = """
             INSERT INTO productos (id_producto, nombre_producto, categoria_producto, cantidad_producto, precio_producto)
@@ -48,7 +95,6 @@ public class ProductoRepository {
             } catch (SQLException e) {
                 System.err.println("Error al ejecutar la consulta: " + e.getMessage());
             }
-        this.mapaProductos.put(producto.getIdProducto(), producto);
     }
 
 
@@ -58,14 +104,14 @@ public class ProductoRepository {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, idProducto);
             statement.executeUpdate();
-
         } catch (SQLException e) {
             System.err.println("Error al ejecutar la consulta: " + e.getMessage());
         }
-        this.mapaProductos.remove(idProducto);
+        
     }
 
     public HashMap<Integer, Producto> listarProductos(){
+        HashMap<Integer,Producto> listarProductos = new HashMap<>();
         String sql = "SELECT * FROM productos";
         try (PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
@@ -77,12 +123,12 @@ public class ProductoRepository {
                 BigDecimal precio = resultSet.getBigDecimal("precio_producto");
 
                 Producto producto = new Producto(idProducto, nombre, categoria, cantidad, precio);
-                this.mapaProductos.put(idProducto, producto);
+                listarProductos.put(idProducto, producto);
             }
         } catch (SQLException e) {
             System.err.println("Error al ejecutar la consulta: " + e.getMessage());
         }
-        return this.mapaProductos;
+        return listarProductos;
     }
 
     public Producto productoMayorStock() {
