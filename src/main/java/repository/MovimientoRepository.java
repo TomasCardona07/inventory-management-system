@@ -26,7 +26,7 @@ public class MovimientoRepository{
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, movimiento.getIdMovimiento());
             statement.setInt(2, movimiento.getIdProducto());
-            statement.setInt(3, movimiento.getIdProducto());
+            statement.setInt(3, movimiento.getIdProveedor());
             statement.setInt(4, movimiento.getCantidad());
             statement.setString(5, movimiento.getTipoMovimiento());
             statement.setString(6, movimiento.getFechaMovimiento());
