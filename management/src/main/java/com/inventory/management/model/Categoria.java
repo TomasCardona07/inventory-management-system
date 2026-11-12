@@ -1,5 +1,7 @@
 package com.inventory.management.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,4 +19,7 @@ public class Categoria {
 
     @Column(name = "nombre_categoria", nullable = false, length = 100, unique = true)
     private String nombre;
+
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+    private List<Producto> productos;
 }
