@@ -19,13 +19,13 @@ public class ProductoService {
     }
 
     //registrar Producto
-    public ProductoDtoResponse registrarProducto(ProductoDtoRequest productoDtoRequest){
+    public ProductoDtoResponse registrarProducto(ProductoDtoRequest request){
 
-        Categoria categoria = categoriaService.buscarCategoriaPorId(productoDtoRequest.idCategoria());
+        Categoria categoria = categoriaService.buscarCategoriaPorId(request.idCategoria());
         Producto producto = new Producto();
-        producto.setNombre(productoDtoRequest.nombre());
-        producto.setCantidad(productoDtoRequest.cantidad());
-        producto.setPrecio(productoDtoRequest.precio());
+        producto.setNombre(request.nombre());
+        producto.setCantidad(request.cantidad());
+        producto.setPrecio(request.precio());
         producto.setCategoria(categoria);
 
         Producto productoRegistrado = productoRepository.save(producto);
@@ -37,5 +37,37 @@ public class ProductoService {
             productoRegistrado.getCantidad(),
             productoRegistrado.getPrecio()
         );
-    } 
+    }
+
+
+    //buscar producto por id
+    public Producto buscarProductoPorId(Long id){
+        return productoRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Producto no encontrado")); //runtime temporal
+    }
+
+
+    //actualizar producto
+    public ProductoDtoResponse actualizarProducto(Long id, ProductoDtoRequest request){
+        Producto producto = buscarProductoPorId(id);
+        Categoria categoria = categoriaService.buscarCategoriaPorId(request.idCategoria());
+
+        producto.setNombre(request.nombre());
+        producto.setCantidad(request.cantidad());
+        producto.setCategoria(categoria);
+        producto.setPrecio(request.precio());
+
+        Producto productoActualizado = productoRepository.save(producto);
+
+        return new ProductoDtoResponse(productoActualizado.getId(),
+            productoActualizado.getNombre(),
+            productoActualizado.getCategoria().getId(),
+            productoActualizado.getCantidad(),
+            productoActualizado.getPrecio());
+    }
+
+    //Eliminar producto
+    public void eliminarProducto(Long id){
+        productoRepository.deleteById(id);
+    }
 }

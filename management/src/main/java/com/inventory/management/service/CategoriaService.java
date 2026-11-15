@@ -18,11 +18,9 @@ public class CategoriaService {
     //Registrar Categoria
     public CategoriaDtoResponse registrarCategoria(CategoriaDtoRequest categoriaDtoRequest){
         Categoria categoria = new Categoria();
-
         categoria.setNombre(categoriaDtoRequest.nombre());
-
         Categoria categoriaRegistrada = categoriaRepository.save(categoria);
-
+        
         return new CategoriaDtoResponse(categoriaRegistrada.getId(), categoriaRegistrada.getNombre());
     }
 
