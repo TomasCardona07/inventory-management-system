@@ -27,7 +27,7 @@ public class Movimiento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movimiento_gen")
-    @SequenceGenerator(name = "movimiento_gen", sequenceName = "movimiento_seq", allocationSize = 10)
+    @SequenceGenerator(name = "movimiento_gen", sequenceName = "movimiento_seq", allocationSize = 10) //modificado en base de datos
     @Column(name = "id_movimiento")
     private Long id;
 

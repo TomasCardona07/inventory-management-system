@@ -21,7 +21,7 @@ public class Proveedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "proveedor_gen")
-    @SequenceGenerator(name = "proveedor_gen", sequenceName = "proveedor_seq", allocationSize = 10)
+    @SequenceGenerator(name = "proveedor_gen", sequenceName = "proveedor_seq", allocationSize = 10) //modificado en base de datos
     @Column(name = "id_proveedor")
     private Long id;
 

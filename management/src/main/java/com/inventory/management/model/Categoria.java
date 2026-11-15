@@ -1,7 +1,5 @@
 package com.inventory.management.model;
 
-import java.util.List;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,13 +11,10 @@ public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categoria_gen")
-    @SequenceGenerator(name = "categoria_gen", sequenceName = "categoria_seq", allocationSize = 10)
+    @SequenceGenerator(name = "categoria_gen", sequenceName = "categoria_seq", allocationSize = 10) //modificado en base de datos
     @Column(name = "id_categoria")
     private Long id;
 
     @Column(name = "nombre_categoria", nullable = false, length = 100, unique = true)
     private String nombre;
-
-    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
-    private List<Producto> productos;
 }
