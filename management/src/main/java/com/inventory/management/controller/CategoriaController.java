@@ -17,7 +17,7 @@ import com.inventory.management.dto.CategoriaDtoResponse;
 import com.inventory.management.service.CategoriaService;
 
 @RestController 
-@RequestMapping("api/categorias")
+@RequestMapping("/api/categorias")
 public class CategoriaController {
 
     private final CategoriaService categoriaService;
@@ -35,7 +35,7 @@ public class CategoriaController {
 
     //MostrarCategorias
     @GetMapping
-    public ResponseEntity<List<CategoriaDtoResponse>> MostrarCategorias(){
+    public ResponseEntity<List<CategoriaDtoResponse>> mostrarCategorias(){
         List<CategoriaDtoResponse> categorias = categoriaService.consultarCategorias();
         return ResponseEntity.status(HttpStatus.OK).body(categorias);
     }

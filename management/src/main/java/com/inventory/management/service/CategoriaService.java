@@ -7,6 +7,8 @@ import com.inventory.management.dto.CategoriaDtoRequest;
 import com.inventory.management.dto.CategoriaDtoResponse;
 import com.inventory.management.repository.CategoriaRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service 
 public class CategoriaService {
 
@@ -17,7 +19,7 @@ public class CategoriaService {
     }
 
     //convertir categoria a dtoResponse
-    public CategoriaDtoResponse convertirADTO(Categoria categoria){
+    private  CategoriaDtoResponse convertirADTO(Categoria categoria){
         return new CategoriaDtoResponse(categoria.getId(), categoria.getNombre());
     }
 
@@ -40,6 +42,7 @@ public class CategoriaService {
 
 
     //Actualizar categoria
+    @Transactional 
     public CategoriaDtoResponse actualizarCategoria(Long id, CategoriaDtoRequest request){
         Categoria categoria = obtenerCategoriaPorId(id);
         categoria.setNombre(request.nombre());
