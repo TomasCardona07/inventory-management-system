@@ -20,7 +20,7 @@ public class ProductoService {
 
 
     //convertir producto a DTO
-    public ProductoDtoResponse convertirADTO(Producto producto){
+    private ProductoDtoResponse convertirADTO(Producto producto){
         return new ProductoDtoResponse(
         producto.getId(),
         producto.getNombre(),
@@ -66,7 +66,7 @@ public class ProductoService {
         producto.setCantidad(request.cantidad());
         producto.setCategoria(categoria);
         producto.setPrecio(request.precio());
-                                            // no hay save() porque transactional actualiza cuando detecta cambio en la entidad
+        
         return convertirADTO(producto);
     }
 
