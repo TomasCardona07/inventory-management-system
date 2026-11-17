@@ -47,10 +47,15 @@ public class ProductoService {
 
     //buscar producto por id
     public ProductoDtoResponse buscarProductoPorId(Long id){
-        Producto producto = productoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-
+        Producto producto = obtenerProducto(id);
+        
         return convertirADTO(producto);
+    }
+
+    //Obtener entidad producto
+    public Producto obtenerProducto(Long id){
+        return productoRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
     }
 
 
