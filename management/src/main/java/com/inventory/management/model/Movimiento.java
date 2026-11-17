@@ -50,7 +50,7 @@ public class Movimiento {
     private LocalDateTime fecha;
 
     @PrePersist
-    void antesDeGuardar() {
+    public void antesDeGuardar() {
         if (fecha == null) {
             fecha = LocalDateTime.now();
         }
