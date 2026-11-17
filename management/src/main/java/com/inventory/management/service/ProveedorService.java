@@ -1,5 +1,7 @@
 package com.inventory.management.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.inventory.management.dto.ProveedorDtoRequest;
@@ -36,6 +38,14 @@ public class ProveedorService {
         return convertirADTO(proveedorRegistrado);
     }
 
+    //listar proveedores
+    public List<ProveedorDtoResponse> mostrarProveedores(){
+        return proveedorRepository.findAll()
+            .stream()
+            .map(proveedor -> convertirADTO(proveedor))
+            .toList();
+    }
+
     //actualizar proveedor
     @Transactional 
     public ProveedorDtoResponse actualizarProveedor(Long id,ProveedorDtoRequest request){
@@ -58,7 +68,7 @@ public class ProveedorService {
     }
 
     //Obtener proveedor por id
-    private Proveedor obtenerProveedorPorId(Long id){
+    public Proveedor obtenerProveedorPorId(Long id){
         Proveedor proveedor = proveedorRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Proveedor no encontrado"));
         return proveedor;

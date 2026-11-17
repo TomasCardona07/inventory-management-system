@@ -6,6 +6,7 @@ import com.inventory.management.dto.ProveedorDtoResponse;
 import com.inventory.management.service.ProveedorService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController 
 @RequestMapping("/api/proveedores")
@@ -31,6 +33,14 @@ public class ProveedorController {
         ProveedorDtoResponse response = proveedorService.registrarProveedor(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    //Listar proveedores
+    @GetMapping
+    public ResponseEntity<List<ProveedorDtoResponse>> mostrarProveedores() {
+        List<ProveedorDtoResponse> proveedores = proveedorService.mostrarProveedores();
+        return ResponseEntity.status(HttpStatus.OK).body(proveedores);
+    }
+    
 
     //buscar proveedor por id
     @GetMapping("/{id}")
