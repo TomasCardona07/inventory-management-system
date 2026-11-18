@@ -3,10 +3,11 @@ package com.inventory.management.service;
 import org.springframework.stereotype.Service;
 import com.inventory.management.dto.ProductoDtoRequest;
 import com.inventory.management.dto.ProductoDtoResponse;
+import com.inventory.management.exception.ProductoNoEncontradoException;
 import com.inventory.management.model.Categoria;
 import com.inventory.management.model.Producto;
 import com.inventory.management.repository.ProductoRepository;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service 
 public class ProductoService {
@@ -55,31 +56,27 @@ public class ProductoService {
     //Obtener entidad producto
     public Producto obtenerProducto(Long id){
         return productoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+            .orElseThrow(() -> new ProductoNoEncontradoException("Producto no encontrado"));
     }
 
 
     //actualizar producto
     @Transactional
     public ProductoDtoResponse actualizarProducto(Long id, ProductoDtoRequest request){
-
-        Producto producto = productoRepository.findById(id) //No se reutiliza la funcion buscarProductoPorId porque esa retorna un DTO y aqui se requiere la entidad
-            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-
+        Producto producto = obtenerProducto(id);
         Categoria categoria = categoriaService.obtenerCategoriaPorId(request.idCategoria());
+
         producto.setNombre(request.nombre());
-        producto.setCantidad(request.cantidad());
+        producto.setCantidad(request.cantidad()); //Pendiente por evaluar: El stock no se deberia modificar libremente sin registro
         producto.setCategoria(categoria);
-        producto.setPrecio(request.precio());
+        producto.setPrecio(request.precio()); 
         
         return convertirADTO(producto);
     }
 
     //Eliminar producto
     public void eliminarProducto(Long id){
-        Producto producto = productoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-
+        Producto producto = obtenerProducto(id);
         productoRepository.delete(producto);
     }
 }

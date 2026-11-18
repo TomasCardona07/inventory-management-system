@@ -1,13 +1,11 @@
 package com.inventory.management.service;
-
 import com.inventory.management.model.Categoria;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import com.inventory.management.dto.CategoriaDtoRequest;
 import com.inventory.management.dto.CategoriaDtoResponse;
 import com.inventory.management.repository.CategoriaRepository;
-
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service 
 public class CategoriaService {

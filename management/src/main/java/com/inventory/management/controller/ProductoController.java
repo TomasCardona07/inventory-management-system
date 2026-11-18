@@ -28,7 +28,7 @@ public class ProductoController {
     }
 
     //registrar producto
-    @PostMapping //Pendiente: Crear excepciones globales y personalizadas
+    @PostMapping
     public ResponseEntity<ProductoDtoResponse> registrarProducto(@RequestBody @Valid ProductoDtoRequest request) {
         ProductoDtoResponse response = productoService.registrarProducto(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

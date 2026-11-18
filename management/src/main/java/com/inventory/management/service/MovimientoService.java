@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.inventory.management.dto.MovimientoDtoRequest;
 import com.inventory.management.dto.MovimientoDtoResponse;
+import com.inventory.management.exception.MovimientoNoEncontradoException;
+import com.inventory.management.exception.StockInsuficienteException;
 import com.inventory.management.model.Movimiento;
 import com.inventory.management.model.Producto;
 import com.inventory.management.model.Proveedor;
@@ -63,7 +65,7 @@ public class MovimientoService {
         Proveedor proveedor = proveedorService.obtenerProveedorPorId(request.idProveedor());
 
         if (request.cantidad() > producto.getCantidad()) {
-            throw new RuntimeException("La cantidad supera al stock actual");
+            throw new StockInsuficienteException("La cantidad supera al stock actual");
         }
         producto.setCantidad(producto.getCantidad() - request.cantidad());
         Movimiento nuevoMovimiento = new Movimiento();
@@ -95,7 +97,7 @@ public class MovimientoService {
     //Obtener movimiento por id
     private Movimiento obtenerMovimiento(Long id){
         return movimientoRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Movimiento no encontrado"));
+            .orElseThrow(() -> new MovimientoNoEncontradoException("Movimiento no encontrado"));
     }
 
     //Eliminar movimiento por id

@@ -1,15 +1,13 @@
 package com.inventory.management.service;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import com.inventory.management.dto.ProveedorDtoRequest;
 import com.inventory.management.dto.ProveedorDtoResponse;
+import com.inventory.management.exception.ProveedorNoEncontradoException;
 import com.inventory.management.model.Proveedor;
 import com.inventory.management.repository.ProveedorRepository;
-
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service 
 public class ProveedorService {
@@ -70,7 +68,7 @@ public class ProveedorService {
     //Obtener proveedor por id
     public Proveedor obtenerProveedorPorId(Long id){
         Proveedor proveedor = proveedorRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Proveedor no encontrado"));
+            .orElseThrow(() -> new ProveedorNoEncontradoException("Proveedor no encontrado"));
         return proveedor;
     }
 }
