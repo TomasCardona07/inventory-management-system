@@ -1,0 +1,41 @@
+"filename", "language", "Java", "Java Properties", "XML", "Markdown", "Batch", "comment", "blank", "total"
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\README.md", "Markdown", 0, 0, 0, 53, 0, 0, 51, 104
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\.mvn\wrapper\maven-wrapper.properties", "Java Properties", 0, 3, 0, 0, 0, 0, 1, 4
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\mvnw.cmd", "Batch", 0, 0, 0, 0, 139, 26, 25, 190
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\pom.xml", "XML", 0, 0, 121, 0, 0, 0, 4, 125
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\ManagementApplication.java", "Java", 9, 0, 0, 0, 0, 0, 5, 14
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\controller\CategoriaController.java", "Java", 49, 0, 0, 0, 0, 5, 10, 64
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\controller\MovimientoController.java", "Java", 48, 0, 0, 0, 0, 5, 12, 65
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\controller\ProductoController.java", "Java", 43, 0, 0, 0, 0, 4, 11, 58
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\controller\ProveedorController.java", "Java", 49, 0, 0, 0, 0, 5, 12, 66
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\CategoriaDtoRequest.java", "Java", 6, 0, 0, 0, 0, 0, 3, 9
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\CategoriaDtoResponse.java", "Java", 5, 0, 0, 0, 0, 0, 2, 7
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\MovimientoDtoRequest.java", "Java", 12, 0, 0, 0, 0, 0, 7, 19
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\MovimientoDtoResponse.java", "Java", 11, 0, 0, 0, 0, 0, 6, 17
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\ProductoDtoRequest.java", "Java", 17, 0, 0, 0, 0, 0, 6, 23
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\ProductoDtoResponse.java", "Java", 9, 0, 0, 0, 0, 0, 3, 12
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\ProveedorDtoRequest.java", "Java", 8, 0, 0, 0, 0, 0, 4, 12
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\ProveedorDtoResponse.java", "Java", 6, 0, 0, 0, 0, 0, 2, 8
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\CategoriaNoEncontradaException.java", "Java", 6, 0, 0, 0, 0, 0, 3, 9
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\GlobalExceptionHandler.java", "Java", 28, 0, 0, 0, 0, 5, 8, 41
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\MovimientoNoEncontradoException.java", "Java", 6, 0, 0, 0, 0, 0, 3, 9
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\ProductoNoEncontradoException.java", "Java", 6, 0, 0, 0, 0, 0, 3, 9
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\ProveedorNoEncontradoException.java", "Java", 6, 0, 0, 0, 0, 0, 3, 9
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\StockInsuficienteException.java", "Java", 6, 0, 0, 0, 0, 0, 3, 9
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\model\Categoria.java", "Java", 16, 0, 0, 0, 0, 0, 5, 21
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\model\Movimiento.java", "Java", 49, 0, 0, 0, 0, 0, 10, 59
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\model\Producto.java", "Java", 36, 0, 0, 0, 0, 0, 7, 43
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\model\Proveedor.java", "Java", 27, 0, 0, 0, 0, 0, 7, 34
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\model\TipoMovimiento.java", "Java", 4, 0, 0, 0, 0, 0, 1, 5
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\repository\CategoriaRepository.java", "Java", 5, 0, 0, 0, 0, 0, 4, 9
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\repository\MovimientoRepository.java", "Java", 7, 0, 0, 0, 0, 0, 3, 10
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\repository\ProductoRepository.java", "Java", 5, 0, 0, 0, 0, 0, 5, 10
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\repository\ProveedorRepository.java", "Java", 5, 0, 0, 0, 0, 0, 5, 10
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\repository\TipoMovimientoRepository.java", "Java", 5, 0, 0, 0, 0, 0, 5, 10
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\service\CategoriaService.java", "Java", 48, 0, 0, 0, 0, 6, 16, 70
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\service\MovimientoService.java", "Java", 81, 0, 0, 0, 0, 7, 21, 109
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\service\ProductoService.java", "Java", 59, 0, 0, 0, 0, 6, 18, 83
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\service\ProveedorService.java", "Java", 56, 0, 0, 0, 0, 7, 12, 75
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\resources\application.properties", "Java Properties", 0, 1, 0, 0, 0, 0, 1, 2
+"c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\test\java\com\inventory\management\ManagementApplicationTests.java", "Java", 9, 0, 0, 0, 0, 0, 5, 14
+"Total", "-", 742, 4, 121, 53, 139, 76, 312, 1447

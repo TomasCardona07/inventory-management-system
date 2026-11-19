@@ -25,7 +25,7 @@ public class Proveedor {
     @Column(name = "id_proveedor")
     private Long id;
 
-    @Column(name = "nombre_proveedor", nullable = false, length = 100)
+    @Column(name = "nombre_proveedor", nullable = true, length = 100)
     private String nombre;
 
     @Column(name = "telefono_proveedor", length = 100)

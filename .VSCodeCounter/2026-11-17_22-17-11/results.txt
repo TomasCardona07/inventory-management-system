@@ -1,0 +1,91 @@
+Date : 2026-11-17 22:17:11
+Directory : c:\Users\tomas\OneDrive\Desktop\inventory-management-system
+Total : 39 files,  1059 codes, 76 comments, 312 blanks, all 1447 lines
+
+Languages
++-----------------+------------+------------+------------+------------+------------+
+| language        | files      | code       | comment    | blank      | total      |
++-----------------+------------+------------+------------+------------+------------+
+| Java            |         34 |        742 |         50 |        230 |      1,022 |
+| Batch           |          1 |        139 |         26 |         25 |        190 |
+| XML             |          1 |        121 |          0 |          4 |        125 |
+| Markdown        |          1 |         53 |          0 |         51 |        104 |
+| Java Properties |          2 |          4 |          0 |          2 |          6 |
++-----------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                                         | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                                            |         39 |      1,059 |         76 |        312 |      1,447 |
+| . (Files)                                                                                                                                                    |          1 |         53 |          0 |         51 |        104 |
+| management                                                                                                                                                   |         38 |      1,006 |         76 |        261 |      1,343 |
+| management (Files)                                                                                                                                           |          2 |        260 |         26 |         29 |        315 |
+| management\.mvn                                                                                                                                              |          1 |          3 |          0 |          1 |          4 |
+| management\.mvn\wrapper                                                                                                                                      |          1 |          3 |          0 |          1 |          4 |
+| management\src                                                                                                                                               |         35 |        743 |         50 |        231 |      1,024 |
+| management\src\main                                                                                                                                          |         34 |        734 |         50 |        226 |      1,010 |
+| management\src\main\java                                                                                                                                     |         33 |        733 |         50 |        225 |      1,008 |
+| management\src\main\java\com                                                                                                                                 |         33 |        733 |         50 |        225 |      1,008 |
+| management\src\main\java\com\inventory                                                                                                                       |         33 |        733 |         50 |        225 |      1,008 |
+| management\src\main\java\com\inventory\management                                                                                                            |         33 |        733 |         50 |        225 |      1,008 |
+| management\src\main\java\com\inventory\management (Files)                                                                                                    |          1 |          9 |          0 |          5 |         14 |
+| management\src\main\java\com\inventory\management\controller                                                                                                 |          4 |        189 |         19 |         45 |        253 |
+| management\src\main\java\com\inventory\management\dto                                                                                                        |          8 |         74 |          0 |         33 |        107 |
+| management\src\main\java\com\inventory\management\exception                                                                                                  |          6 |         58 |          5 |         23 |         86 |
+| management\src\main\java\com\inventory\management\model                                                                                                      |          5 |        132 |          0 |         30 |        162 |
+| management\src\main\java\com\inventory\management\repository                                                                                                 |          5 |         27 |          0 |         22 |         49 |
+| management\src\main\java\com\inventory\management\service                                                                                                    |          4 |        244 |         26 |         67 |        337 |
+| management\src\main\resources                                                                                                                                |          1 |          1 |          0 |          1 |          2 |
+| management\src\test                                                                                                                                          |          1 |          9 |          0 |          5 |         14 |
+| management\src\test\java                                                                                                                                     |          1 |          9 |          0 |          5 |         14 |
+| management\src\test\java\com                                                                                                                                 |          1 |          9 |          0 |          5 |         14 |
+| management\src\test\java\com\inventory                                                                                                                       |          1 |          9 |          0 |          5 |         14 |
+| management\src\test\java\com\inventory\management                                                                                                            |          1 |          9 |          0 |          5 |         14 |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| filename                                                                                                                                                     | language        | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\README.md                                                                                        | Markdown        |         53 |          0 |         51 |        104 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\.mvn\wrapper\maven-wrapper.properties                                                 | Java Properties |          3 |          0 |          1 |          4 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\mvnw.cmd                                                                              | Batch           |        139 |         26 |         25 |        190 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\pom.xml                                                                               | XML             |        121 |          0 |          4 |        125 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\ManagementApplication.java                     | Java            |          9 |          0 |          5 |         14 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\controller\CategoriaController.java            | Java            |         49 |          5 |         10 |         64 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\controller\MovimientoController.java           | Java            |         48 |          5 |         12 |         65 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\controller\ProductoController.java             | Java            |         43 |          4 |         11 |         58 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\controller\ProveedorController.java            | Java            |         49 |          5 |         12 |         66 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\CategoriaDtoRequest.java                   | Java            |          6 |          0 |          3 |          9 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\CategoriaDtoResponse.java                  | Java            |          5 |          0 |          2 |          7 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\MovimientoDtoRequest.java                  | Java            |         12 |          0 |          7 |         19 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\MovimientoDtoResponse.java                 | Java            |         11 |          0 |          6 |         17 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\ProductoDtoRequest.java                    | Java            |         17 |          0 |          6 |         23 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\ProductoDtoResponse.java                   | Java            |          9 |          0 |          3 |         12 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\ProveedorDtoRequest.java                   | Java            |          8 |          0 |          4 |         12 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\dto\ProveedorDtoResponse.java                  | Java            |          6 |          0 |          2 |          8 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\CategoriaNoEncontradaException.java  | Java            |          6 |          0 |          3 |          9 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\GlobalExceptionHandler.java          | Java            |         28 |          5 |          8 |         41 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\MovimientoNoEncontradoException.java | Java            |          6 |          0 |          3 |          9 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\ProductoNoEncontradoException.java   | Java            |          6 |          0 |          3 |          9 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\ProveedorNoEncontradoException.java  | Java            |          6 |          0 |          3 |          9 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\exception\StockInsuficienteException.java      | Java            |          6 |          0 |          3 |          9 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\model\Categoria.java                           | Java            |         16 |          0 |          5 |         21 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\model\Movimiento.java                          | Java            |         49 |          0 |         10 |         59 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\model\Producto.java                            | Java            |         36 |          0 |          7 |         43 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\model\Proveedor.java                           | Java            |         27 |          0 |          7 |         34 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\model\TipoMovimiento.java                      | Java            |          4 |          0 |          1 |          5 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\repository\CategoriaRepository.java            | Java            |          5 |          0 |          4 |          9 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\repository\MovimientoRepository.java           | Java            |          7 |          0 |          3 |         10 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\repository\ProductoRepository.java             | Java            |          5 |          0 |          5 |         10 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\repository\ProveedorRepository.java            | Java            |          5 |          0 |          5 |         10 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\repository\TipoMovimientoRepository.java       | Java            |          5 |          0 |          5 |         10 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\service\CategoriaService.java                  | Java            |         48 |          6 |         16 |         70 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\service\MovimientoService.java                 | Java            |         81 |          7 |         21 |        109 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\service\ProductoService.java                   | Java            |         59 |          6 |         18 |         83 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\java\com\inventory\management\service\ProveedorService.java                  | Java            |         56 |          7 |         12 |         75 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\main\resources\application.properties                                             | Java Properties |          1 |          0 |          1 |          2 |
+| c:\Users\tomas\OneDrive\Desktop\inventory-management-system\management\src\test\java\com\inventory\management\ManagementApplicationTests.java                | Java            |          9 |          0 |          5 |         14 |
+| Total                                                                                                                                                        |                 |      1,059 |         76 |        312 |      1,447 |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+------------+------------+------------+------------+

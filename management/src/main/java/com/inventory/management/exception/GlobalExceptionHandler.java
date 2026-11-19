@@ -37,4 +37,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> stockInsuficiente(StockInsuficienteException ex){
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
+
+    //Proveedor obligatorio
+    @ExceptionHandler(ProveedorObligatorioException.class)
+    public ResponseEntity<String> proveedorObligatorio(ProveedorObligatorioException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
 }

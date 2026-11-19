@@ -20,14 +20,14 @@ import java.util.List;
 @RestController 
 @RequestMapping("/api/movimientos")
 public class MovimientoController {
-
+    
     private final MovimientoService movimientoService;
-
+    
     public MovimientoController(MovimientoService movimientoService){
         this.movimientoService = movimientoService;
     }
-
-    //Regsitrar entrada
+    
+    //Registrar entrada
     @PostMapping("/entrada")
     public ResponseEntity<MovimientoDtoResponse> registrarEntrada(@Valid @RequestBody MovimientoDtoRequest request) {
         MovimientoDtoResponse response = movimientoService.registrarEntrada(request);
@@ -40,21 +40,21 @@ public class MovimientoController {
         MovimientoDtoResponse response = movimientoService.registrarSalida(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
+    
     //Consultar historial
     @GetMapping
     public ResponseEntity<List<MovimientoDtoResponse>> mostrarHistorial() {
         List<MovimientoDtoResponse> historial = movimientoService.mostrarHistorial();
         return ResponseEntity.status(HttpStatus.OK).body(historial);
     }
-
+    
     //Buscar Movimiento por id
     @GetMapping("/{id}")
     public ResponseEntity<MovimientoDtoResponse> buscarMovimiento(@PathVariable Long id){
         MovimientoDtoResponse response = movimientoService.buscarMovimientoPorId(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
-
+    
     //Eliminar movimiento por id
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarMovimiento(@PathVariable Long id){

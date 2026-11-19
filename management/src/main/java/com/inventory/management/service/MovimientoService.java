@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.inventory.management.dto.MovimientoDtoRequest;
 import com.inventory.management.dto.MovimientoDtoResponse;
 import com.inventory.management.exception.MovimientoNoEncontradoException;
+import com.inventory.management.exception.ProveedorObligatorioException;
 import com.inventory.management.exception.StockInsuficienteException;
 import com.inventory.management.model.Movimiento;
 import com.inventory.management.model.Producto;
@@ -42,6 +43,10 @@ public class MovimientoService {
     //Registrar entrada
     @Transactional 
     public MovimientoDtoResponse registrarEntrada(MovimientoDtoRequest request){
+        if (request.idProveedor() == null) {
+            throw new ProveedorObligatorioException("El proveedor es obligatorio");
+        }
+
         Producto producto = productoService.obtenerProducto(request.idProducto());
         Proveedor proveedor = proveedorService.obtenerProveedorPorId(request.idProveedor());
 
@@ -62,7 +67,6 @@ public class MovimientoService {
     @Transactional 
     public MovimientoDtoResponse registrarSalida(MovimientoDtoRequest request){
         Producto producto = productoService.obtenerProducto(request.idProducto());
-        Proveedor proveedor = proveedorService.obtenerProveedorPorId(request.idProveedor());
 
         if (request.cantidad() > producto.getCantidad()) {
             throw new StockInsuficienteException("La cantidad supera al stock actual");
@@ -71,7 +75,7 @@ public class MovimientoService {
         Movimiento nuevoMovimiento = new Movimiento();
 
         nuevoMovimiento.setProducto(producto);
-        nuevoMovimiento.setProveedor(proveedor); //pendiente por corregir: Proveedor no es obligatorio en salidas
+        nuevoMovimiento.setProveedor(null);
         nuevoMovimiento.setCantidad(request.cantidad());
         nuevoMovimiento.setTipo(TipoMovimiento.SALIDA);
 

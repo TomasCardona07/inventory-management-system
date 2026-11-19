@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+#Vs code
+.vscode/
+.VSCodeCounter/
+
+#application.properties
+/src/main/resources/application.properties

@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.inventory.management.dto.CategoriaDtoRequest;
 import com.inventory.management.dto.CategoriaDtoResponse;
+import com.inventory.management.exception.CategoriaNoEncontradaException;
 import com.inventory.management.repository.CategoriaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,7 +60,7 @@ public class CategoriaService {
     //obtener categoria por id
     public Categoria obtenerCategoriaPorId(Long id){ //retorna entidad
         return categoriaRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
+            .orElseThrow(() -> new CategoriaNoEncontradaException("Categoria no encontrada"));
     }
 
     public CategoriaDtoResponse buscarCategoriaPorId(Long id){ //retorna DTO
