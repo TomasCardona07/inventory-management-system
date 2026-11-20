@@ -6,4 +6,5 @@ import com.inventory.management.model.Movimiento;
 
 public interface MovimientoRepository extends JpaRepository<Movimiento,Long> {
     List<Movimiento> findAllByOrderByFechaDesc();
+    
 }

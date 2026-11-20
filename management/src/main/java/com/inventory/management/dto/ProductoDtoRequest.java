@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
 public record ProductoDtoRequest(
+    
     @NotBlank(message = "El nombre es obligatorio")
     String nombre,
 

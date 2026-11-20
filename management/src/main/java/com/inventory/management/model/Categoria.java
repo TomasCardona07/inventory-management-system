@@ -17,4 +17,7 @@ public class Categoria {
 
     @Column(name = "nombre_categoria", nullable = false, length = 100, unique = true)
     private String nombre;
+
+    @Column(name = "estado_categoria", nullable = false)
+    private Boolean estado;
 }

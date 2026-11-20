@@ -7,6 +7,6 @@ public record ProductoDtoResponse(
     String nombre,
     Long idCategoria,
     Integer cantidad,
-    BigDecimal precio
-
+    BigDecimal precio,
+    Boolean estado
 ){}

@@ -3,6 +3,7 @@ package com.inventory.management.dto;
 import jakarta.validation.constraints.NotBlank;
 
 public record ProveedorDtoRequest(
+    
     @NotBlank (message = "El nombre del proveedor es obligatorio")
     String nombre,
 

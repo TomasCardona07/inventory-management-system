@@ -5,10 +5,12 @@ import com.inventory.management.dto.ProveedorDtoRequest;
 import com.inventory.management.dto.ProveedorDtoResponse;
 import com.inventory.management.service.ProveedorService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController 
 @RequestMapping("/api/proveedores")
+@Validated 
 public class ProveedorController {
     
     private final ProveedorService proveedorService;
@@ -44,22 +47,33 @@ public class ProveedorController {
 
     //buscar proveedor por id
     @GetMapping("/{id}")
-    public ResponseEntity<ProveedorDtoResponse> buscarProveedorPorId(@PathVariable Long id) {
+    public ResponseEntity<ProveedorDtoResponse> buscarProveedorPorId(@PathVariable
+        @Positive(message = "El id debe de ser positivo") Long id) {
         ProveedorDtoResponse response = proveedorService.buscarProveedorPorId(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     //Actualizar proveedor
     @PutMapping("/{id}")
-    public ResponseEntity<ProveedorDtoResponse> actualizarProveedor(@PathVariable Long id, @Valid @RequestBody ProveedorDtoRequest request) {
+    public ResponseEntity<ProveedorDtoResponse> actualizarProveedor(@PathVariable
+        @Positive(message = "El id debe de ser positivo") Long id, @Valid @RequestBody ProveedorDtoRequest request) {
         ProveedorDtoResponse response = proveedorService.actualizarProveedor(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     //Eliminar proveedor por id
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarProveedor(@PathVariable Long id){
+    public ResponseEntity<Void> eliminarProveedor(@PathVariable
+        @Positive(message = "El id debe de ser positivo") Long id){
         proveedorService.eliminarProveedor(id);
         return ResponseEntity.noContent().build();
+    }
+
+    //Desactivar proveedor
+    @PutMapping("/{id}/desactivar")
+    public ResponseEntity<ProveedorDtoResponse> desactivarProveedor(@PathVariable
+        @Positive(message = "El id debe de ser positivo") Long id) {
+        ProveedorDtoResponse response = proveedorService.desactivarProveedor(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

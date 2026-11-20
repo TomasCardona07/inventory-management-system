@@ -30,4 +30,7 @@ public class Proveedor {
 
     @Column(name = "telefono_proveedor", length = 100)
     private String telefono;
+
+    @Column (name = "estado_proveedor", nullable = false)
+    private Boolean estado;
 }

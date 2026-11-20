@@ -4,7 +4,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.inventory.management.dto.ProveedorDtoRequest;
 import com.inventory.management.dto.ProveedorDtoResponse;
-import com.inventory.management.exception.ProveedorNoEncontradoException;
+import com.inventory.management.exception.proveedor.ProveedorDesactivadoException;
+import com.inventory.management.exception.proveedor.ProveedorNoEncontradoException;
 import com.inventory.management.model.Proveedor;
 import com.inventory.management.repository.ProveedorRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,8 @@ public class ProveedorService {
         return new ProveedorDtoResponse(
             proveedor.getId(),
             proveedor.getNombre(),
-            proveedor.getTelefono()
+            proveedor.getTelefono(),
+            proveedor.getEstado()
         );
     }
 
@@ -32,6 +34,7 @@ public class ProveedorService {
         Proveedor nuevoProveedor = new Proveedor();
         nuevoProveedor.setNombre(request.nombre());
         nuevoProveedor.setTelefono(request.telefono());
+        nuevoProveedor.setEstado(true);
         Proveedor proveedorRegistrado = proveedorRepository.save(nuevoProveedor);
         return convertirADTO(proveedorRegistrado);
     }
@@ -45,7 +48,7 @@ public class ProveedorService {
     }
 
     //actualizar proveedor
-    @Transactional 
+    @Transactional //No se puede desactivar proveedor por actualizacion de entidad
     public ProveedorDtoResponse actualizarProveedor(Long id,ProveedorDtoRequest request){
         Proveedor proveedor = obtenerProveedorPorId(id);
         proveedor.setNombre(request.nombre());
@@ -67,8 +70,18 @@ public class ProveedorService {
 
     //Obtener proveedor por id
     public Proveedor obtenerProveedorPorId(Long id){
-        Proveedor proveedor = proveedorRepository.findById(id)
+        return proveedorRepository.findById(id)
             .orElseThrow(() -> new ProveedorNoEncontradoException("Proveedor no encontrado"));
-        return proveedor;
+    }
+
+    //Desactivar proveedor
+    @Transactional 
+    public ProveedorDtoResponse desactivarProveedor(Long id){
+        Proveedor proveedor = obtenerProveedorPorId(id);
+        if (Boolean.FALSE.equals(proveedor.getEstado())) {
+            throw new ProveedorDesactivadoException("El proveedor ya se encuentra desactivado");
+        }
+        proveedor.setEstado(false);
+        return convertirADTO(proveedor);
     }
 }

@@ -1,4 +1,4 @@
-package com.inventory.management.exception;
+package com.inventory.management.exception.movimiento;
 
 public class MovimientoNoEncontradoException extends RuntimeException {
 

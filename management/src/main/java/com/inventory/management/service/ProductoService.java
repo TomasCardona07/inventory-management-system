@@ -3,7 +3,8 @@ package com.inventory.management.service;
 import org.springframework.stereotype.Service;
 import com.inventory.management.dto.ProductoDtoRequest;
 import com.inventory.management.dto.ProductoDtoResponse;
-import com.inventory.management.exception.ProductoNoEncontradoException;
+import com.inventory.management.exception.producto.ProductoDesactivadoException;
+import com.inventory.management.exception.producto.ProductoNoEncontradoException;
 import com.inventory.management.model.Categoria;
 import com.inventory.management.model.Producto;
 import com.inventory.management.repository.ProductoRepository;
@@ -27,7 +28,8 @@ public class ProductoService {
         producto.getNombre(),
         producto.getCategoria().getId(),
         producto.getCantidad(),
-        producto.getPrecio()
+        producto.getPrecio(),
+        producto.getEstado()
         );
     }
 
@@ -39,6 +41,7 @@ public class ProductoService {
         nuevoProducto.setNombre(request.nombre());
         nuevoProducto.setCantidad(request.cantidad());
         nuevoProducto.setPrecio(request.precio());
+        nuevoProducto.setEstado(true);
         nuevoProducto.setCategoria(categoria);
 
         Producto productoRegistrado = productoRepository.save(nuevoProducto);
@@ -67,7 +70,6 @@ public class ProductoService {
         Categoria categoria = categoriaService.obtenerCategoriaPorId(request.idCategoria());
 
         producto.setNombre(request.nombre());
-        producto.setCantidad(request.cantidad()); //Pendiente por evaluar: El stock no se deberia modificar libremente sin registro
         producto.setCategoria(categoria);
         producto.setPrecio(request.precio()); 
         
@@ -78,5 +80,18 @@ public class ProductoService {
     public void eliminarProducto(Long id){
         Producto producto = obtenerProducto(id);
         productoRepository.delete(producto);
+    }
+
+    //Desactivar producto
+    @Transactional 
+    public ProductoDtoResponse desactivarProducto(Long id){
+        Producto producto = obtenerProducto(id);
+
+        if (Boolean.FALSE.equals(producto.getEstado())) {
+            throw new ProductoDesactivadoException("El producto ya se encuentra desactivado");
+        }
+
+        producto.setEstado(false);
+        return convertirADTO(producto);
     }
 }

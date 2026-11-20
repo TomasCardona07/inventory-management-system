@@ -1,4 +1,4 @@
-package com.inventory.management.exception;
+package com.inventory.management.exception.categoria;
 
 public class CategoriaNoEncontradaException extends RuntimeException {
     

@@ -4,9 +4,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.inventory.management.dto.MovimientoDtoRequest;
 import com.inventory.management.dto.MovimientoDtoResponse;
-import com.inventory.management.exception.MovimientoNoEncontradoException;
-import com.inventory.management.exception.ProveedorObligatorioException;
-import com.inventory.management.exception.StockInsuficienteException;
+import com.inventory.management.exception.movimiento.MovimientoNoEncontradoException;
+import com.inventory.management.exception.movimiento.StockInsuficienteException;
+import com.inventory.management.exception.producto.ProductoDesactivadoException;
+import com.inventory.management.exception.proveedor.ProveedorDesactivadoException;
+import com.inventory.management.exception.proveedor.ProveedorObligatorioException;
 import com.inventory.management.model.Movimiento;
 import com.inventory.management.model.Producto;
 import com.inventory.management.model.Proveedor;
@@ -48,11 +50,18 @@ public class MovimientoService {
         }
 
         Producto producto = productoService.obtenerProducto(request.idProducto());
+        if (Boolean.FALSE.equals(producto.getEstado())) {
+            throw new ProductoDesactivadoException("El producto se encuentra desactivado");
+        }
+
         Proveedor proveedor = proveedorService.obtenerProveedorPorId(request.idProveedor());
+        if (Boolean.FALSE.equals(proveedor.getEstado())) {
+            throw new ProveedorDesactivadoException("El proveedor se encuentra desactivado");
+        }
 
         producto.setCantidad(producto.getCantidad() + request.cantidad());
+        
         Movimiento nuevoMovimiento = new Movimiento();
-
         nuevoMovimiento.setProducto(producto);
         nuevoMovimiento.setProveedor(proveedor);
         nuevoMovimiento.setCantidad(request.cantidad());
@@ -71,9 +80,9 @@ public class MovimientoService {
         if (request.cantidad() > producto.getCantidad()) {
             throw new StockInsuficienteException("La cantidad supera al stock actual");
         }
+
         producto.setCantidad(producto.getCantidad() - request.cantidad());
         Movimiento nuevoMovimiento = new Movimiento();
-
         nuevoMovimiento.setProducto(producto);
         nuevoMovimiento.setProveedor(null);
         nuevoMovimiento.setCantidad(request.cantidad());

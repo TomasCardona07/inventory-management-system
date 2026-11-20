@@ -1,4 +1,4 @@
-package com.inventory.management.exception;
+package com.inventory.management.exception.proveedor;
 
 public class ProveedorNoEncontradoException extends RuntimeException {
     

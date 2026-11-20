@@ -40,4 +40,7 @@ public class Producto {
 
     @Column(name = "precio_producto", nullable = false, precision = 10, scale = 2)
     private BigDecimal precio;
+
+    @Column (name = "estado_producto", nullable = false)
+    private Boolean estado;
 }

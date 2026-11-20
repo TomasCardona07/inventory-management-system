@@ -4,7 +4,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.inventory.management.dto.CategoriaDtoRequest;
 import com.inventory.management.dto.CategoriaDtoResponse;
-import com.inventory.management.exception.CategoriaNoEncontradaException;
+import com.inventory.management.exception.categoria.CategoriaDesactivadaException;
+import com.inventory.management.exception.categoria.CategoriaNoEncontradaException;
 import com.inventory.management.repository.CategoriaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,13 +20,17 @@ public class CategoriaService {
 
     //convertir categoria a dtoResponse
     private  CategoriaDtoResponse convertirADTO(Categoria categoria){
-        return new CategoriaDtoResponse(categoria.getId(), categoria.getNombre());
+        return new CategoriaDtoResponse(categoria.getId(),
+         categoria.getNombre(),
+         categoria.getEstado()
+        );
     }
 
     //Registrar Categoria
     public CategoriaDtoResponse registrarCategoria(CategoriaDtoRequest categoriaDtoRequest){
         Categoria categoria = new Categoria();
         categoria.setNombre(categoriaDtoRequest.nombre());
+        categoria.setEstado(true);
         Categoria categoriaRegistrada = categoriaRepository.save(categoria);
         
         return convertirADTO(categoriaRegistrada);
@@ -65,6 +70,19 @@ public class CategoriaService {
 
     public CategoriaDtoResponse buscarCategoriaPorId(Long id){ //retorna DTO
         Categoria categoria = obtenerCategoriaPorId(id);
+        return convertirADTO(categoria);
+    }
+
+    //Desactivar categoria
+    @Transactional 
+    public CategoriaDtoResponse desactivarCategoria(Long id){
+        Categoria categoria = obtenerCategoriaPorId(id);
+
+        if (Boolean.FALSE.equals(categoria.getEstado())) {
+            throw new CategoriaDesactivadaException("La categoria ya se encuentra desactivada");
+        }
+        
+        categoria.setEstado(false);
         return convertirADTO(categoria);
     }
 }

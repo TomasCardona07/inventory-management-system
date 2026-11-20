@@ -1,6 +1,7 @@
 package com.inventory.management.model;
 
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -46,6 +47,7 @@ public class Movimiento {
     @Column(name = "tipo_movimiento", nullable = false, length = 20)
     private TipoMovimiento tipo;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     @Column(nullable = false)
     private LocalDateTime fecha;
 

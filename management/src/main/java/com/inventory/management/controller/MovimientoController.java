@@ -6,8 +6,10 @@ import com.inventory.management.dto.MovimientoDtoRequest;
 import com.inventory.management.dto.MovimientoDtoResponse;
 import com.inventory.management.service.MovimientoService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,9 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 
-
 @RestController 
 @RequestMapping("/api/movimientos")
+@Validated 
 public class MovimientoController {
     
     private final MovimientoService movimientoService;
@@ -50,14 +52,16 @@ public class MovimientoController {
     
     //Buscar Movimiento por id
     @GetMapping("/{id}")
-    public ResponseEntity<MovimientoDtoResponse> buscarMovimiento(@PathVariable Long id){
+    public ResponseEntity<MovimientoDtoResponse> buscarMovimiento(@PathVariable
+        @Positive(message = "El id debe de ser positivo") Long id){
         MovimientoDtoResponse response = movimientoService.buscarMovimientoPorId(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
     
     //Eliminar movimiento por id
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarMovimiento(@PathVariable Long id){
+    public ResponseEntity<Void> eliminarMovimiento(@PathVariable
+        @Positive(message = "El id debe de ser positivo") Long id){
         movimientoService.eliminarMovimiento(id);
         return ResponseEntity.noContent().build();
     }

@@ -8,7 +8,6 @@ public record MovimientoDtoRequest(
     @NotNull(message = "El id del producto es obligatorio")
     Long idProducto,
 
-    @NotNull (message ="El id del proveedor es obligatorio")
     Long idProveedor,
 
     @NotNull(message = "La cantidad es obligatoria")
