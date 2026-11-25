@@ -68,7 +68,7 @@ public class CategoriaController {
     }
 
     //Desactivar categoria
-    @PutMapping("/{id}/desactivar")
+    @PutMapping("/{id}/desactivar") //pendiente: Cambiar PUT por path en cada controller (Es cambio parcial)
     public ResponseEntity<CategoriaDtoResponse> desactivarCategoria(@PathVariable
         @Positive(message = "El id debe de ser positivo") Long id) {
         CategoriaDtoResponse response = categoriaService.desactivarCategoria(id);
